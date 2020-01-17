@@ -1,5 +1,6 @@
 <template>
   <div class="home container">
+    <p> test </p>
     <div class="about-me item">
       <Title label="About Me"/>
       Content
