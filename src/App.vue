@@ -4,14 +4,24 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <header class="header"></header>
+    <top-header class="header"></top-header>
     <router-view/>
   </div>
 </template>
 
+<script>
+import TopHeader from '@/components/topHeader.vue'
+
+export default {
+    components: {
+    TopHeader
+  }
+}
+</script>
+
 <style lang="scss">
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

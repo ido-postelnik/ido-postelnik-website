@@ -1,14 +1,17 @@
 // Colors
 $white: #FFFFFF;
+$light-grey: #BDBDBD;
+$dark-grey: #2c3e50;
+
 $platinum: #E8E9EB;
 $beige: #E0DFD5;
-$dark-grey: #313638;
 $yellow: #E4B363;
 $green: #07C39B;
 $red: #EF6461;
 
 // Layout sizes
 $header-height: 55px;
+$home-page-btn-height: 25vh;
 
 // Break points
 // Small tablets and large smartphones (landscape view)
@@ -22,3 +25,12 @@ $screen-lg-min: 992px;
 
 // Large tablets and desktops
 $screen-xl-min: 1200px;
+
+// Images
+$about-me: url(../assets/pages/about-me.svg);
+$work-experience: url(../assets/pages/work-experience.svg);
+$skills-set: url(../assets/pages/skills-set.svg);
+$cv: url(../assets/pages/cv.svg);
+
+// Fonts
+$font-title: 'Audiowide', cursive;
