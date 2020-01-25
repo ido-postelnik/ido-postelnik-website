@@ -4,13 +4,13 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <top-header class="header"></top-header>
+    <top-header class="header"/>
     <router-view/>
   </div>
 </template>
 
 <script>
-import TopHeader from '@/components/topHeader.vue'
+import TopHeader from '@/components/TopHeader.vue';
 
 export default {
     components: {

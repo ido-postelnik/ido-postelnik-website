@@ -1,8 +1,9 @@
 <template>
   <div class="home">
+
+    <!-- main section -->
     <div class="main-container">
-      <!-- top part -->
-      
+
       <!-- ido-postelnik -->
       <div class="top">
         <div class="ido-postelnik flex column layout-align-center-center">
@@ -15,30 +16,37 @@
             <separator></separator>
             <h2>Product Manager</h2>
           </div>
+          <h3 class="m-t-15">I love doing UI. From sketch to production. Simple as that.</h3>
         </div>
 
-        <!-- work flow -->
-        <div class="work-flow flex row layout-align-center-center">
-          <div>A</div>
-          <div>B</div>
-          <div>C</div>
+        <!-- work flow process -->
+        <div class="work-flow m-r-30">
+          <div class="work-flow-step">A</div>
+          <div class="work-flow-step m-x-20">B</div>
+          <div class="work-flow-step">C</div>
         </div>
       </div>
      
       <!-- bottom part -->
       <div class="bottom flex row layout-align-start-space-between">
-        <inner-page-card class="about-me" label="About me"></inner-page-card>
-        <inner-page-card class="work-experience" label="Work experience"></inner-page-card>
-        <inner-page-card class="skills-set" label="Skills set"></inner-page-card>
-        <inner-page-card class="cv" label="CV"></inner-page-card>
+        <inner-page-card class="about-me" label="About me"/>
+        <inner-page-card class="work-experience" label="Work experience"/>
+        <inner-page-card class="skills-set" label="Skills set"/>
+        <inner-page-card class="cv" label="CV"/>
       </div>
-    
-
-
-
-      <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
     </div>
-    <p> test </p>
+
+    <!-- sub section -->
+    <div class="sub-container flex column layout-align-center-center">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
+      <p>Nulla quam velit, vulputate eu pharetra nec,</p>
+      <p>mattis ac neque.</p>
+    </div>
+
+    <!-- contact section -->
+    <footer class="footer-container">
+    </footer>
+    <copy-right/>
   </div>
 </template>
 
@@ -46,31 +54,22 @@
 // @ is an alias to /src
 import Separator from '@/components/shared/Separator.vue'
 import InnerPageCard from '@/components/home/InnerPageCard.vue'
+import CopyRight from '@/components/CopyRight.vue'
 
 export default {
   name: 'home',
   data: function () {
     return {
-      window: {
-        width: 0
-      }
-    }
-  },
-    created() {
-    window.addEventListener('resize', this.handleResize)
-    this.handleResize();
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.handleResize)
-  },
-  methods: {
-    handleResize() {
-      this.window.width = window.innerWidth;
     }
   },
   components: {
     Separator,
-    InnerPageCard
+    InnerPageCard,
+    CopyRight
+  },
+  created() {
+  },
+  methods: {
   }
 }
 </script>
@@ -92,7 +91,7 @@ export default {
     opacity: 0.05;
     top: 0;
     left: 0;
-    bottom: calc($home-page-btn-height + 10px);
+    bottom: $home-inner-page-card-height;
     right: 0;
     position: absolute;
     z-index: -1;   
@@ -113,27 +112,50 @@ export default {
         flex: 2;
     
         .profile-image{
-          height: 200px;
-          width: 200px;
+          height: calc(110px + 7vw);
+          width: calc(110px + 7vw);
           border-radius: 50%;
-          background-image: url(../assets/img/home/ido-postelnik-profile-image.jpg);
-          background-position: -50px -25px;
-          background-size: 150%;
+          background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
+          background-size: cover;
           border: $light-grey 1px solid;
         }
 
         h1{
-          font-size: 5rem;
+          font-size: calc(1rem + 3vw);
           font-weight: 600;
         }
 
         h2{
-          font-size: 1.5rem;
+          font-size: calc(0.92rem + 0.8vw);
+        }    
+
+        h3{
+          font-size: calc(1rem + 0.4vw);
+          font-weight: 300;
         }    
       }
     
       .work-flow{
-        flex: 1;
+        display: none;
+      }
+
+      // 992px window width and more
+      @include lg {
+        .work-flow{
+          flex: 1;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+
+          &-step{
+            width: 100%;
+            height: 150px;
+            background-color: $white;
+            border: 1px solid $dark-grey;
+          }
+
+        }
       }
     }
 
@@ -154,12 +176,18 @@ export default {
         background-image: $cv;
       }
     }
+  }
 
-    // 992px window width and more
-    @include md {
+  .sub-container{
+    height: 300px;
+    font-size: 2rem;
+  }
 
-    }
-
+  .footer-container{
+    height: 300px;
+    background: rgb(53,92,125);
+    background: linear-gradient(180deg, rgba(53,92,125,1) 0%, rgba(108,91,123,1) 48%, rgba(192,108,132,1) 100%);
+    border-bottom: 10px solid $dark-grey;
   }
 }
 </style>

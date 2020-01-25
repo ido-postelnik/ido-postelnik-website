@@ -2,9 +2,9 @@
   <header class="flex row layout-align-center-space-between">
     <p class="logo">Ido Postelnik</p>
     <div class="flex row layout-align-center-space-between contact">
-      <p>email</p>
+      <img src="../assets/icons/email.svg" alt="email" height="25"/>
       <p>|</p>
-      <p>phone</p>
+      <img src="../assets/icons/phone.svg" alt="phone" height="23"/>
     </div>
   </header>
 </template>
@@ -34,7 +34,7 @@ export default {
     }
 
     .contact{
-      width: 100px;
+      width: 75px;
     }
   }
 </style>

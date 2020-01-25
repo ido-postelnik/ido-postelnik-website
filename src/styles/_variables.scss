@@ -1,8 +1,8 @@
 // Colors
 $white: #FFFFFF;
 $light-grey: #BDBDBD;
-$dark-grey: #2c3e50;
-
+$dark-grey: #313638;
+$dark-blue-grey: #2c3e50;
 $platinum: #E8E9EB;
 $beige: #E0DFD5;
 $yellow: #E4B363;
@@ -11,7 +11,7 @@ $red: #EF6461;
 
 // Layout sizes
 $header-height: 55px;
-$home-page-btn-height: 25vh;
+$home-inner-page-card-height: 32vh;
 
 // Break points
 // Small tablets and large smartphones (landscape view)
@@ -27,10 +27,10 @@ $screen-lg-min: 992px;
 $screen-xl-min: 1200px;
 
 // Images
-$about-me: url(../assets/pages/about-me.svg);
-$work-experience: url(../assets/pages/work-experience.svg);
-$skills-set: url(../assets/pages/skills-set.svg);
-$cv: url(../assets/pages/cv.svg);
+$about-me: url(../assets/img/home/home-about-me.png);
+$work-experience: url(../assets/img/home/home-work-experience.png);
+$skills-set: url(../assets/img/home/home-skills-set.png);
+$cv: url(../assets/img/home/home-cv.png);
 
 // Fonts
 $font-title: 'Audiowide', cursive;

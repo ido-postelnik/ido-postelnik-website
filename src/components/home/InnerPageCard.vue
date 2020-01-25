@@ -15,11 +15,11 @@ export default {
 
 <style scoped lang="scss">
   .card{
-    height: $home-page-btn-height;
+    height: $home-inner-page-card-height;
     width: 100%;
     margin-right: 5px;
     background-position: center;
-    background-size: cover;
+    // background-size: cover;
 
     &:last-child{
       margin-right: 0;
@@ -28,15 +28,15 @@ export default {
     &-title{
       background-color: $white;
       width: 100%;
-      padding: 5px 0;
+      padding: 10px 0;
       font-family: $font-title;
       font-size: 1.4rem;
-      position:relative;
+      position: relative;
 
       &::after{
         content: "";
         position: absolute;
-        bottom: 3px;
+        bottom: 5px;
         left: 50%;
         width: 40px;
         margin-left: -20px;
