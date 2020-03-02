@@ -16,7 +16,7 @@
       justify-content: center;
     }
 
-    &-start-center{
+    &-center-start{
       align-items: center;
       justify-content: start;
     }
@@ -30,11 +30,16 @@
       align-items: start;
       justify-content: space-between;
     }
+
+    &-start-center{
+      align-items: start;
+      justify-content: center;
+    }
   } 
 }
 
 // marings and paddings
-$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 50, 75, 100); // Adjust this to include the pixel amounts you need.
+$spaceamounts: (0, 5, 10, 15, 20, 25, 30, 35, 40, 50, 75, 100); // Adjust this to include the pixel amounts you need.
 $sides: (top, bottom, left, right); // Leave this variable alone
 
 @each $space in $spaceamounts {

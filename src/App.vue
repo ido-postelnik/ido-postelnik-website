@@ -5,17 +5,25 @@
       <router-link to="/about">About</router-link>
     </div> -->
     <top-header class="header"/>
+    <sidebar v-if="currentRouteName != 'home'"/>
     <router-view/>
   </div>
 </template>
 
 <script>
 import TopHeader from '@/components/TopHeader.vue';
+import Sidebar from '@/components/Sidebar.vue';
 
 export default {
     components: {
-    TopHeader
-  }
+    TopHeader,
+    Sidebar
+  },
+  computed: {
+    currentRouteName() {
+        return this.$route.name;
+    }
+}
 }
 </script>
 

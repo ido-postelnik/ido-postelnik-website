@@ -12,20 +12,20 @@ export default {
   .separator {
     width: 0;
     height: 0;
-    border: 10px solid transparent;
+    border: 7px solid transparent;
     border-bottom-color: $dark-grey;
     position: relative;
-    top: -7px;
-    margin: 0 10px;
+    top: -4px;
+    margin: 0 7px;
 
     &:after {
       content: '';
       position: absolute;
-      left: -10px;
-      top: 10px;
+      left: -7px;
+      top: 7px;
       width: 0;
       height: 0;
-      border: 10px solid transparent;
+      border: 7px solid transparent;
       border-top-color: $dark-grey;
     }
   }

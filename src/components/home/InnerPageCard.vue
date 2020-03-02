@@ -1,6 +1,6 @@
 <template>
-  <div class="card">
-    <p class="card-title">{{ label }}</p>
+  <div class="card" @click="goTo(data.value)">
+    <p class="card-title">{{ data.label }}</p>
   </div>
 </template>
 
@@ -8,7 +8,16 @@
 export default {
   name: 'InnerPageCard',
   props: {
-    label: String
+    data: {
+      type: Object,
+      default: null
+    }
+  },
+  methods: {
+    goTo: function (page) {
+      console.log('page: ', page);
+      this.$router.push({ name: `${page}` })
+    }
   }
 }
 </script>
@@ -16,11 +25,27 @@ export default {
 <style scoped lang="scss">
   .card{
     height: $home-inner-page-card-height;
+    min-height: 250px;
     width: 100%;
     margin-right: 5px;
     background-position: center;
-    // background-size: cover;
+    background-size: 130%;
+   
 
+    &:hover{
+      cursor: pointer;
+      background-size: 135%;
+      transition: background-size 0.2s ease-in;
+
+      .card-title{
+        &::after{
+          width: 60px;
+          margin-left: -30px;
+          transition: 0.1s ease-in;
+        }
+      }
+    }
+    
     &:last-child{
       margin-right: 0;
     }
@@ -32,6 +57,7 @@ export default {
       font-family: $font-title;
       font-size: 1.4rem;
       position: relative;
+      
 
       &::after{
         content: "";
