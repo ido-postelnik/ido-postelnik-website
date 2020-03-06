@@ -1,0 +1,29 @@
+// Pages images
+.about-me{background-image: url(../assets/img/pages/about-me.svg);}
+.work-experience{background-image: url(../assets/img/pages/work-experience.svg);}
+.skills-set{background-image: url(../assets/img/pages/skills-set.svg);}
+.cv{background-image: url(../assets/img/pages/cv.svg);}
+
+// Page style
+.page{
+  .page-title{
+    font-size: calc(0.75rem + 0.7vw);
+    font-weight: 500;
+    font-family: $font-title;
+    width: 100%;
+    padding: 10px 0;
+    position: relative;
+    text-align: center;
+    
+    &::after{
+      content: "";
+      position: absolute;
+      bottom: 5px;
+      left: 50%;
+      width: 40px;
+      margin-left: -20px;
+      border-bottom: $dark-grey solid 2px;
+    }
+    
+  }
+}

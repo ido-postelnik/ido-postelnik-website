@@ -16,7 +16,7 @@ export default {
     border-bottom-color: $dark-grey;
     position: relative;
     top: -4px;
-    margin: 0 7px;
+    margin: 0 12px;
 
     &:after {
       content: '';

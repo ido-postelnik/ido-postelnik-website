@@ -1,18 +1,22 @@
 export const PAGES = {
   ABOUT_ME: {
     label: 'About Me',
-    value: 'aboutMe'
+    value: 'aboutMe',
+    class: 'about-me'
   },
   WORK_EXPERIENCE: {
     label: 'Work Experience',
-    value: 'workExperience'
+    value: 'workExperience',
+    class: 'work-experience'
   },
   SKILLS_SET: {
     label: 'Skills Set',
-    value: 'skillsSet'
+    value: 'skillsSet',
+    class: 'skills-set'
   },
   CV: {
     label: 'CV',
-    value: 'cv'
+    value: 'cv',
+    class: 'cv'
   }
 };

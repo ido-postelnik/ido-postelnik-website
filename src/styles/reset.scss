@@ -19,3 +19,14 @@ time, mark, audio, video {
 	vertical-align: baseline;
 	box-sizing: border-box;
 }
+
+html, 
+body {
+		height: 100%;
+		color: $dark-blue-grey;
+}
+
+a {
+  color: $dark-blue-grey;
+	text-decoration: none; 
+}

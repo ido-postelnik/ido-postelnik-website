@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
-import WorkExperience from './views/WorkExperience.vue'
+
+// pages
 import AboutMe from './views/AboutMe.vue'
+import WorkExperience from './views/WorkExperience.vue'
+import SkillsSet from './views/SkillsSet.vue'
+import Cv from './views/Cv.vue'
 
 Vue.use(Router)
 
@@ -35,6 +39,16 @@ export default new Router({
       path: '/workExperience',
       name: 'workExperience',
       component: WorkExperience
+    },
+    {
+      path: '/skillsSet',
+      name: 'skillsSet',
+      component: SkillsSet
+    },
+    {
+      path: '/cv',
+      name: 'cv',
+      component: Cv
     }
   ]
 })

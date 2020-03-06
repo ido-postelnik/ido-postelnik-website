@@ -15,6 +15,8 @@ export default {
   .button {
     padding: 6px 40px;
     border: 1px solid $dark-grey;
-    border-radius: 20px
+    border-radius: 20px;
+    background-color: $white;
+    text-align: center;
   }
 </style>

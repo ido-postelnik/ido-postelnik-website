@@ -1,16 +1,25 @@
 <template>
-  <div class="card" @click="goTo(data.value)">
+  <router-link class="card" :class="classObject" :to="data.value">
     <p class="card-title">{{ data.label }}</p>
-  </div>
+  </router-link>
 </template>
 
 <script>
+import {_} from '@/utils/utils';
+
 export default {
   name: 'InnerPageCard',
   props: {
     data: {
       type: Object,
       default: null
+    }
+  },
+  computed: {
+    classObject: function () {
+      let retVal = _.get(this, 'data.class');
+
+      return retVal;
     }
   },
   methods: {
@@ -30,14 +39,16 @@ export default {
     margin-right: 5px;
     background-position: center;
     background-size: 130%;
+    color: $dark-grey;
+    text-decoration: none;
    
-
     &:hover{
       cursor: pointer;
       background-size: 135%;
       transition: background-size 0.2s ease-in;
 
       .card-title{
+
         &::after{
           width: 60px;
           margin-left: -30px;
@@ -57,6 +68,7 @@ export default {
       font-family: $font-title;
       font-size: 1.4rem;
       position: relative;
+      text-align: center;
       
 
       &::after{
@@ -69,5 +81,6 @@ export default {
         border-bottom: $dark-grey solid 2px;
       }
     }
+
   }
 </style>

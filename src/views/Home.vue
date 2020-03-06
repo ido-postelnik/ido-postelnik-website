@@ -10,6 +10,10 @@
       <div class="small-buildings"></div>
       <div class="left-buildings"></div>
       <div class="right-buildings"></div>
+      <div class="arrow-down clickable" @click="scrollDown()">
+        <img src="../assets/icons/arrow-down.svg" alt="arrow-down" height="20"/>
+      </div>
+
 
       <!-- ido-postelnik -->
       <div class="welcome flex column layout-align-center-center">
@@ -60,11 +64,8 @@
     </div>
 
     <!-- inner page cards -->
-    <div class="pages m-t-30 flex row layout-align-start-space-between">
-      <inner-page-card class="about-me" :data="PAGES.ABOUT_ME"/>
-      <inner-page-card class="work-experience" :data="PAGES.WORK_EXPERIENCE"/>
-      <inner-page-card class="skills-set" :data="PAGES.SKILLS_SET"/>
-      <inner-page-card class="cv" :data="PAGES.CV"/>
+    <div class="flex row layout-align-start-space-between m-t-30">
+      <inner-page-card v-for="page in PAGES" :key="page.value" :data="page"> </inner-page-card>
     </div>
 
     <!-- quote -->
@@ -107,6 +108,13 @@ export default {
   created() {
   },
   methods: {
+    scrollDown() {
+      let windowInnerHeight = window.innerHeight;
+      window.scrollTo({
+        top: windowInnerHeight - 50,
+        behavior: 'smooth',
+      });
+    }
   }
 }
 </script>
@@ -121,7 +129,7 @@ export default {
     height: 100vh;
     position: relative;
     background: rgb(236,233,230);
-    background: linear-gradient(0deg, rgba(236,233,230,1) 0%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, $dirty-white 0%, $white 100%);
 
     .wave{
       position: absolute;
@@ -129,20 +137,18 @@ export default {
       left: 0;
       right: 0;
       background-repeat: no-repeat;
+      height: 90%;
 
       &-1 {
         background-image: url(../assets/img/home/wave-1.svg);
-        height: 35%;
       }
 
       &-2 {
         background-image: url(../assets/img/home/wave-2.svg);
-        height: 35%;
       }
 
       &-3 {
         background-image: url(../assets/img/home/wave-3.svg);
-        height: 35%;
       }
     }
 
@@ -190,6 +196,20 @@ export default {
       background-position: right bottom;
     }
 
+    .arrow-down{
+      position: absolute;
+      bottom: 20px;
+      transition: bottom 0.2s;
+      width: 25px;
+      height: 30px;
+      text-align: center;
+      line-height: 40px;
+
+      &:hover{
+        bottom: 15px;
+      }
+    }
+
     .welcome{
       height: 90%;
       width: 100%;
@@ -205,13 +225,14 @@ export default {
       }
 
       h1{
-        font-size: calc(0.9rem + 3.3vw);
+        font-size: calc(0.9rem + 3.0vw);
         font-weight: 600;
         font-family: $font-title;
       }
 
       h2{
-        font-size: calc(0.75rem + 0.8vw);
+        font-size: calc(0.75rem + 0.75vw);
+        letter-spacing: 1.5px;
       }      
     }
   }
@@ -252,25 +273,7 @@ export default {
 
     }
   }
-
-  .pages{
-    .about-me{
-      background-image: $about-me;
-    }
-
-    .work-experience{
-      background-image: $work-experience;
-    }
-
-    .skills-set{
-      background-image: $skills-set;
-    }
-
-    .cv{
-      background-image: $cv;
-    }
-  }
-
+  
   .quote{
     height: 300px;
     font-size: 2rem;

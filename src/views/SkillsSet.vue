@@ -1,8 +1,8 @@
 <template>
-  <div class="page work-experience">
-    <page-layout :page="'work-experience'">
+  <div class="page skills-set">
+    <page-layout :page="'skills-set'">
       <!-- header -->
-      <h1 class="page-title">Work experience</h1>
+      <h1 class="page-title">Skills set</h1>
 
     </page-layout>
   </div>
@@ -12,7 +12,7 @@
 import PageLayout from '@/components/PageLayout.vue'
 
 export default {
-  name: 'workExperience',
+  name: 'skillsSet',
   data: function () {
     return {
 
@@ -29,7 +29,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .work-experience{
+  .skills-set{
 
   }
 </style>

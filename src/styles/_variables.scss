@@ -1,9 +1,10 @@
 // Colors
 $white: #FFFFFF;
+$dirty-white: #ECE9E6;
+$platinum: #fdfdfd;
 $light-grey: #BDBDBD;
 $dark-grey: #313638;
 $dark-blue-grey: #2c3e50;
-$platinum: #fdfdfd;
 $beige: #E0DFD5;
 $yellow: #E4B363;
 $green: #07C39B;
@@ -11,6 +12,7 @@ $red: #EF6461;
 
 // Layout sizes
 $header-height: 50px;
+$sidebar-width: 150px;
 $home-inner-page-card-height: 35vh;
 
 // Break points
@@ -27,10 +29,10 @@ $screen-lg-min: 992px;
 $screen-xl-min: 1200px;
 
 // Images
-$about-me: url(../assets/img/home/home-about-me.png);
-$work-experience: url(../assets/img/home/home-work-experience.png);
-$skills-set: url(../assets/img/home/home-skills-set.png);
-$cv: url(../assets/img/home/home-cv.png);
+// $about-me: url(../../assets/img/pages/about-me.svg);
+// $work-experience: url(../../assets/img/pages/work-experience.svg);
+// $skills-set: url(../../assets/img/pages/skills-set.svg);
+// $cv: url(../../assets/img/pages/cv.svg);
 
 // Fonts
 $font-title: 'Audiowide', cursive;

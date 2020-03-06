@@ -1,10 +1,21 @@
 <template>
-  <div class="about-me">
-    <p>About Me</p>
+  <div class="page about-me">
+    <page-layout :page="'about-me'">
+      <!-- header -->
+      <h1 class="page-title">About me</h1>
+
+      <!-- content -->
+      <div class="">
+        <h1>Here might be a page content</h1>
+      </div>
+  
+    </page-layout>
   </div>
 </template>
 
 <script>
+import PageLayout from '@/components/PageLayout.vue'
+
 export default {
   name: 'aboutMe',
   data: function () {
@@ -13,7 +24,7 @@ export default {
     }
   },
   components: {
-
+    PageLayout
   },
   created() {
   },
@@ -23,10 +34,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "@/styles/_mixins.scss";
-
   .about-me{
 
   }
-
 </style>
