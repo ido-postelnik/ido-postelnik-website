@@ -2,7 +2,9 @@
   <div class="page cv">
     <page-layout :page="'cv'">
       <!-- header -->
-      <h1 class="page-title">CV</h1>
+      <h1 class="page-title m-b-20">CV</h1>
+      
+      <embed src="https://ido-postelnik-cv.s3.us-east-2.amazonaws.com/Ido+Postelnik+-+FED+-+Resume.pdf" type="application/pdf" class="cv-pdf flex layout-algin-start-center m-auto"/>
 
     </page-layout>
   </div>
@@ -30,6 +32,9 @@ export default {
 
 <style scoped lang="scss">
   .cv{
-
+    .cv-pdf{
+      width: 800px;
+      height: 1100px;
+    }
   }
 </style>

@@ -6,7 +6,10 @@
 export default {
   name: 'IpButton',
   props: {
-    label: String
+    label: {
+      type: String,
+      default: null
+    }
   }
 }
 </script>

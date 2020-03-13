@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar">
-    <router-link v-for="page in PAGES" :key="page.value" :to="page.value" class="page p-x-5 p-y-5 clickable">
+    <router-link v-for="page in PAGES" :key="page.value" :to="page.value" class="sidebar-page p-x-5 p-y-5 clickable">
       <p class="p-y-5">{{page.label}}</p>
       <div class="page-image" :class="classObject(page)"></div>
     </router-link>
@@ -37,7 +37,7 @@ export default {
     background-color: $white;
     border-right: 1px solid $dirty-white;
 
-    .page{
+    &-page{
       text-align: center;
       border-bottom: 1px solid $dirty-white;
       display: block;

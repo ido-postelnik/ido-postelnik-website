@@ -26,7 +26,7 @@
             <separator></separator>
             <h2>Product Manager</h2>
           </div>
-          <ip-button :label="'About me'" class="m-t-10"></ip-button>
+          <ip-button :label="'Get in touch'" class="m-t-10"></ip-button>
       </div>
     </div>
 
@@ -35,31 +35,12 @@
       <div class="work-flow-bg"></div>
       <h3 class="m-b-50">I love doing UI. From sketch to production. Simple as that.</h3>
       <div class="steps flex layout-align-center-center">
-
-        <step 
-          :index="'1'"
-          :title="'Sketch'"  
-          class="m-r-10">
-        </step>
-
-        <step 
-          :index="'2'"
-          :title="'Wireframe'"  
-          class="m-r-10">
-        </step>
-
-        <step 
-          :index="'3'"
-          :title="'Code'"  
-          class="m-r-10">
-        </step>
-
-        <step 
-          :index="'4'"
-          :title="'Production'"
-          :isLast="true"  
-          class="">
-        </step>
+        <step v-for="(step, index) in workFlowSteps" 
+        :key="step.title" 
+        :index="index + 1" 
+        :title="step.title" 
+        :isLast="index === workFlowSteps.length -1" 
+        class="m-r-10"></step>
       </div>
     </div>
 
@@ -95,7 +76,21 @@ export default {
   name: 'home',
   data: function () {
     return {
-      PAGES: PAGES
+      PAGES: PAGES,
+      workFlowSteps: [
+        {
+          title: 'Sketch',
+        },
+        {
+          title: 'Wireframe',
+        },
+        {
+          title: 'Code',
+        },
+        {
+          title: 'Production'
+        }
+      ]
     }
   },
   components: {

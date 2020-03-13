@@ -38,16 +38,18 @@ export default {
     top: $header-height;
     left: $sidebar-width;
     right: 0;
-    background: rgb(236,233,230);
+    background: $dirty-white;
     background: linear-gradient(0deg, $dirty-white 0%, $white 100%);
+    overflow: hidden;
 
     .main{
       flex: 3;
+      overflow: auto;
     }
 
     .side{
       flex: 2;
-      border-left: 1px solid  $dirty-white;
+      border-left: 1px solid  $beige;
       max-width: 600px;
       background-repeat: no-repeat;
       background-position: center;

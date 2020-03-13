@@ -16,7 +16,7 @@ export default {
   name: 'Step',
   props: {
     index: {
-      type: String,
+      type: Number,
       default: null
     },
     title: {

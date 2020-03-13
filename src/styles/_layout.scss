@@ -26,13 +26,23 @@
       justify-content: space-between;
     }
 
+    &-center-space-evenly{
+      align-items: center;
+      justify-content: space-evenly;
+    }
+
     &-start-space-between{
-      align-items: start;
+      align-items: flex-start;
       justify-content: space-between;
     }
 
     &-start-center{
-      align-items: start;
+      align-items: flex-start;
+      justify-content: center;
+    }
+
+    &-end-center{
+      align-items: flex-end;
       justify-content: center;
     }
   } 
@@ -76,10 +86,20 @@ $sides: (top, bottom, left, right); // Leave this variable alone
   }
 }
 
-
-
-/* Example:
-.m-t-5 {
-  margin-top: 5px; 
+.m-auto{
+  margin-right: auto;
+  margin-left: auto;
 }
-*/
+
+// display types
+.block{
+  display: block;
+}
+
+.inline-block{
+  display: inline-block;
+}
+
+.inline{
+  display: inline;
+}
