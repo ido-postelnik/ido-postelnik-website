@@ -18,7 +18,12 @@
 
     &-center-start{
       align-items: center;
-      justify-content: start;
+      justify-content: flex-start;
+    }
+
+    &-center-end{
+      align-items: center;
+      justify-content: flex-end;
     }
 
     &-center-space-between{
@@ -39,6 +44,11 @@
     &-start-center{
       align-items: flex-start;
       justify-content: center;
+    }
+
+    &-start-end{
+      align-items: flex-start;
+      justify-content: flex-end;
     }
 
     &-end-center{

@@ -1,6 +1,6 @@
 <template>
   <div class="flex row page-layout">
-    <div class="main p-t-20">
+    <div class="main p-y-20">
       <slot></slot>
     </div>
 

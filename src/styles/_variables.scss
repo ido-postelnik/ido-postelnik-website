@@ -1,15 +1,5 @@
-// Colors
-$white: #FFFFFF;
-$dirty-white: #ECE9E6;
-$platinum: #fdfdfd;
-$light-grey: #BDBDBD;
-$dark-grey: #313638;
-$dark-blue-grey: #2c3e50;
-$beige: #E0DFD5;
-$yellow: #E4B363;
-$green: #07C39B;
-$red: #EF6461;
-$dark-blue: #0d47a1;
+@import "./variables/colors";
+@import "./variables/fonts";
 
 // Layout sizes
 $header-height: 50px;
@@ -28,12 +18,3 @@ $screen-lg-min: 992px;
 
 // Large tablets and desktops
 $screen-xl-min: 1200px;
-
-// Images
-// $about-me: url(../../assets/img/pages/about-me.svg);
-// $work-experience: url(../../assets/img/pages/work-experience.svg);
-// $skills-set: url(../../assets/img/pages/skills-set.svg);
-// $cv: url(../../assets/img/pages/cv.svg);
-
-// Fonts
-$font-title: 'Audiowide', cursive;

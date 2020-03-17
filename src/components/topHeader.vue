@@ -66,7 +66,7 @@ export default {
     padding: 0 20px;
 
     .icon{
-      filter: invert(100%) sepia(0%) saturate(1718%) hue-rotate(245deg) brightness(107%) contrast(101%);
+      filter: $filter-white;
     }
 
     .logo{
@@ -86,7 +86,7 @@ export default {
       }
       
       .icon{
-        filter: invert(17%) sepia(12%) saturate(402%) hue-rotate(152deg) brightness(94%) contrast(86%);
+        filter: $filter-dark-grey;
       }
 
       .logo{

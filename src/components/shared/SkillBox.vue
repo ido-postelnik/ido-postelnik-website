@@ -33,8 +33,8 @@ export default {
   .skill-box {
     background-color: $white;
     text-align: center;
-    width: 18%;
-    min-width: 140px;
+    width: 14%;
+    min-width: 120px;
     height: 110px; 
     box-shadow: 3px 3px 8px 2px rgba(196,196,196,1);
     white-space: nowrap;
@@ -42,7 +42,7 @@ export default {
     img{
       display: inline-block;
       max-width: 100px;
-      max-height: 50px;
+      max-height: 40px;
       width: auto;
       height: auto;
     }

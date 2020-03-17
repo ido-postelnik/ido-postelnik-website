@@ -91,7 +91,7 @@ export default {
     }
     
     .chevron{
-      filter: invert(17%) sepia(12%) saturate(402%) hue-rotate(152deg) brightness(94%) contrast(86%);
+      filter: $filter-dark-grey;
       transition: .3s;
 
       &.chevron-down{
