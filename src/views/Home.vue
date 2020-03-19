@@ -31,7 +31,7 @@
     </div>
 
     <!-- work flow process -->
-    <div class="work-flow flex column layout-align-center-center">
+    <!-- <div class="work-flow flex column layout-align-center-center">
       <div class="work-flow-bg"></div>
       <h3 class="m-b-50">I love doing UI. From sketch to production. Simple as that.</h3>
       <div class="steps flex layout-align-center-center">
@@ -42,7 +42,7 @@
         :isLast="index === workFlowSteps.length -1" 
         class="m-r-10"></step>
       </div>
-    </div>
+    </div> -->
 
     <!-- inner page cards -->
     <div class="flex row layout-align-start-space-between m-t-30">
