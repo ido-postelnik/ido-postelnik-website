@@ -45,7 +45,7 @@
     </div> -->
 
     <!-- inner page cards -->
-    <div class="flex row layout-align-start-space-between m-t-30">
+    <div class="flex row layout-align-start-space-between m-t-20">
       <inner-page-card v-for="page in PAGES" :key="page.value" :data="page"> </inner-page-card>
     </div>
 
