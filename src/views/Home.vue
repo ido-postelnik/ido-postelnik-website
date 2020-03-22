@@ -14,35 +14,38 @@
         <img src="../assets/icons/arrow-down.svg" alt="arrow-down" height="20"/>
       </div>
 
-
       <!-- ido-postelnik -->
-      <div class="welcome flex column layout-align-center-center">
-          <div class="profile-image"></div>
-          <h1>Ido Postelnik</h1>
-          <div class="flex row layout-align-center-center">
-            <h2>UX/UI Designer</h2>
-            <separator></separator>
-            <h2>Frontend Engineer</h2>
-            <separator></separator>
-            <h2>Product Manager</h2>
+      <div class="welcome-container flex column layout-align-center-center">
+        <div class="welcome">
+          <div class="profile-image m-auto"></div>
+          <div class="flex row layout-align-center-center m-t-10">
+            <h1>Ido Postelnik</h1>
+            <h2>Front End Engineer</h2>
           </div>
-          <ip-button :label="'Get in touch'" class="m-t-10"></ip-button>
-      </div>
-    </div>
+          <div class="flex row layout-align-center-center m-t-5">
+            <h3>I love doing UI. From sketch to production. Simple as that.</h3>
+          </div>
+          <ip-button :label="'Check it'" :onClick="showWorkFlowModes" class="m-t-10 m-auto"></ip-button>
 
-    <!-- work flow process -->
-    <!-- <div class="work-flow flex column layout-align-center-center">
-      <div class="work-flow-bg"></div>
-      <h3 class="m-b-50">I love doing UI. From sketch to production. Simple as that.</h3>
-      <div class="steps flex layout-align-center-center">
-        <step v-for="(step, index) in workFlowSteps" 
-        :key="step.title" 
-        :index="index + 1" 
-        :title="step.title" 
-        :isLast="index === workFlowSteps.length -1" 
-        class="m-r-10"></step>
+          <!-- work flow process -->
+          <div class="work-flow flex column layout-align-center-center m-t-20" :class="{'active': shouldShowWorkFlowModes === true, 'on-scroll': shouldShowWorkFlowModesOnScroll === true}">
+            <div class="steps flex layout-align-center-center">
+              <step v-for="(mode, key, index) in workFlowModes" 
+              :key="mode.title" 
+              :index="index + 1" 
+              :title="mode.title"
+              :isActive="mode.isActive"
+              :isLast="index === workFlowModesSize - 1" 
+              @click.native="switchWorkFlowMode(key)" 
+              class="m-r-10"></step>
+            </div>
+            <img src="../assets/icons/close.svg" alt="close" class="close clickable" @click="hideWorkFlowModes"/>
+          </div>
+
+        </div>
       </div>
-    </div> -->
+
+    </div>
 
     <!-- inner page cards -->
     <div class="flex row layout-align-start-space-between m-t-20">
@@ -64,6 +67,27 @@
 
 <script>
 import { PAGES } from '../utils/constants';
+import {_} from '@/utils/utils';
+
+const WORK_FLOW_MODES = {
+  SKETCH: {
+    title: 'Sketch',
+    isActive: false
+  },
+  WIREFRAME: {
+    title: 'Wireframe',
+    isActive: false
+  },
+  CODE: {
+    title: 'Code',
+    isActive: false
+  },
+  PRODUCTION: {
+    title: 'Production',
+    isActive: false
+  }
+};
+const DEFAULT_ACTIVE_WORK_FLOW_MODE = 'PRODUCTION';
 
 // @ is an alias to /src
 import Separator from '@/components/shared/Separator.vue'
@@ -77,20 +101,32 @@ export default {
   data: function () {
     return {
       PAGES: PAGES,
-      workFlowSteps: [
-        {
-          title: 'Sketch',
-        },
-        {
-          title: 'Wireframe',
-        },
-        {
-          title: 'Code',
-        },
-        {
-          title: 'Production'
-        }
-      ]
+      //
+      workFlowModes: WORK_FLOW_MODES,
+      workFlowModesSize: _.size(WORK_FLOW_MODES),
+      activeWorkFlowMode: DEFAULT_ACTIVE_WORK_FLOW_MODE,
+      // workFlowSteps: [
+      //   {
+      //     title: 'Sketch',
+      //     isActive: false
+      //   },
+      //   {
+      //     title: 'Wireframe',
+      //     isActive: false
+      //   },
+      //   {
+      //     title: 'Code',
+      //     isActive: false
+      //   },
+      //   {
+      //     title: 'Production',
+      //     isActive: true
+      //   }
+      // ],
+      
+      shouldShowWorkFlowModes: false,
+      shouldShowWorkFlowModesOnScroll: false,
+      userHadScrolled: false
     }
   },
   components: {
@@ -100,7 +136,14 @@ export default {
     InnerPageCard,
     CopyRight
   },
+  mounted() {
+    window.addEventListener('scroll', this.onScroll);
+  },
+  beforeDestroy () {
+    window.removeEventListener('scroll', this.onScroll)
+  },
   created() {
+    this.setDefaultActiveWorkFlowMode();
   },
   methods: {
     scrollDown() {
@@ -109,7 +152,32 @@ export default {
         top: windowInnerHeight - 50,
         behavior: 'smooth',
       });
-    }
+    },
+    // Work Flow Modes
+    setDefaultActiveWorkFlowMode() {
+      this.workFlowModes[this.activeWorkFlowMode].isActive = true;
+    },
+    showWorkFlowModes() {
+      this.shouldShowWorkFlowModes = true;
+    },
+    hideWorkFlowModes() {
+      this.shouldShowWorkFlowModes = false;
+      this.userHadScrolled = false;
+      this.shouldShowWorkFlowModesOnScroll = false;
+    },
+    switchWorkFlowMode(modeKey) {
+      if(modeKey !== this.activeWorkFlowMode) {
+        this.workFlowModes[this.activeWorkFlowMode].isActive = false;
+        this.workFlowModes[modeKey].isActive = true;
+        this.activeWorkFlowMode = modeKey;
+      }
+    },
+    onScroll() {
+      if(this.userHadScrolled === false && this.shouldShowWorkFlowModes === true){
+        this.userHadScrolled = true;
+        this.shouldShowWorkFlowModesOnScroll = true;
+      };
+    },
   }
 }
 </script>
@@ -205,69 +273,113 @@ export default {
       }
     }
 
-    .welcome{
+    .welcome-container{
       height: 90%;
       width: 100%;
       z-index: 2;
 
-      .profile-image{
-        height: calc(60px + 7vw);
-        width: calc(60px + 7vw);
-        border-radius: 50%;
-        background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
-        background-size: cover;
-        border: $light-grey 1px solid;
-      }
+      .welcome{
+        position: relative;
 
-      h1{
-        font-size: calc(0.9rem + 3.0vw);
-        font-weight: 600;
-        font-family: $font-title;
-      }
+        .profile-image{
+          height: calc(60px + 7vw);
+          width: calc(60px + 7vw);
+          border-radius: 50%;
+          background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
+          background-size: cover;
+          border: $light-grey 1px solid;
+        }
 
-      h2{
-        font-size: calc(0.75rem + 0.75vw);
-        letter-spacing: 1.5px;
-      }      
+        h1{
+          font-size: calc(0.9rem + 2.0vw);
+          line-height: calc(0.9rem + 2.0vw);
+          font-weight: 600;
+          font-family: $font-title;
+          padding-right: 20px;
+          margin-right: 20px;
+          border-right: 4px solid $dark-grey;
+        }
+
+        h2{
+          font-size: calc(0.9rem + 1.3vw);
+          letter-spacing: 1.5px;
+          font-weight: 500;
+        } 
+
+        h3{
+          font-size: calc(0.75rem + 0.75vw);
+          font-weight: 300;
+          letter-spacing: 1.5px;
+        }      
+      }
     }
   }
 
   .work-flow{
     display: none;
+    border: 1px solid #313638;
+    border-radius: 20px;
+    width: 600px;
+    height: 100px;
+    bottom: 100px;
+    left: calc(50% - 300px);
+    z-index: 2;
+    background: white;
+    padding: 20px;
+    transition: top 0.2s ease;
     position: relative;
 
-    &-bg{
-      background-image: url(../assets/img/home/work-flow-bg.svg);
+    &.active{
+      display: block;
+      position: fixed;
+      top: calc(1.6rem + 2.75vw + 50% + 40px);
+      left: calc(50% - 300px);
+      animation: fade-in 0.2s;
+    }
+
+    @keyframes fade-in {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    &.on-scroll{
+      position: fixed;
+      top: calc(100vh - 150px);
+      left: calc(50% - 300px);
+    }
+
+    .close{
       position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 250px;
-      background-repeat: no-repeat;
-      background-position: left bottom;
+      top: 10px;
+      right: 10px;
+      height: 12px;
     }
   }
 
   // 992px window width and more
-  @include lg {
-    .work-flow{
-       display: flex;
-       height: 45vh;
+  // @include lg {
+  //   .work-flow{
+  //      display: flex;
+  //      height: 45vh;
 
-      h3{
-        font-size: calc(1rem + 0.4vw);
-        font-weight: 300;
-        letter-spacing: 3px;
-        z-index: 2;
-      }   
+  //     h3{
+  //       font-size: calc(1rem + 0.4vw);
+  //       font-weight: 300;
+  //       letter-spacing: 3px;
+  //       z-index: 2;
+  //     }   
 
-      .steps{
-        width: 100%;
-        z-index: 2;
-      }
+  //     .steps{
+  //       width: 100%;
+  //       z-index: 2;
+  //     }
 
-    }
-  }
+  //   }
+  // }
   
   .quote{
     height: 300px;

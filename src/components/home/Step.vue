@@ -1,13 +1,10 @@
 <template>
-  <div class="step">
-    <p class="step-index">{{ index }}</p>
-    <p class="step-label">{{ title }}</p>
-    <div class="flex row layout-align-center-center m-t-5">
-      <div class="frame">
-        <p>{{ index }}</p>
-      </div>
-      <img v-if="!isLast" src="../../assets/icons/chevron-right.svg" class="m-l-10" alt="chevron" height="20"/>
+  <div class="step-container flex row layout-align-center-start clickable" :class="{'active': isActive === true}" >
+    <div class="step flex column">
+      <p class="step-index">{{ index }}</p>
+      <p class="step-label">{{ title }}</p>
     </div>
+    <img v-if="!isLast" src="../../assets/icons/chevron-right.svg" class="m-l-10" alt="chevron" height="20"/>
   </div>
 </template>
 
@@ -23,44 +20,62 @@ export default {
       type: String,
       default: null
     },
+    isActive: {
+      type: Boolean,
+      default: null
+    },
     isLast: {
       type: Boolean,
       default: null
     },
   },
   methods: {
-    goTo: function (page) {
-      console.log('page: ', page);
-      this.$router.push({ path: '/about' })
-    }
   }
 }
 </script>
 
 <style scoped lang="scss">
-  .step{
+  .step-container{
     height: 100%;
-    text-align: left;
+    text-align: center;
+    min-width: 130px;
+    padding-bottom: 10px;
 
-    &-index{
-      font-size: calc(1rem + 0.4vw);
-      font-weight: 600;
-      font-family: $font-title;
+    .step{
+       min-width: 105px;
+
+      .step-index{
+        font-size: calc(1rem + 0.4vw);
+        font-weight: 600;
+        font-family: $font-title;
+      }
+
+      .step-label{
+        font-size: calc(1rem + 0.05vw);
+        font-weight: 500;
+        font-family: $font-title;
+      }
     }
 
-    &-label{
-      font-size: calc(1rem + 0.05vw);
-      font-weight: 500;
-      font-family: $font-title;
+    &:hover{
+      color: $black;
     }
 
-    .frame{
-      height: 120px;
-      min-height: 100px;
-      width: 12%;
-      min-width: 170px;
-      background-color: $white;
-      border: 1px solid $dark-grey;
+    &.active{
+      color: $green;
+      position: relative;
+      width: 100%;
+      transition: color 0.1s ease;
+
+      &::after{
+        content: "";
+        position: absolute;
+        bottom: 5px;
+        left: 50%;
+        width: 40px;
+        margin-left: -33px;
+        border-bottom: $green solid 2px;
+      }
     }
   }
 </style>

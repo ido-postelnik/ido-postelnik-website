@@ -1,5 +1,5 @@
 <template>
-  <div class="button">{{ label }}</div>
+  <div class="button clickable" @click="onClick">{{ label }}</div>
 </template>
 
 <script>
@@ -9,6 +9,10 @@ export default {
     label: {
       type: String,
       default: null
+    },
+    onClick: {
+      type: Function,
+      default: null
     }
   }
 }
@@ -16,10 +20,21 @@ export default {
 
 <style scoped lang="scss">
   .button {
-    padding: 6px 40px;
+    max-width: 150px;
+    padding: 5px 40px;
     border: 1px solid $dark-grey;
     border-radius: 20px;
     background-color: $white;
     text-align: center;
+
+    &:hover{
+      background-color: $green;
+      color: $white;
+      transition: all 0.1s;
+    }
+
+    &:active{
+      box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.25);
+    }
   }
 </style>
