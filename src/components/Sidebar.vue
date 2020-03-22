@@ -5,7 +5,7 @@
       :key="page.value"
       :to="'/' + page.value"
       class="sidebar-page p-x-5 p-y-5 clickable">
-      <p class="p-y-5">{{page.label}}</p>
+      <p class="p-b-5">{{page.label}}</p>
       <div class="page-image" :class="classObject(page)"></div>
     </router-link>
   </div>

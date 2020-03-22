@@ -486,7 +486,7 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
         .boxes-view-content{
           flex-wrap: wrap;
         }
-  }
+      }
 
       .list-view{
         .table-container{

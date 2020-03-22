@@ -16,7 +16,7 @@
 
       <!-- ido-postelnik -->
       <div class="welcome-container flex column layout-align-center-center">
-        <div class="welcome">
+        <div class="welcome text-center">
           <div class="profile-image m-auto"></div>
           <div class="flex row layout-align-center-center m-t-10">
             <h1>Ido Postelnik</h1>
@@ -25,7 +25,7 @@
           <div class="flex row layout-align-center-center m-t-5">
             <h3>I love doing UI. From sketch to production. Simple as that.</h3>
           </div>
-          <ip-button :label="'Check it'" :onClick="showWorkFlowModes" class="m-t-10 m-auto"></ip-button>
+          <button class="btn m-t-10 m-auto" @click="showWorkFlowModes">Check it out!</button>
 
           <!-- work flow process -->
           <div class="work-flow flex column layout-align-center-center m-t-20" :class="{'active': shouldShowWorkFlowModes === true, 'on-scroll': shouldShowWorkFlowModesOnScroll === true}">
@@ -59,8 +59,9 @@
       <p>mattis ac neque.</p>
     </div>
 
-    <!-- contact section -->
-    <footer class="contact"></footer>
+    <!-- Footer -->
+    <contact-footer></contact-footer>
+
     <copy-right/>
   </div>
 </template>
@@ -90,10 +91,9 @@ const WORK_FLOW_MODES = {
 const DEFAULT_ACTIVE_WORK_FLOW_MODE = 'PRODUCTION';
 
 // @ is an alias to /src
-import Separator from '@/components/shared/Separator.vue'
-import IpButton from '@/components/shared/IpButton.vue'
 import InnerPageCard from '@/components/home/InnerPageCard.vue'
 import Step from '@/components/home/Step.vue'
+import ContactFooter from '@/components/home/ContactFooter.vue'
 import CopyRight from '@/components/CopyRight.vue'
 
 export default {
@@ -101,39 +101,19 @@ export default {
   data: function () {
     return {
       PAGES: PAGES,
-      //
+      // Work flow
       workFlowModes: WORK_FLOW_MODES,
       workFlowModesSize: _.size(WORK_FLOW_MODES),
       activeWorkFlowMode: DEFAULT_ACTIVE_WORK_FLOW_MODE,
-      // workFlowSteps: [
-      //   {
-      //     title: 'Sketch',
-      //     isActive: false
-      //   },
-      //   {
-      //     title: 'Wireframe',
-      //     isActive: false
-      //   },
-      //   {
-      //     title: 'Code',
-      //     isActive: false
-      //   },
-      //   {
-      //     title: 'Production',
-      //     isActive: true
-      //   }
-      // ],
-      
       shouldShowWorkFlowModes: false,
       shouldShowWorkFlowModesOnScroll: false,
       userHadScrolled: false
     }
   },
   components: {
-    Separator,
-    IpButton,
     Step,
     InnerPageCard,
+    ContactFooter,
     CopyRight
   },
   mounted() {
@@ -176,7 +156,7 @@ export default {
       if(this.userHadScrolled === false && this.shouldShowWorkFlowModes === true){
         this.userHadScrolled = true;
         this.shouldShowWorkFlowModesOnScroll = true;
-      };
+      }
     },
   }
 }
@@ -383,14 +363,7 @@ export default {
   
   .quote{
     height: 300px;
-    font-size: 2rem;
-  }
-
-  .contact{
-    height: 300px;
-    background: rgb(53,92,125);
-    background: linear-gradient(180deg, rgba(53,92,125,1) 0%, rgba(108,91,123,1) 48%, rgba(192,108,132,1) 100%);
-    border-bottom: 10px solid $dark-grey;
+    font-size: calc(0.7rem + 0.9vw);
   }
 }
 </style>

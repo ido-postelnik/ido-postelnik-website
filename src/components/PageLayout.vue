@@ -1,6 +1,6 @@
 <template>
   <div class="flex row page-layout">
-    <div class="main p-y-20">
+    <div class="main p-y-20 m-auto">
       <slot></slot>
     </div>
 
@@ -34,6 +34,7 @@ export default {
 <style scoped lang="scss">
   .page-layout{
     height: calc(100vh - #{$header-height});
+    // height: auto;
     position: absolute;
     top: $header-height;
     left: $sidebar-width;
@@ -45,6 +46,8 @@ export default {
     .main{
       flex: 3;
       overflow: auto;
+      max-width: 1200px;
+      height: 100%;
     }
 
     .side{

@@ -36,6 +36,11 @@
       justify-content: space-evenly;
     }
 
+    &-center-space-around{
+      align-items: center;
+      justify-content: space-around;
+    }
+
     &-start-space-between{
       align-items: flex-start;
       justify-content: space-between;

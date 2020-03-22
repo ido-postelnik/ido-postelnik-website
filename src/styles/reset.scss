@@ -24,6 +24,7 @@ html,
 body {
 		height: 100%;
 		color: $dark-blue-grey;
+		font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 a {
@@ -33,4 +34,14 @@ a {
 
 ul{
 	list-style: none;
+}
+
+button{
+	font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+}
+
+input, textarea{
+	font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+	font-size: 13px;
+	resize: none;
 }

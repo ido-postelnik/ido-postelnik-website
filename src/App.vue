@@ -6,7 +6,9 @@
     </div> -->
     <top-header class="header"/>
     <sidebar v-if="currentRouteName != 'home'"/>
+    <transition name="fade">
     <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -30,7 +32,7 @@ export default {
 <style lang="scss">
 #app {
   height: 100%;
-  font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+  // font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   // text-align: center;
@@ -46,4 +48,10 @@ export default {
 //     }
 //   }
 // }
+.fade-enter-active  {
+  transition: opacity 0.3s;
+}
+.fade-enter{
+  opacity: 0;
+}
 </style>
