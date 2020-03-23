@@ -84,8 +84,8 @@ export default {
 
     .icon{
         filter: $filter-white;
-        height: 21px;
-        width: 21px;
+        height: 23px;
+        width: 23px;
       }
 
     .logo{

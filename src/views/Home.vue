@@ -3,13 +3,9 @@
 
     <!-- main section -->
     <div class="main-container flex layout-align-start-center">
-      <div class="wave wave-3"></div>
-      <div class="wave wave-2"></div>
-      <div class="wave wave-1"></div>
-      <div class="world"></div>
-      <div class="small-buildings"></div>
-      <div class="left-buildings"></div>
-      <div class="right-buildings"></div>
+      <div class="sky"></div>
+      <div class="sun"></div>
+      <div class="road"></div>
       <div class="arrow-down clickable" @click="scrollDown()">
         <img src="../assets/icons/arrow-down.svg" alt="arrow-down" height="20"/>
       </div>
@@ -174,69 +170,36 @@ export default {
     background: rgb(236,233,230);
     background: linear-gradient(0deg, $dirty-white 0%, $white 100%);
 
-    .wave{
+    .sky{
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       background-repeat: no-repeat;
       height: 90%;
-
-      &-1 {
-        background-image: url(../assets/img/home/wave-1.svg);
-      }
-
-      &-2 {
-        background-image: url(../assets/img/home/wave-2.svg);
-      }
-
-      &-3 {
-        background-image: url(../assets/img/home/wave-3.svg);
-      }
+      background-image: url(../assets/img/home/road/sky.svg);
     }
 
-    .world{
-      background-image: url(../assets/img/home/world.svg);
+    .sun{
+      background-image: url(../assets/img/home/road/sun.svg);
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 190px;
+      height: 100%;
       background-repeat: no-repeat;
       background-position: bottom;
     }
 
-    .small-buildings{
-      background-image: url(../assets/img/home/small-buildings.svg);
+    .road{
+      background-image: url(../assets/img/home/road/road.svg);
       position: absolute;
       bottom: 0;
       left: 0;
       right: 0;
-      height: 30%;
+      height: 100%;
       background-repeat: no-repeat;
       background-position: bottom;
-    }
-
-    .left-buildings{
-      background-image: url(../assets/img/home/left-buildings.svg);
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 50%;
-      height: 90%;
-      background-repeat: no-repeat;
-      background-position: left bottom;
-    }
-
-    .right-buildings{
-      background-image: url(../assets/img/home/right-buildings.svg);
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      right: 0;
-      height: 90%;
-      background-repeat: no-repeat;
-      background-position: right bottom;
     }
 
     .arrow-down{
