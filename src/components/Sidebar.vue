@@ -4,9 +4,9 @@
       v-for="page in PAGES"
       :key="page.value"
       :to="'/' + page.value"
-      class="sidebar-page p-x-5 p-y-5 clickable">
+      class="sidebar-item p-x-5 p-y-5 clickable flex column layout-align-center-center">
+      <img :src="require('@/assets/icons/' + classObject(page) + '.svg')" :alt="classObject(page)" class="sidebar-icon"/>
       <p class="p-b-5">{{page.label}}</p>
-      <div class="page-image" :class="classObject(page)"></div>
     </router-link>
   </div>
 </template>
@@ -39,32 +39,41 @@ export default {
   top: $header-height;
   bottom: 0;
   width: $sidebar-width;
-  background-color: $white;
+  background-color: $dark-grey;
   border-right: 1px solid $dirty-white;
 
-  &-page {
+  &-item {
     text-align: center;
-    border-bottom: 1px solid $dirty-white;
-    display: block;
-    color: $dark-blue-grey;
+    color: $light-grey;
     text-decoration: none;
+    height: 105px;
+    transition: all 0.3s ease;
 
-    &.router-link-exact-active {
-      background: rgb(29, 233, 182);
-      background: linear-gradient(
-        90deg,
-        rgba(29, 233, 182, 1) 0%,
-        rgba(0, 214, 194, 1) 100%
-      );
+    &:hover{
       color: $white;
+
+      .sidebar-icon{
+        filter: $filter-white;
+      }
     }
 
-    .page-image {
-      width: 100%;
-      height: 90px;
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-position: center;
+    &.router-link-exact-active {
+      background: $yellow;
+      // background: linear-gradient(
+      //   90deg,
+      //   rgba(29, 233, 182, 1) 0%,
+      //   rgba(0, 214, 194, 1) 100%
+      // );
+      color: $white;
+
+      .sidebar-icon{
+        filter: $filter-white;
+      }
+    }
+
+    .sidebar-icon{
+      height: 30px;
+      filter: $filter-light-grey;
     }
   }
 }

@@ -3,7 +3,7 @@
     <router-link to="/" class="logo cursor-default" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</router-link>
     <!-- <p class="logo cursor-default" @click="goToHome('home')" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</p> -->
     <div class="flex row layout-align-center-space-between contact">
-      <div class="flex" v-if="isHomeRoute === true">
+      <!-- <div class="flex" v-if="isHomeRoute === true">
         <router-link
           v-for="page in PAGES"
           :key="page.value"
@@ -11,7 +11,7 @@
           class="link clickable">
           <p class="separator p-l-10">{{page.label}}</p>
         </router-link>
-      </div>
+      </div> -->
 
 
       <a class="m-x-10 separator flex row layout-align-center-center"> 
