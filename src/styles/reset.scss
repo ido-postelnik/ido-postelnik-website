@@ -23,12 +23,12 @@ time, mark, audio, video {
 html, 
 body {
 		height: 100%;
-		color: $dark-blue-grey;
+		color: $dark-grey;
 		font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: $dark-blue;
+  color: $blue-d;
 	text-decoration: none; 
 }
 
@@ -44,4 +44,10 @@ input, textarea{
 	font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
 	font-size: 13px;
 	resize: none;
+}
+
+h1, h2, h3, h4, h5, h6, p, span, input, button, div, a, img{
+	&::selection { 
+		background: $green-l; 
+	}
 }

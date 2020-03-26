@@ -40,6 +40,7 @@ export default {
     text-align: center;
     min-width: 130px;
     padding-bottom: 10px;
+    color: $dark-grey;
 
     .step{
        min-width: 105px;
@@ -58,13 +59,12 @@ export default {
     }
 
     &:hover{
-      color: $black;
+      color: $dark-grey-d;
     }
 
     &.active{
-      color: $green;
+      color: $green-l;
       position: relative;
-      width: 100%;
       transition: color 0.1s ease;
 
       &::after{
@@ -74,7 +74,7 @@ export default {
         left: 50%;
         width: 40px;
         margin-left: -33px;
-        border-bottom: $green solid 2px;
+        border-bottom: $green-l solid 2px;
       }
     }
   }

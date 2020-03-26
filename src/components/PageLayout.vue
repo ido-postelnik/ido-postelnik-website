@@ -39,8 +39,8 @@ export default {
     top: $header-height;
     left: $sidebar-width;
     right: 0;
-    background: $dirty-white;
-    background: linear-gradient(0deg, $dirty-white 0%, $white 100%);
+    background: $light-grey-l;
+    background: linear-gradient(0deg, $light-grey-l 0%, $white 100%);
     overflow: hidden;
 
     .main{

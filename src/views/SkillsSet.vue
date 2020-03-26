@@ -579,8 +579,8 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
                 cursor: pointer;
               }
             }
-            ul{
 
+            ul{
               .page{
                   text-align: center;
                   font-size: 14px;
@@ -589,12 +589,12 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
                   margin-right: 3px;
 
                 &-active{
-                  color: $green;
+                  color: $green-l;
                   font-weight: 600;
                   cursor: default !important;
+                  text-decoration: underline;
                 }
               }
-
             }
           }
         }

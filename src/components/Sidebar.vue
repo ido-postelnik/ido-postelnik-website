@@ -40,7 +40,7 @@ export default {
   bottom: 0;
   width: $sidebar-width;
   background-color: $dark-grey;
-  border-right: 1px solid $dirty-white;
+  border-right: 1px solid $beige;
 
   &-item {
     text-align: center;
@@ -58,7 +58,7 @@ export default {
     }
 
     &.router-link-exact-active {
-      background: $yellow;
+      background: $gold;
       // background: linear-gradient(
       //   90deg,
       //   rgba(29, 233, 182, 1) 0%,

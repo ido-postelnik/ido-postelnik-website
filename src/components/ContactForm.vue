@@ -46,7 +46,7 @@ export default {
     }
 
     .contact-form-input{
-      width: 100%;
+      width: 95%;
       border: 1px solid $light-grey;
       padding: 5px;
     }

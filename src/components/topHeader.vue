@@ -114,9 +114,9 @@ export default {
     }
 
     &.solid-background{
-      background-color: $platinum;
+      background-color: $white;
       transition: 0.1s;
-      box-shadow: 0px 1px 5px 0px rgba($light-grey, 0.75);
+      box-shadow: 0px 1px 5px 0px rgba($beige, 0.75);
 
       .contact{
          color: $dark-grey;

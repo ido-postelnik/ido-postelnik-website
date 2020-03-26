@@ -37,7 +37,6 @@ export default {
     height: $home-inner-page-card-height;
     width: 100%;
     margin-right: 5px;
-    color: $dark-grey;
     text-decoration: none;
     position: relative;
 
@@ -74,7 +73,7 @@ export default {
       font-family: $font-title;
       font-size: calc(0.8rem + 1.0vw);
       text-align: center;
-      color: $light-grey;
+      color: $light-grey-d;
     }
     
     .card-image{
