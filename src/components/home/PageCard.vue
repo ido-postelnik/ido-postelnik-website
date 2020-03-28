@@ -116,5 +116,30 @@ export default {
         &.cv{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-cv.svg);}
       }
     }
+
+    //Wireframe mode
+    &.wireframe-mode{
+      .card-title{
+        color: $dark-grey;
+        background-color: transparent;
+      }
+
+      &:hover{
+        .card-title{
+          color: $dark-grey;
+          background-color: transparent;
+        }
+      }
+      .card-title{
+        font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+      }
+
+      .card-image{
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: left;
+        background-image: url(../../assets/img/home/workFlowModes/wireframe/wireframe-page-card.svg);
+      }
+    }
   }
 </style>

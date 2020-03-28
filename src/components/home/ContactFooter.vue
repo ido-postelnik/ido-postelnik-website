@@ -126,5 +126,17 @@ export default {
         }
       }
     }
+
+    //Wireframe mode
+    &.wireframe-mode{
+      background: $light-grey !important;
+      color: $dark-grey;
+
+      .footer-icon-container{
+        .footer-icon{
+          filter: none;
+        }
+      }
+    }
   }
 </style>

@@ -1,5 +1,9 @@
 <template>
-  <header class="flex row layout-align-center-space-between" :class="{'solid-background': scrollPosition > 70 || isHomeRoute === false || activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value}">
+  <header class="flex row layout-align-center-space-between" :class="{
+    'solid-background': scrollPosition > 70 || isHomeRoute === false || activeWorkFlowMode !== workFlowModes.PRODUCTION.value,
+    'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
+    'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
+    'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
     <router-link to="/" class="logo cursor-default" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</router-link>
     <!-- <p class="logo cursor-default" @click="goToHome('home')" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</p> -->
     <div class="flex row layout-align-center-space-between contact">
@@ -37,7 +41,7 @@ export default {
     return {
       scrollPosition: null,
       PAGES,
-      WORK_FLOW_MODES
+      workFlowModes: WORK_FLOW_MODES
     }
   },
   mounted() {
@@ -143,8 +147,17 @@ export default {
       .logo{
         color: $dark-grey;
       }
+
+      //Sketch mode
+      &.sketch-mode{
+        background-color: $note-book-sketch;
+      }
+
+      //Wireframe mode
+      &.wireframe-mode{
+        background-color: $light-grey-l;
+        box-shadow: 0px 1px 5px 0px rgba($light-grey-d, 0.75);
+      }
     }
-
-
   }
 </style>

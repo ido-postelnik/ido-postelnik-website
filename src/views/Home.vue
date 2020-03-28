@@ -22,7 +22,7 @@
           <div class="hero" :style="{ opacity: heroContainerOpacity }">
             <div class="avatar m-auto"></div>
             <div class="hero-title flex row layout-align-center-center m-t-10">
-              <h1>Ido Postelnik</h1>
+              <h1>Ido Postelnik <span v-if="activeWorkFlowMode === workFlowModes.WIREFRAME.value"> -</span></h1>
               <h2>Front End Engineer</h2>
             </div>
             <div class="hero-subtitle flex row layout-align-center-center m-t-5">
@@ -131,6 +131,7 @@ export default {
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.onScroll);
+    this.updateWorkFlowMode(DEFAULT_ACTIVE_WORK_FLOW_MODE);
   },
   created() {
   },
@@ -457,7 +458,7 @@ export default {
           background-image: url(../assets/img/home/workFlowModes/sketch/sketch-avatar.svg);
           background-size: contain;
           background-repeat: no-repeat;
-          height: calc(60px + 5.5vw);
+          border: 0px;
         }
 
         .hero-title{
@@ -506,6 +507,88 @@ export default {
 
       p{
         display: none;
+      }
+    }
+  }
+
+  // Wireframe mode
+  &.wireframe-mode{
+    background-color: $light-grey-l;
+    background-image: none;
+
+    .main-container{
+      background: none;
+      .sky{
+        top: 55px;
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-sky.svg);
+        height: 260px;
+      }
+
+      .sun{
+        display: none;
+      }
+      
+      .road{
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-road.svg);
+        height: 300px;
+      }
+
+      .arrow-down{
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-arrow-down.svg);
+        filter: $filter-white;
+        img{
+          display: none;
+        }
+      }
+    }
+
+    .hero-container {
+      margin-top: 230px !important;
+
+      .hero{
+        opacity: 1 !important;
+
+        .avatar{
+          background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-avatar.svg);
+          border: 0px;
+          background-size: contain;
+          background-repeat: no-repeat;
+        }
+
+        .hero-title{
+          min-height: 20px;
+         
+
+          h1, h2{
+             font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+             font-weight: 500;
+             font-size: calc(0.9rem + 1.3vw);
+             border: 0px;
+             padding-right: 0px;
+             margin-right: 10px;
+          }
+        }
+        
+        .hero-subtitle{
+          h3, span{
+            letter-spacing: 1px;
+          }
+        }
+
+        .work-flow-button{
+          background-color: $light-grey-l !important;
+          color: $dark-grey !important;
+          border-radius: 5px;
+
+          &:active{
+            box-shadow: none !important;
+          }
+        }
+      }
+    }
+
+    .highlight-sentence{
+      p{
       }
     }
   }
