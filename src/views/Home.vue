@@ -1,27 +1,23 @@
 <template>
-  <div
-    class="home"
+  <div class="home" 
     :class="{
-      'sketch-mode': activeWorkFlowMode === 'SKETCH',
-      'wireframe-mode': activeWorkFlowMode === 'WIREFRAME',
-      'code-mode': activeWorkFlowMode === 'CODE'}">
-    <!-- main section -->
+      'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
+      'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
+      'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
+
+    <div :class="{'work-flow-mode-transition': isWorkFlowModeChanged === true}"></div>
+    
+    <!-- Main container -->
     <div class="main-container flex layout-align-start-center">
       <div class="sky"></div>
       <div class="sun"></div>
       <div class="road"></div>
       <div class="arrow-down clickable" @click="onArrowDownClick()">
-        <img
-          src="../assets/icons/arrow-down.svg"
-          alt="arrow-down"
-          height="20"/>
+        <img src="../assets/icons/arrow-down.svg" alt="arrow-down" height="20"/>
       </div>
 
       <!-- ido-postelnik -->
-      <div
-        class="hero-container"
-        :style="{ 'margin-top': heroContainerMargin + '%' }"
-      >
+      <div class="hero-container" :style="{ 'margin-top': heroContainerMargin + '%' }">
         <div class="text-center flex column layout-align-center-start">
           <div class="hero" :style="{ opacity: heroContainerOpacity }">
             <div class="avatar m-auto"></div>
@@ -37,104 +33,78 @@
               </h3>
             </div>
 
+            <!-- Work flow button -->
             <button
               class="btn work-flow-button m-t-10"
-              :class="{ active: shouldShowWorkFlowModes === true }"
-              @click="toggleWorkFlowModes"
-            >
+              :class="{ active: shouldShowWorkFlowModesBox === true }"
+              @click="toggleWorkFlowModesBox">
               {{ workFlowButton }}
             </button>
           </div>
+
           <!-- work flow process -->
-          <div
-            class="work-flow flex column layout-align-center-center m-t-20"
-            :class="{
-              active: shouldShowWorkFlowModes === true,
-              'on-scroll': shouldShowWorkFlowModesOnScroll === true
-            }"
-          >
+          <div class="work-flow flex column layout-align-center-center m-t-20"
+            :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
             <div class="steps flex layout-align-center-center">
-              <step
+              <mode
                 v-for="(mode, key, index) in workFlowModes"
-                :key="mode.title"
+                :key="mode.label"
                 :index="index + 1"
-                :title="mode.title"
-                :isActive="mode.isActive"
+                :label="mode.label"
+                :value="mode.value"
                 :isLast="index === workFlowModesSize - 1"
                 @click.native="switchWorkFlowMode(key)"
-                class="m-r-10"
-              ></step>
+                class="m-r-10">
+              </mode>
             </div>
-            <img
-              src="../assets/icons/close.svg"
-              alt="close"
-              class="close clickable"
-              @click="hideWorkFlowModes"
-            />
+            <img src="../assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- inner page cards -->
+    <!-- Pages cards -->
     <div class="flex row layout-align-start-space-between m-t-20">
-      <inner-page-card
+      <page-card
         v-for="page in PAGES"
         :key="page.value"
-        :data="page"></inner-page-card>
+        :data="page"></page-card>
     </div>
 
-    <!-- quote -->
-    <div class="quote flex column layout-align-center-center">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing.</p>
-      <p>Nulla quam velit, vulputate eu pharetra nec,</p>
-      <p>mattis ac neque.</p>
+    <!-- Highlight-sentence -->
+    <div class="highlight-sentence text-center flex column layout-align-center-center">
+      <p>Lorem ipsum dolor sit amet,<br> consectetur adipiscingNulla quam velit,<br> vulputate eu pharetra nec.</p>
     </div>
 
-    <!-- Footer -->
+    <!-- Contact-footer -->
     <contact-footer></contact-footer>
 
+    <!-- Copy right -->
     <copy-right />
   </div>
 </template>
 
 <script>
-import { PAGES } from "../utils/constants";
+import { PAGES, WORK_FLOW_MODES, DEFAULT_ACTIVE_WORK_FLOW_MODE } from "@/utils/constants";
 import { _ } from "@/utils/utils";
 
-const WORK_FLOW_MODES = {
-  SKETCH: {
-    title: "Sketch",
-    isActive: false
-  },
-  WIREFRAME: {
-    title: "Wireframe",
-    isActive: false
-  },
-  CODE: {
-    title: "Code",
-    isActive: false
-  },
-  PRODUCTION: {
-    title: "Production",
-    isActive: false
-  }
-};
-const DEFAULT_ACTIVE_WORK_FLOW_MODE = "PRODUCTION";
 const WORK_FLOW_BUTTON = {
   OFF: "Check it out!",
   ON: "Back to normal"
 };
 
 // @ is an alias to /src
-import InnerPageCard from "@/components/home/InnerPageCard.vue";
-import Step from "@/components/home/Step.vue";
+import PageCard from "@/components/home/PageCard.vue";
+import Mode from "@/components/home/Mode.vue";
 import ContactFooter from "@/components/home/ContactFooter.vue";
 import CopyRight from "@/components/CopyRight.vue";
 
+// Store
+import { mapState, mapMutations  } from 'vuex';
+
 export default {
   name: "home",
-  data: function() {
+  data: () => {
     return {
       heroContainerMargin: 10,
       heroContainerOpacity: 1,
@@ -142,17 +112,17 @@ export default {
       workFlowButton: WORK_FLOW_BUTTON.OFF,
       workFlowModes: WORK_FLOW_MODES,
       workFlowModesSize: _.size(WORK_FLOW_MODES),
-      activeWorkFlowMode: DEFAULT_ACTIVE_WORK_FLOW_MODE,
-      shouldShowWorkFlowModes: false,
-      shouldShowWorkFlowModesOnScroll: false,
-      userHadScrolled: false,
+      shouldShowWorkFlowModesBox: false,
+      shouldShowWorkFlowModesAtBottom: false,
+      userHasScrolled: false,
+      isWorkFlowModeChanged: false,
       //
       PAGES: PAGES
     };
   },
   components: {
-    Step,
-    InnerPageCard,
+    Mode,
+    PageCard,
     ContactFooter,
     CopyRight
   },
@@ -163,9 +133,11 @@ export default {
     window.removeEventListener("scroll", this.onScroll);
   },
   created() {
-    this.setDefaultActiveWorkFlowMode();
   },
   methods: {
+    ...mapMutations([
+      'updateWorkFlowMode'
+    ]),
     onArrowDownClick() {
       let windowInnerHeight = window.innerHeight;
       window.scrollTo({
@@ -174,60 +146,59 @@ export default {
       });
     },
     //#region WorkFlow modes
-    setDefaultActiveWorkFlowMode() {
-      this.workFlowModes[this.activeWorkFlowMode].isActive = true;
-    },
-    toggleWorkFlowModes() {
-      if (this.shouldShowWorkFlowModes === true) {
-        this.shouldShowWorkFlowModes = false;
+    toggleWorkFlowModesBox() {
+      // Hide WorkFlowModesBox
+      if (this.shouldShowWorkFlowModesBox === true) {
         this.workFlowButton = WORK_FLOW_BUTTON.OFF;
+        this.shouldShowWorkFlowModesBox = false;
+        this.showLoaderBetweenModeChange(DEFAULT_ACTIVE_WORK_FLOW_MODE);
       } else {
-        this.shouldShowWorkFlowModes = true;
+      // Show WorkFlowModesBox
+        this.shouldShowWorkFlowModesBox = true;
         this.workFlowButton = WORK_FLOW_BUTTON.ON;
-
-        // Active mode state
-        this.workFlowModes[this.activeWorkFlowMode].isActive = false;
-        this.workFlowModes[DEFAULT_ACTIVE_WORK_FLOW_MODE].isActive = true;
-        this.activeWorkFlowMode = DEFAULT_ACTIVE_WORK_FLOW_MODE;
+        this.shouldShowWorkFlowModesAtBottom = false;
       }
-    },
-    hideWorkFlowModes() {
-      this.shouldShowWorkFlowModes = false;
-      this.userHadScrolled = false;
-      this.shouldShowWorkFlowModesOnScroll = false;
-      this.workFlowButton = WORK_FLOW_BUTTON.OFF;
-
-      // Active mode state
-      this.workFlowModes[this.activeWorkFlowMode].isActive = false;
-      this.workFlowModes[DEFAULT_ACTIVE_WORK_FLOW_MODE].isActive = true;
-      this.activeWorkFlowMode = DEFAULT_ACTIVE_WORK_FLOW_MODE;
     },
     switchWorkFlowMode(modeKey) {
       if (modeKey !== this.activeWorkFlowMode) {
-        this.workFlowModes[this.activeWorkFlowMode].isActive = false;
-        this.workFlowModes[modeKey].isActive = true;
-        this.activeWorkFlowMode = modeKey;
+        this.shouldShowWorkFlowModesAtBottom = true;
+        this.showLoaderBetweenModeChange(modeKey);
       }
     },
+    showLoaderBetweenModeChange(modeKey) {
+      this.isWorkFlowModeChanged = true;
+      setTimeout(() => {
+        this.isWorkFlowModeChanged = false
+      }, 800); 
+      setTimeout(() => {
+        this.updateWorkFlowMode(modeKey);
+      }, 300); 
+    },
+    //#endregion
     onScroll() {
-      if (
-        this.userHadScrolled === false &&
-        this.shouldShowWorkFlowModes === true
-      ) {
-        this.userHadScrolled = true;
-        this.shouldShowWorkFlowModesOnScroll = true;
+      let scrollPosition = window.scrollY;
+
+      if(scrollPosition < 100) {
+        this.userHasScrolled = false;
       }
 
-      let scrollPosition = window.scrollY;
+      if (this.userHasScrolled === false && this.shouldShowWorkFlowModesBox === true) {
+        this.userHasScrolled = true;
+        this.shouldShowWorkFlowModesAtBottom = true;
+      }
+
       this.heroContainerMargin = 10 + scrollPosition / 50;
 
       // if(scrollPosition > 200) {
       this.heroContainerOpacity = 200 / scrollPosition;
       // }
-    }
-    //#endregion
+    } 
   },
-  computed: {}
+  computed: {
+    ...mapState([
+      'activeWorkFlowMode'
+    ])
+  }
 };
 </script>
 
@@ -237,6 +208,26 @@ export default {
 .home {
   background: white;
 
+  .work-flow-mode-transition{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: $white;
+    z-index: 10;
+    pointer-events: none;
+    opacity: 0;
+    animation: fade-in-and-out 600ms;
+    }
+
+    @keyframes fade-in-and-out {
+      0%   {opacity: 0;}
+      30%  {opacity: 1;}
+      70%  {opacity: 1;}
+      100% {opacity: 0;}
+    }
+
   .main-container {
     height: 100vh;
     position: relative;
@@ -244,13 +235,14 @@ export default {
     background: linear-gradient(0deg, $light-grey-l 0%, $white 100%);
 
     .sky {
+      background-image: url(../assets/img/home/road/sky.svg);
       position: absolute;
       top: 0;
       left: 0;
       right: 0;
       background-repeat: no-repeat;
+      background-position: top;
       height: 400px;
-      background-image: url(../assets/img/home/road/sky.svg);
     }
 
     .sun {
@@ -299,6 +291,10 @@ export default {
 
       .hero {
         z-index: 2;
+
+        .hero-title{
+          min-height: 80px;
+        }
 
         .avatar {
           height: calc(60px + 7.5vw);
@@ -352,7 +348,7 @@ export default {
     border-radius: 20px;
     width: 600px;
     height: 90px;
-    z-index: 5;
+    z-index: 11;
     background: white;
     padding: 18px 15px;
 
@@ -416,11 +412,13 @@ export default {
   //   }
   // }
 
-  .quote {
+  .highlight-sentence {
     height: 300px;
     font-size: calc(0.7rem + 0.9vw);
+    
   }
 
+  // Sketch mode
   &.sketch-mode{
     background: none;
     background-image: url(../assets/img/home/workFlowModes/sketch/sketch-bg.svg);
@@ -428,8 +426,9 @@ export default {
     .main-container{
       background: none;
       .sky{
-        top: 50px;
+        top: 55px;
         background-image: url(../assets/img/home/workFlowModes/sketch/sketch-sky.svg);
+        height: 260px;
       }
 
       .sun{
@@ -438,13 +437,22 @@ export default {
       
       .road{
         background-image: url(../assets/img/home/workFlowModes/sketch/sketch-road.svg);
+        height: 300px;
+      }
+
+      .arrow-down{
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-arrow-down.svg);
+        img{
+          display: none;
+        }
       }
     }
 
     .hero-container {
-      margin-top: 15% !important;
+      margin-top: 230px !important;
 
       .hero{
+        opacity: 1 !important;
         .avatar{
           background-image: url(../assets/img/home/workFlowModes/sketch/sketch-avatar.svg);
           background-size: contain;
@@ -480,10 +488,26 @@ export default {
           background-repeat: no-repeat;
           background-position: center;
           height: 60px;
+          transition: none;
+
+            &:active{
+              box-shadow: none !important;
+            }
         }
       }
     }
 
+    .highlight-sentence{
+      background-image: url(../assets/img/home/workFlowModes/sketch/sketch-highlight-sentence.svg);
+      background-repeat: no-repeat;
+      background-size: 40%;
+      background-position: center;
+      margin: 20px 0;
+
+      p{
+        display: none;
+      }
+    }
   }
 }
 </style>

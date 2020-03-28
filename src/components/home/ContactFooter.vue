@@ -1,5 +1,8 @@
 <template>
-  <footer class="flex row layout-align-center-space-around">
+  <footer class="flex row layout-align-center-space-around" :class="{
+      'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
+      'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
+      'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
     <!-- My details -->
     <div class="flex column layout-align-start-space-between footer-section">
       <div class="m-auto">
@@ -51,14 +54,27 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
+import { WORK_FLOW_MODES } from "@/utils/constants";
 import ContactForm from '@/components/ContactForm.vue'
 
 export default {
   name: 'ContactFooter',
+  data: () => {
+    return {
+      workFlowModes: WORK_FLOW_MODES
+    };
+  },
   components: {
     ContactForm
   },
   methods: {
+  },
+  computed: {
+    ...mapState([
+      'activeWorkFlowMode'
+    ])
   }
 }
 </script>
@@ -96,6 +112,18 @@ export default {
       .footer-icon{
         height: 22px; 
         filter: $filter-white;
+      }
+    }
+
+    //Sketch mode
+    &.sketch-mode{
+      background: transparent;
+      color: $dark-grey;
+
+      .footer-icon-container{
+        .footer-icon{
+          filter: none;
+        }
       }
     }
   }

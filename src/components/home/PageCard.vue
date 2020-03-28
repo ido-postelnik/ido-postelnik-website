@@ -1,15 +1,27 @@
 <template>
-  <router-link class="card flex row" :to="data.value">
+  <router-link :to="data.value" class="card flex row" :class="{
+      'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
+      'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
+      'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
     <h3 class="card-title">{{ data.label }}</h3>
     <div class="card-image" :class="classObject"></div>
   </router-link>
 </template>
 
 <script>
+// Store
+import { mapState } from 'vuex';
+
+import { WORK_FLOW_MODES } from "@/utils/constants";
 import {_} from '@/utils/utils';
 
 export default {
-  name: 'InnerPageCard',
+  name: 'PageCard',
+  data: () => {
+    return {
+      workFlowModes: WORK_FLOW_MODES
+    };
+  },
   props: {
     data: {
       type: Object,
@@ -17,6 +29,9 @@ export default {
     }
   },
   computed: {
+    ...mapState([
+      'activeWorkFlowMode'
+    ]),
     classObject: function () {
       let retVal = _.get(this, 'data.class');
 
@@ -83,6 +98,23 @@ export default {
       height: 100%;
       background-position: center;
       background-size: 100%;
+    }
+
+    //Sketch mode
+    &.sketch-mode{
+      .card-title{
+        display: none;
+      }
+
+      .card-image{
+        background-size: contain;
+        background-repeat: no-repeat;
+
+        &.about-me{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-about-me.svg);}
+        &.work-experience{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-work-experience.svg);}
+        &.skills-set{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-skills-set.svg);}
+        &.cv{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-cv.svg);}
+      }
     }
   }
 </style>

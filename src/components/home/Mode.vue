@@ -1,27 +1,30 @@
 <template>
-  <div class="step-container flex row layout-align-center-start clickable" :class="{'active': isActive === true}" >
+  <div class="step-container flex row layout-align-center-start clickable" :class="{'active': activeWorkFlowMode === value}" >
     <div class="step flex column">
       <p class="step-index">{{ index }}</p>
-      <p class="step-label">{{ title }}</p>
+      <p class="step-label">{{ label }}</p>
     </div>
     <img v-if="!isLast" src="../../assets/icons/chevron-right.svg" class="m-l-10" alt="chevron" height="20"/>
   </div>
 </template>
 
 <script>
+// Store
+import { mapState } from 'vuex';
+
 export default {
-  name: 'Step',
+  name: 'Mode',
   props: {
     index: {
       type: Number,
       default: null
     },
-    title: {
+    label: {
       type: String,
       default: null
     },
-    isActive: {
-      type: Boolean,
+    value: {
+      type: String,
       default: null
     },
     isLast: {
@@ -30,6 +33,11 @@ export default {
     },
   },
   methods: {
+  },
+  computed: {
+    ...mapState([
+      'activeWorkFlowMode'
+    ])
   }
 }
 </script>

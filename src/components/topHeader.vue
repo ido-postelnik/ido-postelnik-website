@@ -1,5 +1,5 @@
 <template>
-  <header class="flex row layout-align-center-space-between" :class="{'solid-background': scrollPosition > 70 || isHomeRoute === false}">
+  <header class="flex row layout-align-center-space-between" :class="{'solid-background': scrollPosition > 70 || isHomeRoute === false || activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value}">
     <router-link to="/" class="logo cursor-default" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</router-link>
     <!-- <p class="logo cursor-default" @click="goToHome('home')" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</p> -->
     <div class="flex row layout-align-center-space-between contact">
@@ -13,7 +13,6 @@
         </router-link>
       </div> -->
 
-
       <a class="m-x-10 separator flex row layout-align-center-center"> 
         <img src="../assets/icons/email.svg"  alt="email" class="icon clickable"/>
       </a>
@@ -26,15 +25,19 @@
 </template>
 
 <script>
+// Store
+import { mapState } from 'vuex';
+
 import {_} from '@/utils/utils';
-import { PAGES } from '../utils/constants';
+import { PAGES, WORK_FLOW_MODES } from '../utils/constants';
 
 export default {
   name: 'TopHeader',
   data: function () {
     return {
       scrollPosition: null,
-      PAGES: PAGES
+      PAGES,
+      WORK_FLOW_MODES
     }
   },
   mounted() {
@@ -58,6 +61,9 @@ export default {
     }
   },
   computed: {
+    ...mapState([
+      'activeWorkFlowMode'
+    ]),
     isHomeRoute() {
       let retVal = false;
       let cuurentRouteName = this.$route.name;

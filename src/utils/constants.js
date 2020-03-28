@@ -20,3 +20,24 @@ export const PAGES = {
     class: 'cv'
   }
 };
+
+export const WORK_FLOW_MODES = {
+  SKETCH: {
+    label: 'Sketch',
+    value: 'SKETCH'
+  },
+  WIREFRAME: {
+    label: 'Wireframe',
+    value: 'WIREFRAME'
+  },
+  CODE: {
+    label: 'Code',
+    value: 'CODE'
+  },
+  PRODUCTION: {
+    label: 'Production',
+    value: 'PRODUCTION'
+  }
+};
+
+export const DEFAULT_ACTIVE_WORK_FLOW_MODE = 'PRODUCTION';
