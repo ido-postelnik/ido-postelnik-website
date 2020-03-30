@@ -60,7 +60,11 @@
       align-items: flex-end;
       justify-content: center;
     }
-  } 
+  }
+  
+  &.wrap{
+    flex-wrap: wrap;
+  }
 }
 
 // marings and paddings

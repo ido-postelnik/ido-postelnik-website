@@ -31,7 +31,7 @@ export const WORK_FLOW_MODES = {
     value: 'WIREFRAME'
   },
   CODE: {
-    label: 'Code',
+    label: 'Development',
     value: 'CODE'
   },
   PRODUCTION: {

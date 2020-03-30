@@ -54,23 +54,9 @@ export default {
     margin-right: 5px;
     text-decoration: none;
     position: relative;
+    width: 100%;
+    overflow: hidden;
 
-    &:hover{
-      cursor: pointer;
-
-      .card-image{
-        background-size: 104%;
-        transition: background-size 0.1s ease-in;
-        
-      }
-
-      .card-title{
-        color: $white;
-        transition: all 0.1s ease-in;
-        background-color: $green;
-      }
-    }
-    
     &:last-child{
       margin-right: 0;
     }
@@ -94,10 +80,28 @@ export default {
     .card-image{
       position: absolute;
       left: 50px;
-      right: 0;
-      height: 100%;
+      right: 0px;
+      top: 0px;
+      bottom: 0px;
+      width: calc(100% + -50px);
       background-position: center;
-      background-size: 100%;
+      background-size: cover;
+      transition: width 0.1s ease;
+    }
+
+    &:hover{
+      cursor: pointer;
+
+      .card-image{
+        width: calc(100% - 45px);
+        
+      }
+
+      .card-title{
+        color: $white;
+        transition: all 0.1s ease-in;
+        background-color: $green;
+      }
     }
 
     //Sketch mode

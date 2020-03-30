@@ -91,6 +91,7 @@ export default {
     right: 0;
     z-index: 10;
     padding: 0 20px;
+    transition: all 0.1s ease-in-out;
 
     .icon{
         filter: $filter-white;
@@ -125,7 +126,6 @@ export default {
 
     &.solid-background{
       background-color: $white;
-      transition: 0.1s;
       box-shadow: 0px 1px 5px 0px rgba($beige, 0.75);
 
       .contact{
@@ -148,15 +148,39 @@ export default {
         color: $dark-grey;
       }
 
-      //Sketch mode
+      // Sketch mode
       &.sketch-mode{
         background-color: $note-book-sketch;
       }
 
-      //Wireframe mode
+      // Wireframe mode
       &.wireframe-mode{
         background-color: $light-grey-l;
         box-shadow: 0px 1px 5px 0px rgba($light-grey-d, 0.75);
+      }
+
+      // Code mode
+      &.code-mode{
+        background-color: $jsfiddle;
+        box-shadow: none;
+
+        .logo{
+          color: $white;
+        }
+
+        .icon{
+          filter: $filter-white;
+        }
+
+        .contact{
+          color: $white;
+
+          .separator::after{
+            content: '';
+            border-right: 1px solid $white;
+          }
+        }
+
       }
     }
   }

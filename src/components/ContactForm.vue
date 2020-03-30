@@ -31,8 +31,8 @@ export default {
 
 <style scoped lang="scss">
   .contact-form{
-    min-width: 200px;
-    width:60%;
+    max-width: 450px;
+    width: 75%;
 
     .contact-icon{
       padding-bottom: 5px;

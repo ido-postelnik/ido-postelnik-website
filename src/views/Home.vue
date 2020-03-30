@@ -1,5 +1,5 @@
 <template>
-  <div class="home" 
+  <div class="home" ref="homeRef" 
     :class="{
       'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
@@ -7,19 +7,23 @@
 
     <div :class="{'work-flow-mode-transition': isWorkFlowModeChanged === true}"></div>
     
+    <!-- JSfiddle iframe -->
+    <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/14/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+
     <!-- Main container -->
-    <div class="main-container flex layout-align-start-center">
+    <div class="main-container flex layout-align-center-center">
       <div class="sky"></div>
       <div class="sun"></div>
       <div class="road"></div>
-      <div class="arrow-down clickable" @click="onArrowDownClick()">
+      <div class="arrow-down clickable" @click="onArrowDownClick">
         <img src="../assets/icons/arrow-down.svg" alt="arrow-down" height="20"/>
       </div>
 
-      <!-- ido-postelnik -->
-      <div class="hero-container" :style="{ 'margin-top': heroContainerMargin + '%' }">
-        <div class="text-center flex column layout-align-center-start">
-          <div class="hero" :style="{ opacity: heroContainerOpacity }">
+      <!-- Hero container -->
+      <!-- <div class="hero-container" :style="{'margin-top': heroContainerMargin + '%'}"> -->
+      <div class="hero-container">
+        <div class="flex column layout-align-center-start text-center">
+          <div class="hero" :style="{opacity: heroContainerOpacity, 'margin-top': heroContainerMargin + '%'}">
             <div class="avatar m-auto"></div>
             <div class="hero-title flex row layout-align-center-center m-t-10">
               <h1>Ido Postelnik <span v-if="activeWorkFlowMode === workFlowModes.WIREFRAME.value"> -</span></h1>
@@ -36,14 +40,16 @@
             <!-- Work flow button -->
             <button
               class="btn work-flow-button m-t-10"
-              :class="{ active: shouldShowWorkFlowModesBox === true }"
+              :class="{active: shouldShowWorkFlowModesBox === true}"
               @click="toggleWorkFlowModesBox">
-              {{ workFlowButton }}
+              <transition name="work-flow-button-fade" mode="out-in">
+                <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== workFlowModes.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
+              </transition>
             </button>
           </div>
 
-          <!-- work flow process -->
-          <div class="work-flow flex column layout-align-center-center m-t-20"
+          <!-- Work flow box -->
+          <div class="work-flow-box flex column layout-align-center-center m-t-20"
             :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
             <div class="steps flex layout-align-center-center">
               <mode
@@ -59,16 +65,14 @@
             </div>
             <img src="../assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
           </div>
+
         </div>
       </div>
     </div>
 
     <!-- Pages cards -->
-    <div class="flex row layout-align-start-space-between m-t-20">
-      <page-card
-        v-for="page in PAGES"
-        :key="page.value"
-        :data="page"></page-card>
+    <div class="pages-cards flex row layout-align-start-space-between m-t-20">
+      <page-card v-for="page in PAGES" :key="page.value" :data="page"></page-card>
     </div>
 
     <!-- Highlight-sentence -->
@@ -106,10 +110,10 @@ export default {
   name: "home",
   data: () => {
     return {
-      heroContainerMargin: 10,
+      heroContainerMargin: null,
       heroContainerOpacity: 1,
       // Work flow
-      workFlowButton: WORK_FLOW_BUTTON.OFF,
+      workFlowButton: WORK_FLOW_BUTTON,
       workFlowModes: WORK_FLOW_MODES,
       workFlowModesSize: _.size(WORK_FLOW_MODES),
       shouldShowWorkFlowModesBox: false,
@@ -128,6 +132,8 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
+    // window.addEventListener("resize", this.setHeroContainerMarginPercentage);
+    this.heroContainerMargin = this.setHeroContainerMarginPercentage();
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.onScroll);
@@ -150,13 +156,15 @@ export default {
     toggleWorkFlowModesBox() {
       // Hide WorkFlowModesBox
       if (this.shouldShowWorkFlowModesBox === true) {
-        this.workFlowButton = WORK_FLOW_BUTTON.OFF;
+
         this.shouldShowWorkFlowModesBox = false;
-        this.showLoaderBetweenModeChange(DEFAULT_ACTIVE_WORK_FLOW_MODE);
+        if(this.activeWorkFlowMode !== DEFAULT_ACTIVE_WORK_FLOW_MODE) {
+          this.showLoaderBetweenModeChange(DEFAULT_ACTIVE_WORK_FLOW_MODE);
+        }
       } else {
       // Show WorkFlowModesBox
         this.shouldShowWorkFlowModesBox = true;
-        this.workFlowButton = WORK_FLOW_BUTTON.ON;
+
         this.shouldShowWorkFlowModesAtBottom = false;
       }
     },
@@ -168,11 +176,22 @@ export default {
     },
     showLoaderBetweenModeChange(modeKey) {
       this.isWorkFlowModeChanged = true;
+
       setTimeout(() => {
-        this.isWorkFlowModeChanged = false
+        this.isWorkFlowModeChanged = false;
+        
       }, 800); 
       setTimeout(() => {
         this.updateWorkFlowMode(modeKey);
+        // Handle heroContainerMargin for CODE mode case
+        // if(modeKey === WORK_FLOW_MODES.CODE.value){
+        //   this.heroContainerMargin = 15;
+        //   this.initialHeroContainerMarginPercentage = 15;
+        // } else if(modeKey === WORK_FLOW_MODES.PRODUCTION.value) {
+        //   this.heroContainerMargin = 8;
+        //   this.initialHeroContainerMarginPercentage = 8;
+        // }
+
       }, 300); 
     },
     //#endregion
@@ -188,11 +207,32 @@ export default {
         this.shouldShowWorkFlowModesAtBottom = true;
       }
 
-      this.heroContainerMargin = 10 + scrollPosition / 50;
+      this.heroContainerMargin = this.initialHeroContainerMarginPercentage + scrollPosition / 50;
 
       // if(scrollPosition > 200) {
       this.heroContainerOpacity = 200 / scrollPosition;
       // }
+    },
+    setHeroContainerMarginPercentage() {
+      // this.$refs.home.offsetWidth;
+      let retVal;
+      // let screenWidth = document.documentElement.clientWidth;
+      let screenWidth = this.$refs.homeRef.offsetWidth;
+
+      if(screenWidth > 1440) {
+        retVal = 10;
+      }
+      else if(screenWidth <= 1440 && screenWidth > 768) {
+        retVal = 12;
+      } 
+      else {
+        retVal = 15;
+      }
+
+      retVal = 0;
+      this.initialHeroContainerMarginPercentage = retVal;
+
+      return retVal;
     } 
   },
   computed: {
@@ -209,6 +249,17 @@ export default {
 .home {
   background: white;
 
+  .jsfiddle-iframe{
+    position: fixed;
+    left: -25%;
+    top: $header-height;
+    bottom: 0;
+    width: 25%;
+    height: calc(100% - 50px);
+    z-index: 20;
+    transition: left 0.1s;
+  }
+
   .work-flow-mode-transition{
     position: fixed;
     top: 0;
@@ -216,11 +267,10 @@ export default {
     left: 0;
     right: 0;
     background-color: $white;
-    z-index: 10;
+    z-index: 30;
     pointer-events: none;
     opacity: 0;
     animation: fade-in-and-out 600ms;
-    }
 
     @keyframes fade-in-and-out {
       0%   {opacity: 0;}
@@ -228,6 +278,7 @@ export default {
       70%  {opacity: 1;}
       100% {opacity: 0;}
     }
+  }
 
   .main-container {
     height: 100vh;
@@ -243,7 +294,8 @@ export default {
       right: 0;
       background-repeat: no-repeat;
       background-position: top;
-      height: 400px;
+      height: 34%;
+      background-size: cover;
     }
 
     .sun {
@@ -252,9 +304,10 @@ export default {
       bottom: 0;
       left: 0;
       right: 0;
-      height: 100%;
+      height: 40%;
       background-repeat: no-repeat;
       background-position: bottom;
+      background-size: cover;
     }
 
     .road {
@@ -263,11 +316,12 @@ export default {
       bottom: 0;
       left: 0;
       right: 0;
-      height: 100%;
+      height: 64%;
       background-repeat: no-repeat;
       background-position: bottom;
       z-index: 3;
       pointer-events: none;
+      background-size: cover;
     }
 
     .arrow-down {
@@ -288,51 +342,97 @@ export default {
 
     .hero-container {
       width: 100%;
-      margin-top: 10%;
 
+      // for mobile screen
+      height: 65%;
+      display: block;
+      
       .hero {
         z-index: 2;
 
         .hero-title{
-          min-height: 80px;
         }
 
         .avatar {
-          height: calc(60px + 7.5vw);
-          width: calc(60px + 7.5vw);
+          height: calc(120px + 8.0vw);
+          width: calc(120px + 8.0vw);
           border-radius: 50%;
           background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
           background-size: cover;
-          border: $light-grey 1px solid;
+          border: $light-grey-d 1px solid;
+
+          @include md {
+            height: calc(100px + 8.8vw);
+            width: calc(100px + 8.8vw);
+          }
+
+          @include lg {
+            height: calc(70px + 7.5vw);
+            width: calc(70px + 7.5vw);
+          }
         }
 
         h1 {
-          font-size: calc(0.9rem + 2vw);
-          line-height: calc(0.9rem + 2vw);
+          font-size: 1.6rem;
+          // line-height: calc(0.9rem + 2vw);
           font-weight: 600;
           font-family: $font-title;
-          padding-right: 20px;
-          margin-right: 20px;
+          padding-right: 10px;
+          margin-right: 10px;
           border-right: 4px solid $dark-grey;
+
+          @include md {
+            font-size: calc(0.9rem + 2vw);
+            padding-right: 20px;
+            margin-right: 20px;
+          }
+
+
         }
 
         h2 {
-          font-size: calc(0.9rem + 1.3vw);
+          font-size: 1.5rem;
           letter-spacing: 1.5px;
           font-weight: 500;
+
+          @include md {
+            font-size: calc(0.9rem + 1.2vw);
+          }
         }
 
         h3 {
-          font-size: calc(0.75rem + 0.75vw);
+          font-size: 1.2rem;
           font-weight: 300;
+
+          @include md {
+            font-size: calc(0.75rem + 0.65vw);
+          }
 
           span {
             letter-spacing: 1.2px;
+            display: block;
+            
+            @include md {
+              display: inline-block;
+            }
           }
         }
 
         .work-flow-button {
+          display: none;
           transition: all 0.2s;
+
+          @include lg {
+            display: inline-block;
+          }
+
+
+          .work-flow-button-fade-enter-active, .work-flow-button-fade-leave-active {
+            transition: opacity .1s;
+          }
+          .work-flow-button-fade-enter, .work-flow-button-fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+            opacity: 0;
+          }
 
           &.active {
             background-color: $green;
@@ -343,15 +443,16 @@ export default {
     }
   }
 
-  .work-flow {
+  .work-flow-box {
     display: none;
     border: 1px solid #313638;
     border-radius: 20px;
-    width: 600px;
+    width: 610px;
     height: 90px;
-    z-index: 11;
+    z-index: 40;
     background: white;
     padding: 18px 15px;
+    transition: left 0.25s ease; // in use when in "code-mode"
 
     &.active {
       position: relative;
@@ -371,7 +472,7 @@ export default {
     &.on-scroll {
       position: fixed;
       top: calc(100vh - 135px);
-      left: calc(50% - 300px);
+      left: calc(50% - 305px);
       animation: move 0.6s ease-out;
     }
 
@@ -392,31 +493,21 @@ export default {
     }
   }
 
-  // 992px window width and more
-  // @include lg {
-  //   .work-flow{
-  //      display: flex;
-  //      height: 45vh;
+  .pages-cards{
+    flex-wrap: wrap;
 
-  //     h3{
-  //       font-size: calc(1rem + 0.4vw);
-  //       font-weight: 300;
-  //       letter-spacing: 3px;
-  //       z-index: 2;
-  //     }
-
-  //     .steps{
-  //       width: 100%;
-  //       z-index: 2;
-  //     }
-
-  //   }
-  // }
+    @include sm {
+      flex-wrap: nowrap;
+    }
+  }
 
   .highlight-sentence {
     height: 300px;
-    font-size: calc(0.7rem + 0.9vw);
-    
+    font-size: 1.3rem;
+
+    @include md {
+      font-size: calc(0.8rem + 0.9vw);
+    }
   }
 
   // Sketch mode
@@ -427,7 +518,7 @@ export default {
     .main-container{
       background: none;
       .sky{
-        top: 55px;
+        top: calc(#{$header-height} + 5px);
         background-image: url(../assets/img/home/workFlowModes/sketch/sketch-sky.svg);
         height: 260px;
       }
@@ -519,7 +610,7 @@ export default {
     .main-container{
       background: none;
       .sky{
-        top: 55px;
+        top: calc(#{$header-height} + 5px);
         background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-sky.svg);
         height: 260px;
       }
@@ -589,6 +680,29 @@ export default {
 
     .highlight-sentence{
       p{
+      }
+    }
+  }
+
+  // Code mode
+  &.code-mode{
+    margin-left: 25%;
+    transition: all 0.2s ease;
+
+    .jsfiddle-iframe{
+      left: 0;
+    }
+
+    .main-container{
+      .sky{
+        top: calc(#{$header-height} - 2px);
+      }
+    }
+
+    .work-flow-box {
+      &.on-scroll {
+        left: calc(62.5% - 305px);
+        transition: left 0.25s ease;
       }
     }
   }

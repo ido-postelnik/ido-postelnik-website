@@ -1,10 +1,11 @@
 <template>
-  <footer class="flex row layout-align-center-space-around" :class="{
+  <footer class="flex row layout-align-center-space-around p-y-15" :class="{
       'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
       'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
+    
     <!-- My details -->
-    <div class="flex column layout-align-start-space-between footer-section">
+    <div class="flex column layout-align-start-space-between footer-section p-y-15">
       <div class="m-auto">
         <div class="flex row m-b-10">
           <div class="footer-icon-container m-r-10">
@@ -28,7 +29,7 @@
     </div>
 
     <!-- Social -->
-    <div class="flex column layout-align-center-center footer-section">
+    <div class="flex column layout-align-center-center footer-section p-y-15">
       <p class="m-b-15 social-title">Find me on</p>
       <div class="flex row layout-align-center-center">
         <div class="footer-icon-container m-r-10">
@@ -47,7 +48,7 @@
     </div>
 
     <!-- Contact form -->
-    <div class="footer-section">
+    <div class="footer-section p-y-15">
       <contact-form></contact-form>
     </div>
   </footer>
@@ -80,6 +81,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/_mixins.scss";
+
   footer{
     height: 300px;
     background: rgb(53,92,125);
@@ -87,9 +90,15 @@ export default {
     border-bottom: 5px solid $dark-grey;
     color: $white;
     text-align: center;
+    height: auto;
+    flex-wrap: wrap;
+
+    @include md {
+      flex-wrap: nowrap;
+    }
 
     .footer-section{
-      width: 30%;
+      width: 480px;
     }
 
     .social-title{
