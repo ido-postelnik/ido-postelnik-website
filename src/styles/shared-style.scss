@@ -7,7 +7,7 @@
 // Page style
 .page{
   .page-title{
-    font-size: calc(0.75rem + 0.7vw);
+    font-size: calc(1.2rem + 0.2vw);
     font-weight: 500;
     font-family: $font-title;
     width: 100%;
@@ -31,9 +31,9 @@
 // Button
 .btn {
   display: inline-block;
-  width: 190px;
+  // width: 190px;
   max-width: 250px;
-  padding: 6px 40px;
+  padding: 5px 40px;
   border: 1px solid $dark-grey;
   border-radius: 20px;
   background-color: $white;

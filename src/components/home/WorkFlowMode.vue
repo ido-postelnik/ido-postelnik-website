@@ -13,7 +13,7 @@
 import { mapState } from 'vuex';
 
 export default {
-  name: 'Mode',
+  name: 'WorkFlowMode',
   props: {
     index: {
       type: Number,

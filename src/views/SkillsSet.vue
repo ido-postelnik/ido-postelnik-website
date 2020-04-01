@@ -30,10 +30,10 @@
         </div>
 
         <!-- List view -->
-        <div v-if="activeViewOption === viewOptions.LIST" class="list-view">
-          <div class="flex row layout-align-start-space-between">
+        <div v-if="activeViewOption === viewOptions.LIST" class="">
+          <div class="list-view flex row layout-align-start-space-between">
+            <!-- Table -->
             <div  class="table-container m-r-40"> 
-              <!-- Table -->
               <div class="table-container-height">
                 <table>
                   <!-- table header -->
@@ -100,11 +100,10 @@
             </div>
 
             <!-- Search input -->
-            <div class="search-input-container">
+            <div class="search-input-container m-b-10">
               <input type="text" name="filter" v-model="searchInput" placeholder="Search" class="search-input no-outline">
             </div>
           </div>
-
         </div>
          <!-- End of List view -->
       </div>
@@ -117,7 +116,7 @@
 import {_} from '@/utils/utils';
 
 import PageLayout from '@/components/PageLayout.vue'
-import SkillBox from '@/components/shared/SkillBox.vue'
+import SkillBox from '@/components/skillsSet/SkillBox.vue'
 
 const VIEW_OPTIONS = {
   BOXES: 'boxes',
@@ -453,6 +452,8 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/_mixins.scss";
+
   .skills-set{
 
     .header-container{
@@ -489,6 +490,12 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
       }
 
       .list-view{
+        flex-direction: column-reverse;
+
+        @include md {
+          flex-direction: row;
+        }
+
         .table-container{
           flex:5;
 
@@ -601,6 +608,7 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
 
         .search-input-container{
           flex: 2;
+          width: 90%;
 
           .search-input{
             width: 100%;

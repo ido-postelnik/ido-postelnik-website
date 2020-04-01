@@ -24,7 +24,7 @@
 
 <script>
 export default {
-  name: 'TextBox',
+  name: 'ExpandableTextBox',
   props: {
     title: {
       type: String,

@@ -6,9 +6,9 @@
 
       <!-- content -->
       <div class="">
-        <text-box v-for="box in content" :key="box.title" class="m-b-30"
+        <expandable-text-box v-for="box in content" :key="box.title" class="m-b-30"
         :title="box.title" 
-        :content="box.content"></text-box>
+        :content="box.content"></expandable-text-box>
       </div>
   
     </page-layout>
@@ -17,7 +17,7 @@
 
 <script>
 import PageLayout from '@/components/PageLayout.vue'
-import TextBox from '@/components/shared/TextBox.vue'
+import ExpandableTextBox from '@/components/shared/ExpandableTextBox.vue'
 
 export default {
   name: 'aboutMe',
@@ -41,7 +41,7 @@ export default {
   },
   components: {
     PageLayout,
-    TextBox
+    ExpandableTextBox
   },
   created() {
   },

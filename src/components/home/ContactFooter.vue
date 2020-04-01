@@ -58,7 +58,7 @@
 import { mapState } from 'vuex';
 
 import { WORK_FLOW_MODES } from "@/utils/constants";
-import ContactForm from '@/components/ContactForm.vue'
+import ContactForm from './ContactForm.vue'
 
 export default {
   name: 'ContactFooter',

@@ -1,5 +1,5 @@
 <template>
-  <div class="home" ref="homeRef" 
+  <div class="home"
     :class="{
       'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
@@ -20,10 +20,9 @@
       </div>
 
       <!-- Hero container -->
-      <!-- <div class="hero-container" :style="{'margin-top': heroContainerMargin + '%'}"> -->
       <div class="hero-container">
         <div class="flex column layout-align-center-start text-center">
-          <div class="hero" :style="{opacity: heroContainerOpacity, 'margin-top': heroContainerMargin + '%'}">
+          <div class="hero" :style="[{opacity: heroContainerOpacity}, activeWorkFlowMode !== workFlowModes.SKETCH.value && activeWorkFlowMode !== workFlowModes.WIREFRAME.value ? {'margin-top': heroContainerMargin + '%'} : {}]">
             <div class="avatar m-auto"></div>
             <div class="hero-title flex row layout-align-center-center m-t-10">
               <h1>Ido Postelnik <span v-if="activeWorkFlowMode === workFlowModes.WIREFRAME.value"> -</span></h1>
@@ -52,7 +51,7 @@
           <div class="work-flow-box flex column layout-align-center-center m-t-20"
             :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
             <div class="steps flex layout-align-center-center">
-              <mode
+              <work-flow-mode
                 v-for="(mode, key, index) in workFlowModes"
                 :key="mode.label"
                 :index="index + 1"
@@ -61,7 +60,7 @@
                 :isLast="index === workFlowModesSize - 1"
                 @click.native="switchWorkFlowMode(key)"
                 class="m-r-10">
-              </mode>
+              </work-flow-mode>
             </div>
             <img src="../assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
           </div>
@@ -99,7 +98,7 @@ const WORK_FLOW_BUTTON = {
 
 // @ is an alias to /src
 import PageCard from "@/components/home/PageCard.vue";
-import Mode from "@/components/home/Mode.vue";
+import WorkFlowMode from "@/components/home/WorkFlowMode.vue";
 import ContactFooter from "@/components/home/ContactFooter.vue";
 import CopyRight from "@/components/CopyRight.vue";
 
@@ -125,7 +124,7 @@ export default {
     };
   },
   components: {
-    Mode,
+    WorkFlowMode,
     PageCard,
     ContactFooter,
     CopyRight
@@ -183,15 +182,6 @@ export default {
       }, 800); 
       setTimeout(() => {
         this.updateWorkFlowMode(modeKey);
-        // Handle heroContainerMargin for CODE mode case
-        // if(modeKey === WORK_FLOW_MODES.CODE.value){
-        //   this.heroContainerMargin = 15;
-        //   this.initialHeroContainerMarginPercentage = 15;
-        // } else if(modeKey === WORK_FLOW_MODES.PRODUCTION.value) {
-        //   this.heroContainerMargin = 8;
-        //   this.initialHeroContainerMarginPercentage = 8;
-        // }
-
       }, 300); 
     },
     //#endregion
@@ -207,29 +197,15 @@ export default {
         this.shouldShowWorkFlowModesAtBottom = true;
       }
 
-      this.heroContainerMargin = this.initialHeroContainerMarginPercentage + scrollPosition / 50;
+
+      this.heroContainerMargin = scrollPosition / 50;
 
       // if(scrollPosition > 200) {
       this.heroContainerOpacity = 200 / scrollPosition;
       // }
     },
     setHeroContainerMarginPercentage() {
-      // this.$refs.home.offsetWidth;
-      let retVal;
-      // let screenWidth = document.documentElement.clientWidth;
-      let screenWidth = this.$refs.homeRef.offsetWidth;
-
-      if(screenWidth > 1440) {
-        retVal = 10;
-      }
-      else if(screenWidth <= 1440 && screenWidth > 768) {
-        retVal = 12;
-      } 
-      else {
-        retVal = 15;
-      }
-
-      retVal = 0;
+      let retVal = 0;
       this.initialHeroContainerMarginPercentage = retVal;
 
       return retVal;
@@ -346,7 +322,7 @@ export default {
       // for mobile screen
       height: 65%;
       display: block;
-      
+
       .hero {
         z-index: 2;
 
@@ -354,27 +330,26 @@ export default {
         }
 
         .avatar {
-          height: calc(120px + 8.0vw);
-          width: calc(120px + 8.0vw);
+          height: calc(150px + 1vw);
+          width: calc(150px + 1vw);
           border-radius: 50%;
           background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
           background-size: cover;
           border: $light-grey-d 1px solid;
 
           @include md {
-            height: calc(100px + 8.8vw);
-            width: calc(100px + 8.8vw);
+            height: calc(150px + 2vw);
+            width: calc(150px + 2vw);
           }
 
           @include lg {
-            height: calc(70px + 7.5vw);
-            width: calc(70px + 7.5vw);
+            height: calc(150px + 3vw);
+            width:  calc(150px + 3vw);
           }
         }
 
         h1 {
-          font-size: 1.6rem;
-          // line-height: calc(0.9rem + 2vw);
+          font-size: calc(1.5rem + 1.2vw);
           font-weight: 600;
           font-family: $font-title;
           padding-right: 10px;
@@ -382,31 +357,25 @@ export default {
           border-right: 4px solid $dark-grey;
 
           @include md {
-            font-size: calc(0.9rem + 2vw);
+            font-size: calc(1.5rem + 1.8vw);
             padding-right: 20px;
             margin-right: 20px;
           }
-
-
         }
 
         h2 {
-          font-size: 1.5rem;
+          font-size: calc(1.5rem + 0.1vw);
           letter-spacing: 1.5px;
           font-weight: 500;
 
           @include md {
-            font-size: calc(0.9rem + 1.2vw);
+            font-size: calc(1.5rem + 1.2vw);
           }
         }
 
         h3 {
-          font-size: 1.2rem;
+          font-size: calc(1.0rem + 0.6vw);
           font-weight: 300;
-
-          @include md {
-            font-size: calc(0.75rem + 0.65vw);
-          }
 
           span {
             letter-spacing: 1.2px;
@@ -425,7 +394,6 @@ export default {
           @include lg {
             display: inline-block;
           }
-
 
           .work-flow-button-fade-enter-active, .work-flow-button-fade-leave-active {
             transition: opacity .1s;
@@ -520,6 +488,7 @@ export default {
       .sky{
         top: calc(#{$header-height} + 5px);
         background-image: url(../assets/img/home/workFlowModes/sketch/sketch-sky.svg);
+        background-size: contain;
         height: 260px;
       }
 
@@ -530,6 +499,7 @@ export default {
       .road{
         background-image: url(../assets/img/home/workFlowModes/sketch/sketch-road.svg);
         height: 300px;
+        background-size: contain;
       }
 
       .arrow-down{
@@ -541,7 +511,7 @@ export default {
     }
 
     .hero-container {
-      margin-top: 230px !important;
+      margin-top: 150px !important;
 
       .hero{
         opacity: 1 !important;
@@ -612,6 +582,7 @@ export default {
       .sky{
         top: calc(#{$header-height} + 5px);
         background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-sky.svg);
+        background-size: contain;
         height: 260px;
       }
 
@@ -621,6 +592,7 @@ export default {
       
       .road{
         background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-road.svg);
+        background-size: contain;
         height: 300px;
       }
 
@@ -634,7 +606,8 @@ export default {
     }
 
     .hero-container {
-      margin-top: 230px !important;
+      margin-top: 50px !important;
+      z-index: 3;
 
       .hero{
         opacity: 1 !important;
@@ -649,11 +622,9 @@ export default {
         .hero-title{
           min-height: 20px;
          
-
           h1, h2{
              font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
              font-weight: 500;
-             font-size: calc(0.9rem + 1.3vw);
              border: 0px;
              padding-right: 0px;
              margin-right: 10px;
@@ -670,6 +641,7 @@ export default {
           background-color: $light-grey-l !important;
           color: $dark-grey !important;
           border-radius: 5px;
+          z-index: 6;
 
           &:active{
             box-shadow: none !important;
