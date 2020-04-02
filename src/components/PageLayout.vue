@@ -33,7 +33,6 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/_mixins.scss";
-
   .page-layout{
     height: calc(100vh - #{$header-height});
     position: absolute;

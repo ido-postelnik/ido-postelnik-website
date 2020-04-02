@@ -58,4 +58,13 @@
   &:disabled{
     cursor: default;
   }
+
+  &.gold{
+    background-color: $gold;
+  }
+
+  &.blue{
+    background-color: $blue;
+    color: $white;
+  }
 }

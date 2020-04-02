@@ -49,6 +49,11 @@ export default new Router({
       path: '/cv',
       name: 'cv',
       component: Cv
-    }
+    },
+    {
+      // catch all 404
+      path: "*",
+      component: () => import("./views/404.vue")
+      }
   ]
 })
