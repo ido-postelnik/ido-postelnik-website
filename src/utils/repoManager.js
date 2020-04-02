@@ -1,10 +1,7 @@
 import axios from 'axios';
 import {_} from "@/utils/utils";
 
-console.log('process.env: ', process.env.VUE_APP_API_BASE_URL);
-// debugger;
 const HTTP = axios.create({
-  // baseURL: 'http://localhost:5000/api',
   baseURL: process.env.VUE_APP_API_BASE_URL
 });
 

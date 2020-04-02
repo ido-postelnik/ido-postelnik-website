@@ -163,14 +163,27 @@ export default {
       } else {
       // Show WorkFlowModesBox
         this.shouldShowWorkFlowModesBox = true;
-
         this.shouldShowWorkFlowModesAtBottom = false;
+
+        // gtag event
+        this.$gtag.time({
+          'name' : 'showWorkFlowModesBox',
+          // 'value' : 3549,
+          'event_category' : 'engagement'
+        })
       }
     },
     switchWorkFlowMode(modeKey) {
       if (modeKey !== this.activeWorkFlowMode) {
         this.shouldShowWorkFlowModesAtBottom = true;
         this.showLoaderBetweenModeChange(modeKey);
+
+        // gtag event
+        this.$gtag.time({
+          'name' : 'switchWorkFlowMode',
+          'value' : 1,
+          'event_category' : 'engagement'
+        })
       }
     },
     showLoaderBetweenModeChange(modeKey) {

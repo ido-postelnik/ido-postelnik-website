@@ -76,8 +76,6 @@
 
               <!-- Pagination -->
               <div v-if="pageCount > 0" class="flex row layout-align-center-end pagination p-t-5">
-                <!-- <p>pageCount: {{pageCount}}</p>
-                <p>pageNumber: {{pageNumber}}</p> -->
                 <img src="../assets/icons/chevron-left.svg" alt="previous" height="10" 
                 class="pagination-icon m-r-5" 
                 :class="{'active': isPrevPageActive}"
@@ -285,6 +283,19 @@ const SKILLS_SET = [
       }
     ]
   },
+  {
+    title: 'Agile methods',
+    skills: [
+      {
+        title: 'Scrum',
+        imagePath: require('@/assets/img/skills/agileMethods/scrum.png')
+      },
+      {
+        title: 'Kanban',
+        imagePath: require('@/assets/img/skills/agileMethods/kanban.png')
+      }
+    ]
+  },
 ];
 
 export default {
@@ -389,15 +400,15 @@ export default {
           return isSubStringIncludes;
         })
 
-        this.pageNumber = 0;
+        this.pageNumber = 0; // eslint-disable-line
       }
 
-      this.filteredSkillsSize = _.size(retVal);
+      this.filteredSkillsSize = _.size(retVal); // eslint-disable-line
       
       // Pagination
       if(this.pageCount === 1){
-        this.isPrevPageActive = false;
-        this.isNextPageActive = false;
+        this.isPrevPageActive = false; // eslint-disable-line
+        this.isNextPageActive = false; // eslint-disable-line
       }
 
       let start = this.pageNumber * this.itemsPerPage;
@@ -413,7 +424,7 @@ export default {
         retVal = calcPagesNumber(this.filteredSkillsSize, this.itemsPerPage);
       }
       else {
-        this.pageNumber = 0;
+        this.pageNumber = 0; // eslint-disable-line
       }
 
       return retVal;

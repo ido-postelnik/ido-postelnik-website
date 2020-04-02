@@ -23,6 +23,7 @@
       
       <a :href="PHONE_NUMBER.value" class="flex row layout-align-center-center">
         <img src="../assets/icons/phone.svg" alt="phone" class="icon clickable"/>
+      
       </a>
     </div>
   </header>
