@@ -13,18 +13,18 @@
           </div>
           <p>TLV, Israel</p>
         </div>
-        <div class="flex row m-b-10">
-          <div class="footer-icon-container m-r-10">
-            <img src="@/assets/icons/phone.svg" alt="phone" class="footer-icon">
-          </div>
-          <p>+972-54-8080474</p>
-        </div>
-        <div class="flex row">
+        <a :href="EMAIL.value" class="flex row m-b-10">
           <div class="footer-icon-container m-r-10">
             <img src="@/assets/icons/email.svg" alt="email" class="footer-icon">
           </div>
-          <p>Postelnik@gmail.com</p>
-        </div>
+          <p>{{EMAIL.label}}</p>
+        </a>
+        <a :href="PHONE_NUMBER.value" class="flex row m-b-10">
+          <div class="footer-icon-container m-r-10">
+            <img src="@/assets/icons/phone.svg" alt="phone" class="footer-icon">
+          </div>
+          <p>{{PHONE_NUMBER.label}}</p>
+        </a>
       </div>
     </div>
 
@@ -32,18 +32,18 @@
     <div class="flex column layout-align-center-center footer-section p-y-15">
       <p class="m-b-15 social-title">Find me on</p>
       <div class="flex row layout-align-center-center">
-        <div class="footer-icon-container m-r-10">
+        <a href="https://www.linkedin.com/in/ido-postelnik/" target="_blank" class="footer-icon-container m-r-10">
           <img src="@/assets/icons/linkedin.svg" alt="linkedin" class="footer-icon">
-        </div>
-        <div class="footer-icon-container m-r-10">
+        </a>
+        <a href="https://github.com/ido-postelnik" target="_blank" class="footer-icon-container m-r-10">
           <img src="@/assets/icons/github.svg" alt="github" class="footer-icon">
-        </div>
-        <div class="footer-icon-container m-r-10">
+        </a>
+        <a href="https://www.facebook.com/ido.postelnik" target="_blank" class="footer-icon-container m-r-10">
           <img src="@/assets/icons/facebook.svg" alt="facebook" class="footer-icon">
-        </div>
-        <div class="footer-icon-container">
+        </a>
+        <a href="https://www.instagram.com/ido.postelnik/" target="_blank" class="footer-icon-container">
           <img src="@/assets/icons/instagram.svg" alt="instagram" class="footer-icon">
-        </div>
+        </a>
       </div>
     </div>
 
@@ -57,14 +57,16 @@
 <script>
 import { mapState } from 'vuex';
 
-import { WORK_FLOW_MODES } from "@/utils/constants";
+import { WORK_FLOW_MODES, EMAIL, PHONE_NUMBER } from "@/utils/constants";
 import ContactForm from './ContactForm.vue'
 
 export default {
   name: 'ContactFooter',
   data: () => {
     return {
-      workFlowModes: WORK_FLOW_MODES
+      workFlowModes: WORK_FLOW_MODES,
+      EMAIL,
+      PHONE_NUMBER
     };
   },
   components: {
@@ -82,7 +84,6 @@ export default {
 
 <style scoped lang="scss">
 @import "@/styles/_mixins.scss";
-
   footer{
     height: 300px;
     background: rgb(53,92,125);
@@ -99,6 +100,10 @@ export default {
 
     .footer-section{
       width: 480px;
+
+      a{
+        color: $white;
+      }
     }
 
     .social-title{

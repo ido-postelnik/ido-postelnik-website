@@ -17,11 +17,11 @@
         </router-link>
       </div> -->
 
-      <a class="m-x-10 separator flex row layout-align-center-center"> 
-        <img src="../assets/icons/email.svg"  alt="email" class="icon clickable"/>
+      <a :href="EMAIL.value" class="m-x-10 separator flex row layout-align-center-center"> 
+        <img src="../assets/icons/email.svg" alt="email" class="icon clickable"/>
       </a>
       
-      <a class="flex row layout-align-center-center">
+      <a :href="PHONE_NUMBER.value" class="flex row layout-align-center-center">
         <img src="../assets/icons/phone.svg" alt="phone" class="icon clickable"/>
       </a>
     </div>
@@ -33,7 +33,7 @@
 import { mapState } from 'vuex';
 
 import {_} from '@/utils/utils';
-import { PAGES, WORK_FLOW_MODES } from '../utils/constants';
+import { PAGES, WORK_FLOW_MODES, EMAIL, PHONE_NUMBER } from '../utils/constants';
 
 export default {
   name: 'TopHeader',
@@ -41,7 +41,9 @@ export default {
     return {
       scrollPosition: null,
       PAGES,
-      workFlowModes: WORK_FLOW_MODES
+      workFlowModes: WORK_FLOW_MODES,
+      EMAIL,
+      PHONE_NUMBER
     }
   },
   mounted() {

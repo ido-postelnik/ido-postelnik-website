@@ -1,3 +1,12 @@
+export const EMAIL = {
+  label: 'Postelnik@gmail.com',
+  value: 'mailto:postelnik@gmail.com'
+}; 
+export const PHONE_NUMBER = {
+  label: '+972-54-8080474',
+  value: 'tel:972548080474'
+};
+  
 export const PAGES = {
   ABOUT_ME: {
     label: 'About Me',
