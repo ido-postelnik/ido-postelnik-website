@@ -41,6 +41,7 @@ export default {
   width: $sidebar-width;
   background-color: $dark-grey;
   border-right: 1px solid $beige;
+  z-index: 10;
 
   &-item {
     text-align: center;
@@ -59,11 +60,6 @@ export default {
 
     &.router-link-exact-active {
       background: $gold;
-      // background: linear-gradient(
-      //   90deg,
-      //   rgba(29, 233, 182, 1) 0%,
-      //   rgba(0, 214, 194, 1) 100%
-      // );
       color: $white;
 
       .sidebar-icon{

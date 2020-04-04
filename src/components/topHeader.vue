@@ -4,7 +4,12 @@
     'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
     'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
     'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
-    <router-link to="/" class="logo cursor-default" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</router-link>
+    <div class="flex row layout-align-center-center">
+      <router-link to="/" class="logo cursor-default m-r-10" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</router-link>
+      <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable" @click="onMenuIconClick">
+    </div>
+
+
     <!-- <p class="logo cursor-default" @click="goToHome('home')" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</p> -->
     <div class="flex row layout-align-center-space-between contact">
       <!-- <div class="flex" v-if="isHomeRoute === true">
@@ -18,12 +23,11 @@
       </div> -->
 
       <a :href="EMAIL.value" class="m-x-10 separator flex row layout-align-center-center"> 
-        <img src="../assets/icons/email.svg" alt="email" class="icon clickable"/>
+        <img src="@/assets/icons/email.svg" alt="email" class="icon clickable"/>
       </a>
       
       <a :href="PHONE_NUMBER.value" class="flex row layout-align-center-center">
-        <img src="../assets/icons/phone.svg" alt="phone" class="icon clickable"/>
-      
+        <img src="@/assets/icons/phone.svg" alt="phone" class="icon clickable"/>
       </a>
     </div>
   </header>
@@ -31,7 +35,7 @@
 
 <script>
 // Store
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 
 import {_} from '@/utils/utils';
 import { PAGES, WORK_FLOW_MODES, EMAIL, PHONE_NUMBER } from '../utils/constants';
@@ -56,6 +60,12 @@ export default {
   created() {
   },
   methods: {
+    ...mapMutations([
+      'toggleSidebar'
+    ]),
+    onMenuIconClick() {
+      this.toggleSidebar();
+    },
     onScroll() {
       this.scrollPosition = window.scrollY;
     },
@@ -86,6 +96,8 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/_mixins.scss";
+
   header{
     height: $header-height;
     position: fixed;
@@ -97,10 +109,18 @@ export default {
     transition: all 0.1s ease-in-out;
 
     .icon{
-        filter: $filter-white;
-        height: 23px;
-        width: 23px;
+      filter: $filter-white;
+      height: 23px;
+      width: 23px;
+    }
+
+    .menu-icon{
+      width: 20px;
+
+      @include lg {
+        display: none;
       }
+    }
 
     .logo{
       font-family: $font-title;

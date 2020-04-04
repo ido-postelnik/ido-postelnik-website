@@ -1,10 +1,10 @@
 <template>
-  <router-link :to="data.value" class="card flex row" :class="{
+  <router-link :to="data.value" class="card flex column" :class="{
       'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
       'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
     <h3 class="card-title">{{ data.label }}</h3>
-    <div class="card-image" :class="classObject"></div>
+    <div class="card-image m-auto" :class="classObject"></div>
   </router-link>
 </template>
 
@@ -34,6 +34,7 @@ export default {
     ]),
     classObject: function () {
       let retVal = _.get(this, 'data.class');
+      retVal = `${retVal}-home`;
 
       return retVal;
     }
@@ -62,45 +63,58 @@ export default {
     }
 
     .card-title{
-      position: absolute;
-      bottom: -50px;
-      left: 0;
-      transform-origin: 0 0;
-      transform: rotate(-90deg);
-      background-color: $white;
-      width: $home-inner-page-card-height;
-      height: 50px;
-      line-height: 50px;
+      // background-color: $white;
+      height: 40px;
+      line-height: 40px;
       font-family: $font-title;
-      font-size: calc(0.8rem + 1.0vw);
+      font-size: calc(0.8rem + 0.7vw);
       text-align: center;
-      color: $light-grey-d;
+      color: $dark-grey;
+      width: 100%;
+      position: relative;
+      text-align: center;
+
+      &::after{
+        content: "";
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        width: 40px;
+        margin-left: -20px;
+        border-bottom: $dark-grey solid 2px;
+      }
     }
     
     .card-image{
-      position: absolute;
-      left: 50px;
-      right: 0px;
-      top: 0px;
-      bottom: 0px;
-      width: calc(100% + -50px);
+      width: 75%;
+      height: 100%;
+      background-size: contain;
       background-position: center;
-      background-size: cover;
+      background-repeat: no-repeat;
       transition: width 0.1s ease;
+      border-bottom-left-radius: 20%;
+      border-bottom-right-radius: 20%;
     }
 
     &:hover{
       cursor: pointer;
 
       .card-image{
-        width: calc(100% - 45px);
-        
+        width: 78%;
       }
 
       .card-title{
-        color: $white;
+        color: $green-l;
         transition: all 0.1s ease-in;
-        background-color: $green;
+        // background-color: $green-l;
+
+        &::after{
+          transition: all 0.1s ease-in;
+          width: 50px;
+          margin-left: -25px;
+          border-bottom: $green-l solid 2px;
+        }
+
       }
     }
 

@@ -464,9 +464,7 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
 
 <style scoped lang="scss">
 @import "@/styles/_mixins.scss";
-
   .skills-set{
-
     .header-container{
       position: relative;
       width: 80%;
@@ -492,7 +490,7 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
       .boxes-view{
         h2{
           text-decoration: underline;
-          font-size: calc(0.75rem + 0.5vw);
+          font-size: calc(1.0rem + 0.2vw);
         }
         
         .boxes-view-content{

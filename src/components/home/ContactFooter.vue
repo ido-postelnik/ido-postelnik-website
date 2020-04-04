@@ -86,8 +86,10 @@ export default {
 @import "@/styles/_mixins.scss";
   footer{
     height: 300px;
-    background: rgb(53,92,125);
-    background: linear-gradient(180deg, rgba(53,92,125,1) 0%, rgba(108,91,123,1) 48%, rgba(192,108,132,1) 100%);
+    // background: #396668;
+    // background: linear-gradient(180deg, rgba(53,92,125,1) 0%, rgba(108,91,123,1) 48%, rgba(192,108,132,1) 100%);
+    background: rgb(73,121,127);
+    background: linear-gradient(180deg, rgba(73,121,127,1) 0%, rgba(57,102,104,1) 100%);
     border-bottom: 5px solid $dark-grey;
     color: $white;
     text-align: center;

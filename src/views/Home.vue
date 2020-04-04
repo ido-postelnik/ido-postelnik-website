@@ -12,9 +12,9 @@
 
     <!-- Main container -->
     <div class="main-container flex layout-align-center-center">
-      <div class="sky"></div>
-      <div class="sun"></div>
-      <div class="road"></div>
+      <div class="bg-item top-left"></div>
+      <div class="bg-item bottom-left"></div>
+      <div class="bg-item right"></div>
       <div class="arrow-down clickable" @click="onArrowDownClick">
         <img src="../assets/icons/arrow-down.svg" alt="arrow-down" height="20"/>
       </div>
@@ -24,16 +24,11 @@
         <div class="flex column layout-align-center-start text-center">
           <div class="hero" :style="[{opacity: heroContainerOpacity}, activeWorkFlowMode !== workFlowModes.SKETCH.value && activeWorkFlowMode !== workFlowModes.WIREFRAME.value ? {'margin-top': heroContainerMargin + '%'} : {}]">
             <div class="avatar m-auto"></div>
-            <div class="hero-title flex row layout-align-center-center m-t-10">
-              <h1>Ido Postelnik <span v-if="activeWorkFlowMode === workFlowModes.WIREFRAME.value"> -</span></h1>
-              <h2>Front End Engineer</h2>
+            <div class="hero-title flex row layout-align-center-center m-t-5">
+              <h1>Ido Postelnik</h1>
             </div>
-            <div class="hero-subtitle flex row layout-align-center-center m-t-5">
-              <h3>
-                <span class="m-r-10">I love doing UI.</span>
-                <span class="m-r-10">From sketch to production.</span>
-                <span>Simple as that.</span>
-              </h3>
+            <div class="hero-subtitle flex row layout-align-center-center">
+              <h2>UX/UI driven Front End Engineer</h2>
             </div>
 
             <!-- Work flow button -->
@@ -62,7 +57,7 @@
                 class="m-r-10">
               </work-flow-mode>
             </div>
-            <img src="../assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
+            <img src="@/assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
           </div>
 
         </div>
@@ -70,13 +65,20 @@
     </div>
 
     <!-- Pages cards -->
-    <div class="pages-cards flex row layout-align-start-space-between m-t-20">
+    <div class="pages-cards flex row layout-align-start-space-between p-t-50 p-b-50 p-x-50">
       <page-card v-for="page in PAGES" :key="page.value" :data="page"></page-card>
     </div>
 
-    <!-- Highlight-sentence -->
-    <div class="highlight-sentence text-center flex column layout-align-center-center">
-      <p>Lorem ipsum dolor sit amet,<br> consectetur adipiscingNulla quam velit,<br> vulputate eu pharetra nec.</p>
+    <!-- Highlight-area -->
+    <div class="highlight-area text-center flex row layout-align-center-center">
+      <div class="highlight-image-container flex layout-align-center-end p-r-50">
+        <img src="@/assets/img/home/highlight-sentence.png" alt="highlight-sentence">
+      </div>
+      <p class="highlight-sentence-container flex column layout-align-start-center p-l-50">
+        <span class="m-b-5">I do End-to-End development.</span> 
+        <span class="m-b-5">From idea to production.</span>
+        <span>Simple. As. That.</span>    
+      </p>
     </div>
 
     <!-- Contact-footer -->
@@ -272,45 +274,42 @@ export default {
   .main-container {
     height: 100vh;
     position: relative;
-    background: $light-grey-l;
-    background: linear-gradient(0deg, $light-grey-l 0%, $white 100%);
+    // background: #fdfbfb ;
+    // background: linear-gradient(0deg, #fdfbfb  0%, #ebedee 100%);
+    // background: rgb(253,251,251);
+    // background: radial-gradient(circle, rgba(253,251,251,1) 0%, rgba(235,237,238,1) 100%);
+    background: rgb(253,251,251);
+    background: linear-gradient(288deg, rgba(253,251,251,1) 0%, rgba(255,255,255,1) 100%);
 
-    .sky {
-      background-image: url(../assets/img/home/road/sky.svg);
+    .bg-item{
       position: absolute;
+      background-repeat: no-repeat;
+      background-size: contain;
+    }
+
+    .top-left {
+      background-image: url(../assets/img/home/buildings/top-left.svg);
       top: 0;
       left: 0;
-      right: 0;
-      background-repeat: no-repeat;
-      background-position: top;
+      height: 70%;
+      width: 30%;
+    }
+
+    .bottom-left {
+      background-image: url(../assets/img/home/buildings/bottom-left.svg);
+      bottom: 0;
+      left: 0;
       height: 34%;
-      background-size: cover;
+      width: 50%;
     }
 
-    .sun {
-      background-image: url(../assets/img/home/road/sun.svg);
-      position: absolute;
+    .right {
+      background-position: bottom right;
+      background-image: url(/img/right.21af4566.svg);
       bottom: 0;
-      left: 0;
+      top: 0;
       right: 0;
-      height: 40%;
-      background-repeat: no-repeat;
-      background-position: bottom;
-      background-size: cover;
-    }
-
-    .road {
-      background-image: url(../assets/img/home/road/road.svg);
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 64%;
-      background-repeat: no-repeat;
-      background-position: bottom;
-      z-index: 3;
-      pointer-events: none;
-      background-size: cover;
+      width: 100%;
     }
 
     .arrow-down {
@@ -331,9 +330,7 @@ export default {
 
     .hero-container {
       width: 100%;
-
-      // for mobile screen
-      height: 65%;
+      height: 55%;
       display: block;
 
       .hero {
@@ -343,61 +340,40 @@ export default {
         }
 
         .avatar {
-          height: calc(150px + 1vw);
-          width: calc(150px + 1vw);
+          height: calc(140px + 1vw);
+          width: calc(140px + 1vw);
           border-radius: 50%;
           background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
           background-size: cover;
           border: $light-grey-d 1px solid;
 
           @include md {
-            height: calc(150px + 2vw);
-            width: calc(150px + 2vw);
+            height: calc(140px + 2vw);
+            width: calc(140px + 2vw);
           }
 
           @include lg {
-            height: calc(150px + 3vw);
-            width:  calc(150px + 3vw);
+            height: calc(140px + 3vw);
+            width:  calc(140px + 3vw);
           }
         }
 
         h1 {
           font-size: calc(1.5rem + 1.2vw);
-          font-weight: 600;
+          font-weight: 100;
           font-family: $font-title;
-          padding-right: 10px;
-          margin-right: 10px;
-          border-right: 4px solid $dark-grey;
 
           @include md {
             font-size: calc(1.5rem + 1.8vw);
-            padding-right: 20px;
-            margin-right: 20px;
           }
         }
 
         h2 {
-          font-size: calc(1.5rem + 0.1vw);
-          letter-spacing: 1.5px;
-          font-weight: 500;
-
-          @include md {
-            font-size: calc(1.5rem + 1.2vw);
-          }
-        }
-
-        h3 {
           font-size: calc(1.0rem + 0.6vw);
-          font-weight: 300;
+          font-weight: 400;
+          letter-spacing: 6.2px;
+          display: block;
 
-          span {
-            letter-spacing: 1.2px;
-            display: block;
-            
-            @include md {
-              display: inline-block;
-            }
-          }
         }
 
         .work-flow-button {
@@ -476,19 +452,40 @@ export default {
 
   .pages-cards{
     flex-wrap: wrap;
+    // width: 90%;
+    background: rgb(247,247,247);
+    background: linear-gradient(90deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
 
     @include sm {
       flex-wrap: nowrap;
     }
   }
 
-  .highlight-sentence {
-    height: 300px;
-    font-size: 1.3rem;
+  .highlight-area {
+    height: 70vh;
+    background: rgb(247,247,247);
+    background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
 
-    @include md {
-      font-size: calc(0.8rem + 0.9vw);
+    .highlight-image-container{
+      flex: 1;
+      height: 100%;
+
+      img{
+        height: 80%;
+      }
     }
+
+    .highlight-sentence-container{
+      flex: 1;
+      font-size: calc(1.0rem + 0.3vw);
+      letter-spacing: 2px;;
+
+      @include md {
+        font-size: calc(1.0rem + 0.6vw);
+      }
+
+    }
+
   }
 
   // Sketch mode

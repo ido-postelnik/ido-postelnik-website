@@ -4,6 +4,12 @@
 .skills-set{background-image: url(../assets/img/pages/skills-set.svg);}
 .cv{background-image: url(../assets/img/pages/cv.svg);}
 
+// Pages images
+.about-me-home{background-image: url(../assets/img/pages/about-me-home.svg);}
+.work-experience-home{background-image: url(../assets/img/pages/work-experience-home.svg);}
+.skills-set-home{background-image: url(../assets/img/pages/skills-set-home.svg);}
+.cv-home{background-image: url(../assets/img/pages/cv-home.svg);}
+
 // Page style
 .page{
   .page-title{
@@ -34,9 +40,12 @@
   // width: 190px;
   max-width: 250px;
   padding: 5px 40px;
-  border: 1px solid $dark-grey;
+  // border: 1px solid $dark-grey;
+  border: none;
   border-radius: 20px;
-  background-color: $white;
+  background: rgb(29,233,182);
+  background: linear-gradient(135deg, rgba(29,233,182,1) 0%, rgba(0,214,194,1) 100%);
+  color: $white;
   text-align: center;
   outline: none;
   font-size: 16px;

@@ -7,11 +7,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    isSideBarVisibile: false, //used only for tablet and mobile screens
     activeWorkFlowMode: DEFAULT_ACTIVE_WORK_FLOW_MODE
   },
   getters: {
   },
   mutations: {
+    toggleSidebar(state) {
+      state.isSideBarVisibile = !state.isSideBarVisibile;
+    },
     updateWorkFlowMode(state, newMode) {
       state.activeWorkFlowMode = newMode;
     }

@@ -64,7 +64,7 @@ export default {
     }
 
     h2{
-      font-size: calc(0.8rem + 0.1vw);
+      font-size: calc(0.8rem + 0.2vw);
       font-weight: 300;
       margin-bottom: 5px;
 
