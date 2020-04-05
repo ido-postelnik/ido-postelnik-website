@@ -1,8 +1,7 @@
 <template>
   <footer class="flex row layout-align-center-space-around p-y-15" :class="{
       'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
-      'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
-      'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
+      'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value}">
     
     <!-- My details -->
     <div class="flex column layout-align-start-space-between footer-section p-y-15">
@@ -86,8 +85,6 @@ export default {
 @import "@/styles/_mixins.scss";
   footer{
     height: 300px;
-    // background: #396668;
-    // background: linear-gradient(180deg, rgba(53,92,125,1) 0%, rgba(108,91,123,1) 48%, rgba(192,108,132,1) 100%);
     background: rgb(73,121,127);
     background: linear-gradient(180deg, rgba(73,121,127,1) 0%, rgba(57,102,104,1) 100%);
     border-bottom: 5px solid $dark-grey;
@@ -133,8 +130,21 @@ export default {
 
     //Sketch mode
     &.sketch-mode{
-      background: transparent;
+      background: rgba($note-book-sketch, 0.5);
       color: $dark-grey;
+
+      .footer-section{
+        a{
+          color: $dark-grey;
+        }
+      }
+
+      .social-title{
+        &::after{
+          content: "";
+          border-bottom: $dark-grey solid 2px;
+        }
+      }
 
       .footer-icon-container{
         .footer-icon{
@@ -147,6 +157,19 @@ export default {
     &.wireframe-mode{
       background: $light-grey !important;
       color: $dark-grey;
+
+      .footer-section{
+        a{
+          color: $dark-grey;
+        }
+      }
+
+      .social-title{
+        &::after{
+          content: "";
+          border-bottom: $dark-grey solid 2px;
+        }
+      }
 
       .footer-icon-container{
         .footer-icon{

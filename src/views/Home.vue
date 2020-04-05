@@ -5,16 +5,19 @@
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
       'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
 
-    <div :class="{'work-flow-mode-transition': isWorkFlowModeChanged === true}"></div>
+    <div :class="{'work-flow-mode-transition': isWorkFlowModeChanged === true}">
+    <!-- <div class="work-flow-mode-transition"> -->
+      <loader class="work-flow-mode-transition-loader" :scale="1.0" :color="'dark'" v-if="isWorkFlowModeChanged === true"></loader>
+    </div>
     
     <!-- JSfiddle iframe -->
     <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/14/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
     <!-- Main container -->
     <div class="main-container flex layout-align-center-center">
-      <div class="bg-item top-left"></div>
-      <div class="bg-item bottom-left"></div>
-      <div class="bg-item right"></div>
+      <div class="bg-item top-left" :style="{top: 10 * heroContainerMargin + 'px'}"></div>
+      <div class="bg-item bottom-left" :style="{bottom: -5 * heroContainerMargin + 'px'}"></div>
+      <div class="bg-item right" :style="{bottom: -8 * heroContainerMargin + 'px'}"></div>
       <div class="arrow-down clickable" @click="onArrowDownClick">
         <img src="../assets/icons/arrow-down.svg" alt="arrow-down" height="20"/>
       </div>
@@ -36,9 +39,11 @@
               class="btn work-flow-button m-t-10"
               :class="{active: shouldShowWorkFlowModesBox === true}"
               @click="toggleWorkFlowModesBox">
-              <transition name="work-flow-button-fade" mode="out-in">
+              <!-- <transition name="work-flow-button-fade" mode="out-in">
                 <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== workFlowModes.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
-              </transition>
+              </transition> -->
+
+              <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== workFlowModes.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
             </button>
           </div>
 
@@ -65,14 +70,14 @@
     </div>
 
     <!-- Pages cards -->
-    <div class="pages-cards flex row layout-align-start-space-between p-t-50 p-b-50 p-x-50">
+    <div class="pages-cards flex row layout-align-start-space-between">
       <page-card v-for="page in PAGES" :key="page.value" :data="page"></page-card>
     </div>
 
     <!-- Highlight-area -->
     <div class="highlight-area text-center flex row layout-align-center-center">
       <div class="highlight-image-container flex layout-align-center-end p-r-50">
-        <img src="@/assets/img/home/highlight-sentence.png" alt="highlight-sentence">
+        <div class="highlight-image"></div>
       </div>
       <p class="highlight-sentence-container flex column layout-align-start-center p-l-50">
         <span class="m-b-5">I do End-to-End development.</span> 
@@ -103,6 +108,7 @@ import PageCard from "@/components/home/PageCard.vue";
 import WorkFlowMode from "@/components/home/WorkFlowMode.vue";
 import ContactFooter from "@/components/home/ContactFooter.vue";
 import CopyRight from "@/components/CopyRight.vue";
+import Loader from '@/components/shared/Loader.vue'
 
 // Store
 import { mapState, mapMutations  } from 'vuex';
@@ -129,7 +135,8 @@ export default {
     WorkFlowMode,
     PageCard,
     ContactFooter,
-    CopyRight
+    CopyRight,
+    Loader
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
@@ -269,17 +276,20 @@ export default {
       70%  {opacity: 1;}
       100% {opacity: 0;}
     }
+
+    .work-flow-mode-transition-loader{
+      position: fixed;
+      top: calc(50% - 6px);
+      left: calc(50% - 40px);
+    }
   }
 
   .main-container {
     height: 100vh;
     position: relative;
-    // background: #fdfbfb ;
-    // background: linear-gradient(0deg, #fdfbfb  0%, #ebedee 100%);
-    // background: rgb(253,251,251);
-    // background: radial-gradient(circle, rgba(253,251,251,1) 0%, rgba(235,237,238,1) 100%);
     background: rgb(253,251,251);
     background: linear-gradient(288deg, rgba(253,251,251,1) 0%, rgba(255,255,255,1) 100%);
+    overflow: hidden;
 
     .bg-item{
       position: absolute;
@@ -292,24 +302,40 @@ export default {
       top: 0;
       left: 0;
       height: 70%;
-      width: 30%;
+      width: 40%;
+
+      @include sm {
+        width: 30%;
+      }
     }
 
     .bottom-left {
       background-image: url(../assets/img/home/buildings/bottom-left.svg);
       bottom: 0;
+      top: 55%;
       left: 0;
-      height: 34%;
       width: 50%;
+      display: none;
+
+      @include md {
+        display: block;
+      }
     }
 
     .right {
       background-position: bottom right;
-      background-image: url(/img/right.21af4566.svg);
+      background-image: url(../assets/img/home/buildings/right.svg);
       bottom: 0;
       top: 0;
-      right: 0;
-      width: 100%;
+      right: -30%;
+      width: 130%;
+      background-size: cover;
+
+      @include md {
+        background-size: contain;
+        right: 0;
+        width: 100%;
+      }
     }
 
     .arrow-down {
@@ -321,7 +347,7 @@ export default {
       text-align: center;
       line-height: 40px;
       filter: $filter-dark-grey;
-      z-index: 5;
+      z-index: 3;
 
       &:hover {
         bottom: 25px;
@@ -335,9 +361,6 @@ export default {
 
       .hero {
         z-index: 2;
-
-        .hero-title{
-        }
 
         .avatar {
           height: calc(140px + 1vw);
@@ -358,21 +381,33 @@ export default {
           }
         }
 
-        h1 {
-          font-size: calc(1.5rem + 1.2vw);
-          font-weight: 100;
-          font-family: $font-title;
+        .hero-title{
+          h1 {
+            font-size: calc(1.5rem + 1.2vw);
+            font-weight: 100;
+            font-family: $font-title;
 
-          @include md {
-            font-size: calc(1.5rem + 1.8vw);
+            @include md {
+              font-size: calc(1.5rem + 1.6vw);
+            }
           }
         }
 
-        h2 {
-          font-size: calc(1.0rem + 0.6vw);
-          font-weight: 400;
-          letter-spacing: 6.2px;
-          display: block;
+        .hero-subtitle{
+          h2 {
+            font-size: calc(1.0rem + 0.3vw);
+            font-weight: 300;
+            letter-spacing: 5.2px;
+            display: block;
+            background-color: $white;
+            padding: 2px 8px;
+
+            @include md {
+              background-color: transparent;
+            }
+          }
+
+
 
         }
 
@@ -452,12 +487,18 @@ export default {
 
   .pages-cards{
     flex-wrap: wrap;
-    // width: 90%;
     background: rgb(247,247,247);
     background: linear-gradient(90deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
+    padding: 15px;
 
-    @include sm {
+    @include md {
       flex-wrap: nowrap;
+      padding: 30px;
+    }
+
+    @include lg {
+      flex-wrap: nowrap;
+      padding: 50px;
     }
   }
 
@@ -465,13 +506,34 @@ export default {
     height: 70vh;
     background: rgb(247,247,247);
     background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
+    flex-direction: column-reverse;
+
+    @include md {
+      flex-direction: row;
+    }
 
     .highlight-image-container{
-      flex: 1;
+      flex: 2;
       height: 100%;
+      width: 100%;
 
-      img{
+      @include md {
+        margin-left: auto;
+        flex: 1;
+      }
+
+      .highlight-image{
+        background-image: url(../assets/img/home/highlight-image.png);
         height: 80%;
+        width: 90%;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        // margin-left: ;
+
+        @include md {
+          background-position: right;
+        }
       }
     }
 
@@ -483,9 +545,7 @@ export default {
       @include md {
         font-size: calc(1.0rem + 0.6vw);
       }
-
     }
-
   }
 
   // Sketch mode
@@ -495,89 +555,118 @@ export default {
 
     .main-container{
       background: none;
-      .sky{
-        top: calc(#{$header-height} + 5px);
-        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-sky.svg);
-        background-size: contain;
-        height: 260px;
+
+      .right {
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-right.svg);
+        background-position: bottom right;
+        bottom: 0 !important;
+        top: $header-height + 20px;
+        right: 40px;
+        width: 30%;
+        height: 90%;
       }
 
-      .sun{
+      .top-left {
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-left.svg);
+        background-position: bottom left;
+        bottom: 0;
+        top: $header-height + 20px !important;
+        left: 40px;
+        width: 30%;
+        height: 90%;
+      }
+
+      .bottom-left {
         display: none;
       }
-      
-      .road{
-        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-road.svg);
-        height: 300px;
-        background-size: contain;
+
+      .hero-container {
+        margin-top: 150px !important;
+
+        .hero{
+          opacity: 1 !important;
+
+          .avatar{
+            background-image: url(../assets/img/home/workFlowModes/sketch/sketch-avatar.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            border: 0px;
+          }
+
+          .hero-title{
+            background-image: url(../assets/img/home/workFlowModes/sketch/sketch-title.svg);
+            height: 80px;
+            width: 30vw;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+
+            h1{
+              display: none;
+            }
+          }
+          
+          .hero-subtitle{
+            h2{
+              display: none;
+            }
+          }
+
+          .work-flow-button{
+            background-color: transparent !important;
+            color: transparent !important;
+            border: none;
+            background-image: url(../assets/img/home/workFlowModes/sketch/sketch-button.svg);
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            height: 60px;
+            transition: none;
+
+              &:active{
+                box-shadow: none !important;
+              }
+          }
+        }
       }
 
       .arrow-down{
         background-image: url(../assets/img/home/workFlowModes/sketch/sketch-arrow-down.svg);
+        
         img{
           display: none;
         }
-      }
-    }
 
-    .hero-container {
-      margin-top: 150px !important;
-
-      .hero{
-        opacity: 1 !important;
-        .avatar{
-          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-avatar.svg);
-          background-size: contain;
-          background-repeat: no-repeat;
-          border: 0px;
-        }
-
-        .hero-title{
-          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-title.svg);
-          height: 80px;
-          width: 30vw;
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-
-          h1, h2{
-            display: none;
-          }
-        }
-        
-        .hero-subtitle{
-          h3, span{
-            display: none;
-          }
-        }
-
-        .work-flow-button{
-          background-color: transparent !important;
-          color: transparent !important;
-          border: none;
-          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-button.svg);
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          height: 60px;
-          transition: none;
-
-            &:active{
-              box-shadow: none !important;
-            }
+        &:hover {
+          bottom: 30px;
         }
       }
     }
 
-    .highlight-sentence{
-      background-image: url(../assets/img/home/workFlowModes/sketch/sketch-highlight-sentence.svg);
-      background-repeat: no-repeat;
-      background-size: 40%;
-      background-position: center;
-      margin: 20px 0;
+    .pages-cards{
+      background: transparent;
+    }
 
-      p{
-        display: none;
+    .highlight-area {
+      background: transparent;
+
+      .highlight-image-container{
+
+        .highlight-image{
+          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-highlight-image.svg);
+        }
+      }
+
+      .highlight-sentence-container{
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-highlight-sentence.svg);
+        height: 100px;
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left;
+
+        span{
+          display: none;
+        }
       }
     }
   }
@@ -585,85 +674,112 @@ export default {
   // Wireframe mode
   &.wireframe-mode{
     background-color: $light-grey-l;
-    background-image: none;
 
     .main-container{
-      background: none;
-      .sky{
-        top: calc(#{$header-height} + 5px);
-        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-sky.svg);
-        background-size: contain;
-        height: 260px;
+      background: $white;
+
+      .right {
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-right.svg);
+        background-position: bottom right;
+        bottom: 0 !important;
+        top: $header-height + 20px;
+        right: 40px;
+        width: 30%;
+        height: 90%;
       }
 
-      .sun{
+      .top-left {
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-left.svg);
+        background-position: bottom left;
+        bottom: 0;
+        top: $header-height + 20px !important;
+        left: 40px;
+        width: 30%;
+        height: 90%;
+      }
+
+      .bottom-left {
         display: none;
       }
-      
-      .road{
-        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-road.svg);
-        background-size: contain;
-        height: 300px;
+
+      .hero-container {
+        margin-top: 50px !important;
+
+        .hero{
+          opacity: 1 !important;
+
+          .avatar{
+            background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-avatar.svg);
+            border: 0px;
+            background-size: contain;
+            background-repeat: no-repeat;
+          }
+
+          .hero-title{
+            min-height: 20px;
+          
+            h1{
+              font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+              font-weight: 500;
+              border: 0px;
+              padding-right: 0px;
+              margin-right: 10px;
+            }
+          }
+          
+          .hero-subtitle{
+            h2{
+              letter-spacing: 1px;
+            }
+          }
+
+          .work-flow-button{
+            background: $white !important;
+            border: 1px solid $dark-grey-l;
+            color: $dark-grey !important;
+            border-radius: 5px;
+            z-index: 6;
+
+            &:active{
+              box-shadow: none !important;
+            }
+          }
+        }
       }
 
       .arrow-down{
         background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-arrow-down.svg);
-        filter: $filter-white;
+        filter: $filter-light-grey;
+        
         img{
           display: none;
         }
-      }
-    }
 
-    .hero-container {
-      margin-top: 50px !important;
-      z-index: 3;
-
-      .hero{
-        opacity: 1 !important;
-
-        .avatar{
-          background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-avatar.svg);
-          border: 0px;
-          background-size: contain;
-          background-repeat: no-repeat;
-        }
-
-        .hero-title{
-          min-height: 20px;
-         
-          h1, h2{
-             font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
-             font-weight: 500;
-             border: 0px;
-             padding-right: 0px;
-             margin-right: 10px;
-          }
-        }
-        
-        .hero-subtitle{
-          h3, span{
-            letter-spacing: 1px;
-          }
-        }
-
-        .work-flow-button{
-          background-color: $light-grey-l !important;
-          color: $dark-grey !important;
-          border-radius: 5px;
-          z-index: 6;
-
-          &:active{
-            box-shadow: none !important;
-          }
+        &:hover {
+          bottom: 30px;
         }
       }
     }
 
-    .highlight-sentence{
-      p{
+    .pages-cards{
+      background: transparent;
+    }
+
+    .highlight-area {
+      background-color: #eaeaea;
+
+      .highlight-image-container{
+        .highlight-image{
+          background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-highlight-image.svg);
+        }
+      }
+
+      .highlight-sentence-container{
+        letter-spacing: normal;
+        font-weight: 300;
       }
     }
+
   }
 
   // Code mode

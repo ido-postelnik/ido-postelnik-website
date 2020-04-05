@@ -63,7 +63,6 @@ export default {
     }
 
     .card-title{
-      // background-color: $white;
       height: 40px;
       line-height: 40px;
       font-family: $font-title;
@@ -106,7 +105,6 @@ export default {
       .card-title{
         color: $green-l;
         transition: all 0.1s ease-in;
-        // background-color: $green-l;
 
         &::after{
           transition: all 0.1s ease-in;
@@ -128,10 +126,10 @@ export default {
         background-size: contain;
         background-repeat: no-repeat;
 
-        &.about-me{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-about-me.svg);}
-        &.work-experience{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-work-experience.svg);}
-        &.skills-set{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-skills-set.svg);}
-        &.cv{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-cv.svg);}
+        &.about-me-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-about-me.svg);}
+        &.work-experience-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-work-experience.svg);}
+        &.skills-set-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-skills-set.svg);}
+        &.cv-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-cv.svg);}
       }
     }
 
@@ -140,6 +138,7 @@ export default {
       .card-title{
         color: $dark-grey;
         background-color: transparent;
+            font-weight: 300;
       }
 
       &:hover{
@@ -147,9 +146,17 @@ export default {
           color: $dark-grey;
           background-color: transparent;
         }
+
+        .card-image{
+          width: 75%;
+        }
       }
       .card-title{
         font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+        
+        &::after{
+          content: none;
+        }
       }
 
       .card-image{
@@ -157,6 +164,8 @@ export default {
         background-repeat: no-repeat;
         background-position: left;
         background-image: url(../../assets/img/home/workFlowModes/wireframe/wireframe-page-card.svg);
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
       }
     }
   }

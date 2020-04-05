@@ -6,7 +6,7 @@
     'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
     <div class="flex row layout-align-center-center">
       <router-link to="/" class="logo cursor-default m-r-10" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</router-link>
-      <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable" @click="onMenuIconClick">
+      <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable" v-show="isHomeRoute === false" @click="onMenuIconClick">
     </div>
 
 

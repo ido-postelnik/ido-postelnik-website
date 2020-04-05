@@ -44,12 +44,16 @@ export default {
     height: calc(100vh - #{$header-height});
     position: absolute;
     top: $header-height;
-    left: $sidebar-width;
+    left: $sidebar-width-md;
     right: 0;
     background: $light-grey-l;
     background: linear-gradient(0deg, $light-grey-l 0%, $white 100%);
     overflow: hidden;
     transition: left 0.2s ease;
+
+    @include md {
+      left: $sidebar-width;
+    }
 
     &.no-sidebar{
       left: 0;
@@ -68,14 +72,12 @@ export default {
     }
 
     .side{
-      // flex: 2;
       flex: 2;
       border-left: 1px solid  $beige;
-      // max-width: 600px;
       max-width: 0px;
       background-repeat: no-repeat;
       background-position: center;
-      background-size: cover;
+      background-size: cover !important;
       background: rgb(247,247,247);
       background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
 

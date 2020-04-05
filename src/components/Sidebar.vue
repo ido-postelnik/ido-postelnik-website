@@ -33,22 +33,32 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/_mixins.scss";
+
 .sidebar {
   position: fixed;
   left: 0;
   top: $header-height;
   bottom: 0;
-  width: $sidebar-width;
-  background-color: $dark-grey;
+  width: $sidebar-width-md;
+  background-color: #43595e;
   border-right: 1px solid $beige;
-  z-index: 10;
+  z-index: 0;
+
+  @include md {
+    width: $sidebar-width;
+  }
 
   &-item {
     text-align: center;
     color: $light-grey;
     text-decoration: none;
-    height: 105px;
+    height: 90px;
     transition: all 0.3s ease;
+
+    @include md {
+      height: 105px;
+    }
 
     &:hover{
       color: $white;
@@ -68,8 +78,20 @@ export default {
     }
 
     .sidebar-icon{
-      height: 30px;
+      height: 26px;
       filter: $filter-light-grey;
+
+      @include md {
+        height: 30px;
+      }
+    }
+
+    p{
+      font-size: 0.9rem;
+
+      @include md {
+        font-size: 1rem;
+      }
     }
   }
 }
