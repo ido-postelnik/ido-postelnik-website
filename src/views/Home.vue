@@ -1,17 +1,15 @@
 <template>
-  <div class="home"
-    :class="{
-      'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
-      'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
-      'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
+  <div class="home" :class="{
+    'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
+    'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
+    'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
 
     <div :class="{'work-flow-mode-transition': isWorkFlowModeChanged === true}">
-    <!-- <div class="work-flow-mode-transition"> -->
       <loader class="work-flow-mode-transition-loader" :scale="1.0" :color="'dark'" v-if="isWorkFlowModeChanged === true"></loader>
     </div>
     
     <!-- JSfiddle iframe -->
-    <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/14/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/29/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
     <!-- Main container -->
     <div class="main-container flex layout-align-center-center">
@@ -70,7 +68,7 @@
     </div>
 
     <!-- Pages cards -->
-    <div class="pages-cards flex row layout-align-start-space-between">
+    <div class="pages-cards flex row layout-align-center-space-evenly">
       <page-card v-for="page in PAGES" :key="page.value" :data="page"></page-card>
     </div>
 
@@ -298,7 +296,7 @@ export default {
     }
 
     .top-left {
-      background-image: url(../assets/img/home/buildings/top-left.svg);
+      background-image: url(../assets/img/home/mainContainer/top-left.svg);
       top: 0;
       left: 0;
       height: 70%;
@@ -310,7 +308,7 @@ export default {
     }
 
     .bottom-left {
-      background-image: url(../assets/img/home/buildings/bottom-left.svg);
+      background-image: url(../assets/img/home/mainContainer/bottom-left.svg);
       bottom: 0;
       top: 55%;
       left: 0;
@@ -324,7 +322,7 @@ export default {
 
     .right {
       background-position: bottom right;
-      background-image: url(../assets/img/home/buildings/right.svg);
+      background-image: url(../assets/img/home/mainContainer/right.svg);
       bottom: 0;
       top: 0;
       right: -30%;
@@ -489,27 +487,28 @@ export default {
     flex-wrap: wrap;
     background: rgb(247,247,247);
     background: linear-gradient(90deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
-    padding: 15px;
+    padding: 10px 10px;
 
     @include md {
       flex-wrap: nowrap;
-      padding: 30px;
+      padding: 20px 15px;
     }
 
     @include lg {
       flex-wrap: nowrap;
-      padding: 50px;
+      padding: 30px 20px;
     }
   }
 
   .highlight-area {
-    height: 70vh;
+    height: 400px;
     background: rgb(247,247,247);
     background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
     flex-direction: column-reverse;
 
     @include md {
       flex-direction: row;
+      height: 600px;
     }
 
     .highlight-image-container{

@@ -50,12 +50,12 @@ export default {
 
 <style scoped lang="scss">
   .card{
-    height: $home-inner-page-card-height;
+    height: 300px;
     width: 100%;
+    max-width: 400px;
     margin-right: 5px;
     text-decoration: none;
     position: relative;
-    width: 100%;
     overflow: hidden;
 
     &:last-child{
@@ -66,7 +66,7 @@ export default {
       height: 40px;
       line-height: 40px;
       font-family: $font-title;
-      font-size: calc(0.8rem + 0.7vw);
+      font-size: calc(1.0rem + 0.5vw);
       text-align: center;
       color: $dark-grey;
       width: 100%;
@@ -88,11 +88,9 @@ export default {
       width: 75%;
       height: 100%;
       background-size: contain;
-      background-position: center;
+      background-position: 50% 20px;
       background-repeat: no-repeat;
       transition: width 0.1s ease;
-      border-bottom-left-radius: 20%;
-      border-bottom-right-radius: 20%;
     }
 
     &:hover{

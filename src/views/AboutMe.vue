@@ -26,7 +26,11 @@ export default {
       content: [
         {
           title: 'Well, hello there',
-          content: ['a', 'b', 'c']
+          content: [
+            'a',
+            'b',
+            'c'
+            ]
         },
         {
           title: 'Well, hello there 2',
