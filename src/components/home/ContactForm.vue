@@ -10,15 +10,15 @@
     <form @submit.prevent="submit" >
       <input type="text" name="name" v-model="name" placeholder="Name" required class="contact-form-input no-outline m-b-10">
       <input type="email" name="email" v-model="email" placeholder="Email" required class="contact-form-input no-outline  m-b-10">
-      <textarea name="message" v-model="message" placeholder="Message" required class="contact-form-input contact-form-textarea no-outline  m-b-10"></textarea>
+      <textarea name="message" v-model="message" placeholder="Message" required class="contact-form-input contact-form-textarea no-outline  m-b-5"></textarea>
       <div>
         <button type="submit" class="btn">Send</button>
         <loader :scale="0.7" v-if="isBusy === true"></loader>
       </div>
 
       <div class="confirmation-message m-t-5">
-        <p v-if="isSuccessfullySent === true">Thanks! Your message has been successfully sent</p>
-        <p v-if="isSuccessfullySent === false">Hmm.. The message has not been sent. Please try again</p>
+        <p v-if="isSuccessfullySent === true">Thanks! Your message has been successfully sent.</p>
+        <p v-if="isSuccessfullySent === false">Hmm.. The message has not been sent. Please try again.</p>
       </div>
     </form>
   </div>
@@ -30,7 +30,7 @@ import { mapState } from 'vuex';
 import Loader from '../shared/Loader.vue'
 
 import { WORK_FLOW_MODES } from "@/utils/constants";
-import * as $repoManager from '../../utils/repoManager';
+import * as $repoManager from '../../services/repoManager';
 
 export default {
   name: 'ContactForm',
@@ -87,6 +87,10 @@ export default {
   .contact-form{
     max-width: 450px;
     width: 75%;
+
+    form{
+      height: 220px;
+    }
 
     .contact-icon{
       padding-bottom: 5px;

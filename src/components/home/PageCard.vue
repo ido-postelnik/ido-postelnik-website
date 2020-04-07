@@ -49,14 +49,22 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@import "@/styles/_mixins.scss";
+
   .card{
-    height: 300px;
+    height: 100%;
     width: 100%;
     max-width: 400px;
     margin-right: 5px;
     text-decoration: none;
     position: relative;
     overflow: hidden;
+    min-height: 200px;
+    margin-bottom: 20px;
+
+    @include md {
+      margin-bottom: 0px;
+    }
 
     &:last-child{
       margin-right: 0;
@@ -85,20 +93,24 @@ export default {
     }
     
     .card-image{
-      width: 75%;
+      width: 80%;
       height: 100%;
+      min-height: 220px;
       background-size: contain;
-      background-position: 50% 20px;
+      background-position: 50% 2px;
       background-repeat: no-repeat;
       transition: width 0.1s ease;
+
+      @include md {
+        background-position: 50% 20px;
+        min-height: 175px;
+      }
     }
 
     &:hover{
       cursor: pointer;
 
-      .card-image{
-        width: 78%;
-      }
+      .card-image{}
 
       .card-title{
         color: $green-l;
@@ -123,6 +135,7 @@ export default {
       .card-image{
         background-size: contain;
         background-repeat: no-repeat;
+        background-position: 50% 0px;
 
         &.about-me-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-about-me.svg);}
         &.work-experience-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-work-experience.svg);}
@@ -136,7 +149,7 @@ export default {
       .card-title{
         color: $dark-grey;
         background-color: transparent;
-            font-weight: 300;
+        font-weight: 300;
       }
 
       &:hover{
@@ -146,7 +159,6 @@ export default {
         }
 
         .card-image{
-          width: 75%;
         }
       }
       .card-title{
@@ -160,7 +172,7 @@ export default {
       .card-image{
         background-size: contain;
         background-repeat: no-repeat;
-        background-position: left;
+        background-position: center;
         background-image: url(../../assets/img/home/workFlowModes/wireframe/wireframe-page-card.svg);
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;

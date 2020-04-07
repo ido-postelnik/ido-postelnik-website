@@ -4,14 +4,15 @@
     'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
     'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
     'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
-    <div class="flex row layout-align-center-center">
+    
+    <div class="left-side flex row layout-align-center-center">
       <router-link to="/" class="logo cursor-default m-r-10" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</router-link>
-      <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable" v-show="isHomeRoute === false" @click="onMenuIconClick">
+      <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable m-r-15" v-show="isHomeRoute === false" @click="onMenuIconClick">
     </div>
 
 
     <!-- <p class="logo cursor-default" @click="goToHome('home')" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</p> -->
-    <div class="flex row layout-align-center-space-between contact">
+    <div class="right-side flex row layout-align-center-space-between contact">
       <!-- <div class="flex" v-if="isHomeRoute === true">
         <router-link
           v-for="page in PAGES"
@@ -22,7 +23,7 @@
         </router-link>
       </div> -->
 
-      <a :href="EMAIL.value" class="m-x-10 separator flex row layout-align-center-center"> 
+      <a :href="EMAIL.value" target="_blank" class="m-x-10 separator flex row layout-align-center-center"> 
         <img src="@/assets/icons/email.svg" alt="email" class="icon clickable"/>
       </a>
       
@@ -98,6 +99,31 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/_mixins.scss";
 
+@mixin solid-background {
+  background-color: $white;
+  box-shadow: 0px 1px 5px 0px rgba($beige, 0.75);
+
+  .contact{
+      color: $dark-grey;
+
+    .link{
+      color: $dark-grey;
+    }
+
+    .separator::after{
+      border-right: 1px solid $dark-grey;
+    }
+  }
+  
+  .icon{
+    filter: $filter-dark-grey;
+  }
+
+  .logo{
+    color: $dark-grey;
+  }
+}
+
   header{
     height: $header-height;
     position: fixed;
@@ -107,6 +133,13 @@ export default {
     z-index: 10;
     padding: 0 20px;
     transition: all 0.1s ease-in-out;
+
+    .left-side{
+      flex-direction: row-reverse;
+      @include lg {
+        flex-direction: row;
+      }
+    }
 
     .icon{
       filter: $filter-white;
@@ -147,29 +180,12 @@ export default {
       }
     }
 
+    @include max-lg {
+      @include solid-background;
+    }
+
     &.solid-background{
-      background-color: $white;
-      box-shadow: 0px 1px 5px 0px rgba($beige, 0.75);
-
-      .contact{
-         color: $dark-grey;
-
-        .link{
-          color: $dark-grey;
-        }
-
-        .separator::after{
-          border-right: 1px solid $dark-grey;
-        }
-      }
-      
-      .icon{
-        filter: $filter-dark-grey;
-      }
-
-      .logo{
-        color: $dark-grey;
-      }
+      @include solid-background;
 
       // Sketch mode
       &.sketch-mode{
@@ -186,6 +202,8 @@ export default {
       &.code-mode{
         background-color: $jsfiddle;
         box-shadow: none;
+        left: 25%;
+        border-left: 1px solid $light-grey-d;
 
         .logo{
           color: $white;

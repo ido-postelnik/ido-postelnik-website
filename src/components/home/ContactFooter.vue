@@ -12,7 +12,7 @@
           </div>
           <p>TLV, Israel</p>
         </div>
-        <a :href="EMAIL.value" class="flex row m-b-10">
+        <a :href="EMAIL.value" target="_blank" class="flex row m-b-10">
           <div class="footer-icon-container m-r-10">
             <img src="@/assets/icons/email.svg" alt="email" class="footer-icon">
           </div>

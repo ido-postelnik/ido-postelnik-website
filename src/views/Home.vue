@@ -1,15 +1,15 @@
 <template>
   <div class="home" :class="{
-    'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
-    'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
-    'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
+    'sketch-mode': activeWorkFlowMode === WORK_FLOW_MODES.SKETCH.value,
+    'wireframe-mode': activeWorkFlowMode === WORK_FLOW_MODES.WIREFRAME.value,
+    'code-mode': activeWorkFlowMode === WORK_FLOW_MODES.CODE.value}">
 
     <div :class="{'work-flow-mode-transition': isWorkFlowModeChanged === true}">
       <loader class="work-flow-mode-transition-loader" :scale="1.0" :color="'dark'" v-if="isWorkFlowModeChanged === true"></loader>
     </div>
     
     <!-- JSfiddle iframe -->
-    <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/29/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
+    <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/47/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
     <!-- Main container -->
     <div class="main-container flex layout-align-center-center">
@@ -23,25 +23,18 @@
       <!-- Hero container -->
       <div class="hero-container">
         <div class="flex column layout-align-center-start text-center">
-          <div class="hero" :style="[{opacity: heroContainerOpacity}, activeWorkFlowMode !== workFlowModes.SKETCH.value && activeWorkFlowMode !== workFlowModes.WIREFRAME.value ? {'margin-top': heroContainerMargin + '%'} : {}]">
+          <div class="hero" :style="[{opacity: heroContainerOpacity}, activeWorkFlowMode !== WORK_FLOW_MODES.SKETCH.value && activeWorkFlowMode !== WORK_FLOW_MODES.WIREFRAME.value ? {'margin-top': heroContainerMargin + '%'} : {}]">
             <div class="avatar m-auto"></div>
             <div class="hero-title flex row layout-align-center-center m-t-5">
               <h1>Ido Postelnik</h1>
             </div>
-            <div class="hero-subtitle flex row layout-align-center-center">
-              <h2>UX/UI driven Front End Engineer</h2>
+            <div class="hero-subtitle flex row layout-align-center-center m-x-15">
+              <h2>UX/UI driven Front-End Engineer</h2>
             </div>
 
             <!-- Work flow button -->
-            <button
-              class="btn work-flow-button m-t-10"
-              :class="{active: shouldShowWorkFlowModesBox === true}"
-              @click="toggleWorkFlowModesBox">
-              <!-- <transition name="work-flow-button-fade" mode="out-in">
-                <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== workFlowModes.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
-              </transition> -->
-
-              <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== workFlowModes.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
+            <button class="btn work-flow-button m-t-5" :class="{active: shouldShowWorkFlowModesBox === true}" @click="toggleWorkFlowModesBox">
+              <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
             </button>
           </div>
 
@@ -50,7 +43,7 @@
             :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
             <div class="steps flex layout-align-center-center">
               <work-flow-mode
-                v-for="(mode, key, index) in workFlowModes"
+                v-for="(mode, key, index) in WORK_FLOW_MODES"
                 :key="mode.label"
                 :index="index + 1"
                 :label="mode.label"
@@ -78,7 +71,7 @@
         <div class="highlight-image"></div>
       </div>
       <p class="highlight-sentence-container flex column layout-align-start-center p-l-50">
-        <span class="m-b-5">I do End-to-End development.</span> 
+        <span class="m-b-5">End-to-End development.</span> 
         <span class="m-b-5">From idea to production.</span>
         <span>Simple. As. That.</span>    
       </p>
@@ -119,14 +112,14 @@ export default {
       heroContainerOpacity: 1,
       // Work flow
       workFlowButton: WORK_FLOW_BUTTON,
-      workFlowModes: WORK_FLOW_MODES,
+      WORK_FLOW_MODES,
       workFlowModesSize: _.size(WORK_FLOW_MODES),
       shouldShowWorkFlowModesBox: false,
       shouldShowWorkFlowModesAtBottom: false,
       userHasScrolled: false,
       isWorkFlowModeChanged: false,
       //
-      PAGES: PAGES
+      PAGES
     };
   },
   components: {
@@ -138,7 +131,6 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
-    // window.addEventListener("resize", this.setHeroContainerMarginPercentage);
     this.heroContainerMargin = this.setHeroContainerMarginPercentage();
   },
   beforeDestroy() {
@@ -243,15 +235,15 @@ export default {
 @import "@/styles/_mixins.scss";
 
 .home {
-  background: white;
+  background: $white;
 
   .jsfiddle-iframe{
     position: fixed;
     left: -25%;
-    top: $header-height;
+    top: 0;
     bottom: 0;
     width: 25%;
-    height: calc(100% - 50px);
+    height: 100%;
     z-index: 20;
     transition: left 0.1s;
   }
@@ -310,12 +302,12 @@ export default {
     .bottom-left {
       background-image: url(../assets/img/home/mainContainer/bottom-left.svg);
       bottom: 0;
-      top: 55%;
+      top: 50%;
       left: 0;
       width: 50%;
       display: none;
 
-      @include md {
+      @include lg {
         display: block;
       }
     }
@@ -325,11 +317,11 @@ export default {
       background-image: url(../assets/img/home/mainContainer/right.svg);
       bottom: 0;
       top: 0;
-      right: -30%;
-      width: 130%;
+      right: -36%;
+      width: 136%;
       background-size: cover;
 
-      @include md {
+      @include lg {
         background-size: contain;
         right: 0;
         width: 100%;
@@ -354,15 +346,19 @@ export default {
 
     .hero-container {
       width: 100%;
-      height: 55%;
+      height: 40%;
       display: block;
+
+      @include md {
+        height: 55%;
+      }
 
       .hero {
         z-index: 2;
 
         .avatar {
-          height: calc(140px + 1vw);
-          width: calc(140px + 1vw);
+          height: calc(140px + 1.8vw);
+          width: calc(140px + 1.8vw);
           border-radius: 50%;
           background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
           background-size: cover;
@@ -381,32 +377,40 @@ export default {
 
         .hero-title{
           h1 {
-            font-size: calc(1.5rem + 1.2vw);
+            font-size: calc(1.5rem + 2.8vw);
             font-weight: 100;
             font-family: $font-title;
+            background-color: $white;
+            display: block;
+            border-bottom: 1px solid $dark-grey-l;
+            padding: 0px 10px;
+            border-top-right-radius: 2px;
 
             @include md {
               font-size: calc(1.5rem + 1.6vw);
+              line-height: calc(1.5rem + 2vw);
+              background-color: transparent;
+              padding: 0;
+              border-top-right-radius: 0;
             }
           }
         }
 
         .hero-subtitle{
           h2 {
-            font-size: calc(1.0rem + 0.3vw);
+            font-size: calc(1.0rem + 1.0vw);
             font-weight: 300;
             letter-spacing: 5.2px;
             display: block;
             background-color: $white;
-            padding: 2px 8px;
+            border-bottom-right-radius: 2px;
+            padding: 5px 8px;
 
             @include md {
               background-color: transparent;
+              font-size: calc(1.0rem + 0.3vw);
             }
           }
-
-
-
         }
 
         .work-flow-button {
@@ -415,13 +419,6 @@ export default {
 
           @include lg {
             display: inline-block;
-          }
-
-          .work-flow-button-fade-enter-active, .work-flow-button-fade-leave-active {
-            transition: opacity .1s;
-          }
-          .work-flow-button-fade-enter, .work-flow-button-fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-            opacity: 0;
           }
 
           &.active {
@@ -492,27 +489,39 @@ export default {
     @include md {
       flex-wrap: nowrap;
       padding: 20px 15px;
+      height: 250px;
     }
 
     @include lg {
       flex-wrap: nowrap;
       padding: 30px 20px;
+      height: 300px;
+    }
+
+    @include xl {
+      padding: 35px 20px;
+      height: 350px;
     }
   }
 
   .highlight-area {
-    height: 400px;
+    height: 540px;
     background: rgb(247,247,247);
     background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
     flex-direction: column-reverse;
 
     @include md {
       flex-direction: row;
+      height: 500px;
+    }
+
+    @include lg {
+      flex-direction: row;
       height: 600px;
     }
 
     .highlight-image-container{
-      flex: 2;
+      flex: 3;
       height: 100%;
       width: 100%;
 
@@ -528,7 +537,6 @@ export default {
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
-        // margin-left: ;
 
         @include md {
           background-position: right;
@@ -538,11 +546,22 @@ export default {
 
     .highlight-sentence-container{
       flex: 1;
-      font-size: calc(1.0rem + 0.3vw);
-      letter-spacing: 2px;;
+      font-size: calc(1.0rem + 1.0vw);
+      font-weight: 300;
+      letter-spacing: 2px;
+      margin-top: 15px;
+      padding-left: 0;
+      align-items: center;
 
       @include md {
         font-size: calc(1.0rem + 0.6vw);
+        margin-top: 0;
+        align-items: start;
+        padding-left: 30px;
+      }
+
+      @include lg {
+        padding-left: 50px;
       }
     }
   }

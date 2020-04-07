@@ -3,7 +3,7 @@
     <page-layout :page="'skills-set'">
       <!-- header -->
       <div class="header-container m-auto">
-        <h1 class="page-title m-b-20">Skills set</h1>
+        <h1 class="page-title m-b-20">{{ PAGES.SKILLS_SET.label }}</h1>
         <div class="flex row layout-align-center-center skills-set-view-options p-y-20">
           <img src="../assets/icons/boxes-icon.svg" class="icon clickable m-r-5" :class="{'active': activeViewOption === viewOptions.BOXES}" alt="boxes" height="20" @click="onViewOptionChanged(viewOptions.BOXES)"/>
           <p>|</p>
@@ -112,9 +112,9 @@
 
 <script>
 import {_} from '@/utils/utils';
-
-import PageLayout from '@/components/PageLayout.vue'
-import SkillBox from '@/components/skillsSet/SkillBox.vue'
+import { PAGES } from "@/utils/constants";
+import PageLayout from '@/components/PageLayout.vue';
+import SkillBox from '@/components/skillsSet/SkillBox.vue';
 
 const VIEW_OPTIONS = {
   BOXES: 'boxes',
@@ -122,7 +122,7 @@ const VIEW_OPTIONS = {
 };
 const SKILLS_SET = [
   {
-    title: 'Front end',
+    title: 'Front-End',
     skills: [
       {
         title: 'VueJS',
@@ -163,7 +163,7 @@ const SKILLS_SET = [
     ]
   },
   {
-    title: 'Back end',
+    title: 'Back-End',
     skills: [
       {
         title: 'NodeJs',
@@ -263,7 +263,7 @@ const SKILLS_SET = [
     ]
   },
   {
-    title: 'Project management',
+    title: 'Project / Product Management',
     skills: [
       {
         title: 'Jira',
@@ -284,7 +284,7 @@ const SKILLS_SET = [
     ]
   },
   {
-    title: 'Agile methods',
+    title: 'Agile Methods',
     skills: [
       {
         title: 'Scrum',
@@ -302,6 +302,7 @@ export default {
   name: 'skillsSet',
   data: function () {
     return {
+      PAGES,
       skillsSet: SKILLS_SET,
 
       // view options

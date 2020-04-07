@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import VueGtag from "vue-gtag";
 
-require('./utils/repoManager');
+require('./services/repoManager');
 require('./styles/main.scss');
 
 Vue.config.productionTip = false;

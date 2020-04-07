@@ -25,3 +25,15 @@
       @content;
   }
 }
+
+@mixin max-md {
+  @media (max-width: #{$screen-md-min}) {
+      @content;
+  }
+}
+
+@mixin max-lg {
+  @media (max-width: #{$screen-lg-min}) {
+      @content;
+  }
+}
