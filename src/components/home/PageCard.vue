@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="data.value" class="card flex column" :class="{
+  <router-link :to="data.path" class="card flex column" :class="{
       'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
       'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">

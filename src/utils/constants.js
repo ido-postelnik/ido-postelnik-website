@@ -11,22 +11,26 @@ export const PAGES = {
   ABOUT_ME: {
     label: 'About Me',
     value: 'aboutMe',
-    class: 'about-me'
+    class: 'about-me',
+    path: 'about-me'
   },
   WORK_EXPERIENCE: {
     label: 'Work Experience',
     value: 'workExperience',
-    class: 'work-experience'
+    class: 'work-experience',
+    path: 'work-experience'
   },
   SKILLS_SET: {
     label: 'Skills Set',
     value: 'skillsSet',
-    class: 'skills-set'
+    class: 'skills-set',
+    path: 'skills-set'
   },
   CV: {
     label: 'CV',
     value: 'cv',
-    class: 'cv'
+    class: 'cv',
+    path: 'cv'
   }
 };
 

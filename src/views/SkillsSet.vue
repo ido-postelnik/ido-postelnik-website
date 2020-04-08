@@ -354,6 +354,13 @@ export default {
     },
     onViewOptionChanged(viewOption) {
       this.activeViewOption = viewOption;
+
+      // gtag event
+      this.$gtag.event('viewOptionChanged', {
+        'event_category': 'skillsSet',
+        'event_label': viewOption
+      })
+
     },
     //#region Pagination
       jumpToPage(page) {

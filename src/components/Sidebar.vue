@@ -1,10 +1,6 @@
 <template>
   <div class="sidebar">
-    <router-link
-      v-for="page in PAGES"
-      :key="page.value"
-      :to="'/' + page.value"
-      class="sidebar-item p-x-5 p-y-5 clickable flex column layout-align-center-center">
+    <router-link v-for="page in PAGES" :key="page.value" :to="'/' + page.path" class="sidebar-item p-x-5 p-y-5 clickable flex column layout-align-center-center">
       <img :src="require('@/assets/icons/' + classObject(page) + '.svg')" :alt="classObject(page)" class="sidebar-icon"/>
       <p class="p-b-5">{{page.label}}</p>
     </router-link>

@@ -154,21 +154,26 @@ export default {
     toggleWorkFlowModesBox() {
       // Hide WorkFlowModesBox
       if (this.shouldShowWorkFlowModesBox === true) {
-
         this.shouldShowWorkFlowModesBox = false;
+
         if(this.activeWorkFlowMode !== DEFAULT_ACTIVE_WORK_FLOW_MODE) {
           this.showLoaderBetweenModeChange(DEFAULT_ACTIVE_WORK_FLOW_MODE);
         }
+
+        // gtag event
+        this.$gtag.event('toggleWorkFlowModesBox', {
+          'event_category': 'engagement',
+          'event_label': 'hide'
+        })
       } else {
       // Show WorkFlowModesBox
         this.shouldShowWorkFlowModesBox = true;
         this.shouldShowWorkFlowModesAtBottom = false;
 
         // gtag event
-        this.$gtag.time({
-          'name' : 'showWorkFlowModesBox',
-          // 'value' : 3549,
-          'event_category' : 'engagement'
+        this.$gtag.event('toggleWorkFlowModesBox', {
+          'event_category': 'engagement',
+          'event_label': 'show'
         })
       }
     },
@@ -178,10 +183,9 @@ export default {
         this.showLoaderBetweenModeChange(modeKey);
 
         // gtag event
-        this.$gtag.time({
-          'name' : 'switchWorkFlowMode',
-          'value' : 1,
-          'event_category' : 'engagement'
+        this.$gtag.event('switchWorkFlowMode', {
+          'event_category': 'engagement',
+          'event_label': modeKey
         })
       }
     },
