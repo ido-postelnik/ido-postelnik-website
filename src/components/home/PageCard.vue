@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     goTo: function (page) {
-      console.log('page: ', page);
       this.$router.push({ name: `${page}` })
     }
   }
