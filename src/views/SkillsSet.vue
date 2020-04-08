@@ -33,7 +33,7 @@
         <div v-if="activeViewOption === viewOptions.LIST" class="">
           <div class="list-view flex row layout-align-start-space-between">
             <!-- Table -->
-            <div  class="table-container m-r-40"> 
+            <div  class="table-container"> 
               <div class="table-container-height">
                 <table>
                   <!-- table header -->
@@ -472,6 +472,7 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
 
 <style scoped lang="scss">
 @import "@/styles/_mixins.scss";
+
   .skills-set{
     .header-container{
       position: relative;
@@ -514,7 +515,12 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
         }
 
         .table-container{
+          margin-right: 0;
           flex:5;
+
+          @include md {
+            margin-right: 40px;
+          }
 
           .table-container-height{
             height: 400px;
@@ -571,11 +577,16 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
           }
 
           .name-column{
-            width: 200px;
+            padding-right: 15px;
+
+            @include md {
+              padding-right: 5px;
+            }
           }
 
           td{
             max-height: 35px;
+            color: #474d4e;
 
             .img-container{
               width: 40px;

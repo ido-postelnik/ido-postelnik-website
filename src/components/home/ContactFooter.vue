@@ -4,7 +4,7 @@
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value}">
     
     <!-- My details -->
-    <div class="flex column layout-align-start-space-between footer-section p-y-15">
+    <div class="footer-section flex column layout-align-center-center p-y-15">
       <div class="m-auto">
         <div class="flex row m-b-10">
           <div class="footer-icon-container m-r-10">
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Social -->
-    <div class="flex column layout-align-center-center footer-section p-y-15">
+    <div class="footer-section social flex column layout-align-center-center p-y-15">
       <p class="m-b-15 social-title">Find me on</p>
       <div class="flex row layout-align-center-center">
         <a href="https://www.linkedin.com/in/ido-postelnik/" target="_blank" class="footer-icon-container m-r-10">
@@ -98,7 +98,20 @@ export default {
     }
 
     .footer-section{
-      width: 480px;
+      width: 100%;
+      min-height: 150px;
+
+      &.social{
+        width: 150px;
+        border-top: 1px solid #789396;
+        border-bottom: 1px solid #789396;
+
+        @include md {
+
+          width: 100%;
+          border: 0;
+        }
+      }
 
       a{
         color: $white;
@@ -115,7 +128,7 @@ export default {
         left: 50%;
         width: 40px;
         margin-left: -20px;
-        border-bottom: $white solid 2px;
+        border-bottom: 1px solid $white;
       }
     }
 

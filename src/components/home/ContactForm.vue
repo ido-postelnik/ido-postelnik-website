@@ -18,7 +18,7 @@
 
       <div class="confirmation-message m-t-5">
         <p v-if="isSuccessfullySent === true">Thanks! Your message has been successfully sent.</p>
-        <p v-if="isSuccessfullySent === false">Hmm.. The message has not been sent. Please try again.</p>
+        <p v-if="isSuccessfullySent === false">Hmm.. message could not been sent. Please try again.</p>
       </div>
     </form>
   </div>
@@ -85,8 +85,8 @@ export default {
 
 <style scoped lang="scss">
   .contact-form{
-    max-width: 450px;
-    width: 75%;
+    width: 80%;
+    max-width: 390px;
 
     form{
       height: 220px;
@@ -97,7 +97,7 @@ export default {
       height: 20px; 
       filter: $filter-white;
       box-sizing: content-box;
-      border-bottom: 2px solid $black;
+      border-bottom: 1px solid $black;
     }
 
     .contact-form-title{}

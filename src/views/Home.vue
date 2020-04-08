@@ -17,7 +17,7 @@
       <div class="bg-item bottom-left" :style="{bottom: -5 * heroContainerMargin + 'px'}"></div>
       <div class="bg-item right" :style="{bottom: -8 * heroContainerMargin + 'px'}"></div>
       <div class="arrow-down clickable" @click="onArrowDownClick">
-        <img src="../assets/icons/arrow-down.svg" alt="arrow-down" height="20"/>
+        <img src="../assets/icons/triangle.svg" alt="arrow-down" height="20"/>
       </div>
 
       <!-- Hero container -->
@@ -279,11 +279,17 @@ export default {
   }
 
   .main-container {
-    height: 100vh;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
     position: relative;
     background: rgb(253,251,251);
     background: linear-gradient(288deg, rgba(253,251,251,1) 0%, rgba(255,255,255,1) 100%);
     overflow: hidden;
+
+    @include md {
+      min-height: unset;
+      height: 100vh;
+    }
 
     .bg-item{
       position: absolute;
@@ -340,7 +346,7 @@ export default {
       height: 30px;
       text-align: center;
       line-height: 40px;
-      filter: $filter-dark-grey;
+      // filter: $filter-dark-grey;
       z-index: 3;
 
       &:hover {
@@ -349,12 +355,14 @@ export default {
     }
 
     .hero-container {
+      display: block;
       width: 100%;
       height: 40%;
-      display: block;
+      margin-bottom: 10%;
 
       @include md {
         height: 55%;
+        margin-bottom: 0;
       }
 
       .hero {

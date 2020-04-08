@@ -1,5 +1,5 @@
 <template>
-  <div class="text-box m-auto p-x-30 p-y-10" :class="{'collapsed': isExpanded === false}">
+  <div class="text-box m-auto p-y-10" :class="{'collapsed': isExpanded === false}">
     <div class="flex row layout-align-center-space-between">
       <!-- Title -->
       <div class="title-section">
@@ -17,7 +17,7 @@
     <!-- Content -->
     <transition name="fade">
       <div v-if="isExpanded === true">
-        <h4 class="m-t-5">{{subtitle}}</h4>
+        <h4 class="">{{subtitle}}</h4>
         <div class="m-t-10 m-l-20">
           <p v-for="row in content" :key="row" class="m-b-10">{{ row }}</p>
         </div>
@@ -81,6 +81,18 @@ export default {
     transition: max-height 0.3s ease;
     height:auto;
     white-space: nowrap;
+    padding-left: 15px;
+    padding-right: 15px;
+
+    @include md {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    @include lg {
+      padding-left: 30px;
+      padding-right: 30px;
+    }
   
     &.collapsed{
       max-height: 52px;
@@ -95,6 +107,7 @@ export default {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
+      width: 50%;
 
       @include md {
         flex-direction: row;
@@ -111,11 +124,12 @@ export default {
         font-size: calc(1.0rem + 0.0vw);
         line-height: calc(1.0rem + 0.0vw);
         height: calc(1.0rem + 0.2vw);
-        margin-top: 2px;
+        margin-top: 0px;
         margin-left: 0px;
 
         @include md {
           margin-left: 5px;
+          margin-top: 2px;
         }
         
         a{
@@ -123,7 +137,9 @@ export default {
         }
       }
 
-      .at{}
+      .at{
+        font-size: 0.9rem;
+      }
     }
 
     .expandable-section{
@@ -138,7 +154,7 @@ export default {
       }
 
       h3{
-        margin-right: 0px;
+        // height: calc(1.0rem + 0.2vw);
 
         @include md {
           margin-right: 10px;
@@ -157,9 +173,9 @@ export default {
     }
 
     h4{
-      color: #60696b;
+      color: #3c3c3c;
       white-space: initial;
-      font-weight: 500;
+      font-weight: 400;
     }
 
     p{
