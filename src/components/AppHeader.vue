@@ -41,7 +41,7 @@ import {_} from '@/utils/utils';
 import { PAGES, WORK_FLOW_MODES, EMAIL, PHONE_NUMBER } from '../utils/constants';
 
 export default {
-  name: 'TopHeader',
+  name: 'AppHeader',
   data: function () {
     return {
       scrollPosition: null,

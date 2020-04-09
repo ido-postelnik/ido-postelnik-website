@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <top-header class="header"/>
+    <app-header class="header"/>
     <sidebar v-if="currentRouteName !== 'home'"/>
     <!-- <transition name="fade"> -->
     <router-view/>
@@ -10,11 +10,11 @@
 
 <script>
 import Sidebar from '@/components/Sidebar.vue'
-import TopHeader from '@/components/TopHeader.vue'
+import AppHeader from '@/components/AppHeader.vue'
 
 export default {
   components: {
-    'top-header': TopHeader,
+    AppHeader,
     Sidebar
   },
   data: function () {
