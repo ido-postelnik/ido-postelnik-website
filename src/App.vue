@@ -9,11 +9,11 @@
 </template>
 
 <script>
-import TopHeader from './components/TopHeader.vue';
-import Sidebar from '@/components/Sidebar.vue';
+import Sidebar from '@/components/Sidebar.vue'
+import TopHeader from './components/TopHeader.vue'
 
 export default {
-    components: {
+  components: {
     TopHeader,
     Sidebar
   },
