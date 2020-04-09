@@ -10,11 +10,11 @@
 
 <script>
 import Sidebar from '@/components/Sidebar.vue'
-// import TopHeader from './components/TopHeader.vue'
+import TopHeader from '@/components/TopHeader.vue'
 
 export default {
   components: {
-    TopHeader,
+    'top-header': TopHeader,
     Sidebar
   },
   data: function () {
