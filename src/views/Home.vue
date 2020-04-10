@@ -71,7 +71,7 @@
         <div class="highlight-image"></div>
       </div>
       <p class="highlight-sentence-container flex column layout-align-start-center p-l-50">
-        <span class="m-b-5">End-to-End development.</span> 
+        <span class="m-b-5">I believe in End-to-end development.</span> 
         <span class="m-b-5">From idea to production.</span>
         <span>Simple. As. That.</span>    
       </p>
