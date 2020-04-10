@@ -37,10 +37,10 @@ export default {
             name: 'Spot',
             website: 'https://spot.io/'
             },
-          timeFrame: 'Aug 2019 - Current',
-          subtitle: `Spot (formerly Spotinst) is a SaaS system for managing workloads and cloud infrastructure.`,
+          timeFrame: '2019 - Current',
+          subtitle: `Spot (formerly Spotinst) is a SaaS for managing workloads and cloud infrastructure.`,
           content: [
-            `Leading a team of six developers that develop the products’ UI platform.`, 
+            `Leading a team of developers that develop and build the products’ UI platform.`, 
             `Leading and managing new features and projects.`,
             `Collaborating with the product team to define and design new products and features.`
           ],
@@ -52,7 +52,7 @@ export default {
             name: 'Spot',
             website: 'https://spot.io/'
             },
-          timeFrame: 'Jul 2018 - Aug 2019',
+          timeFrame: '2018 - 2019',
           content: [
             `Managed the front-end and product aspects in my scrum team.`, 
             `Developed features for the UI console that presents dashboards, charts and on-boarding processes.`, 
@@ -66,7 +66,7 @@ export default {
             name: 'PlayerMaker',
             website: 'https://playermaker.com/'
             },
-          timeFrame: 'Oct 2016 - Jul 2018',
+          timeFrame: '2016 - 2018',
           subtitle: `PlayerMaker uses a smart motion sensor to capture football players movement and performance.`, 
           content: [
             `Built the product’s console from scratch. The console included tables, charts and special UI elements.`, 
