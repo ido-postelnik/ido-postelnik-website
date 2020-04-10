@@ -87,7 +87,7 @@
 
 <script>
 import { PAGES, WORK_FLOW_MODES, DEFAULT_ACTIVE_WORK_FLOW_MODE } from "@/utils/constants";
-import { _ } from "@/utils/utils";
+import { _, NProgress } from "@/utils/utils";
 
 const WORK_FLOW_BUTTON = {
   OFF: "Check it out!",
@@ -130,6 +130,8 @@ export default {
     Loader
   },
   mounted() {
+    NProgress.start();
+    window.addEventListener("load", this.onWindowLoad);
     window.addEventListener("scroll", this.onScroll);
     this.heroContainerMargin = this.setHeroContainerMarginPercentage();
   },
@@ -143,6 +145,9 @@ export default {
     ...mapMutations([
       'updateWorkFlowMode'
     ]),
+    onWindowLoad() {
+      NProgress.done();
+    },
     onArrowDownClick() {
       let windowInnerHeight = window.innerHeight;
       window.scrollTo({
