@@ -87,7 +87,7 @@
 
 <script>
 import { PAGES, WORK_FLOW_MODES, DEFAULT_ACTIVE_WORK_FLOW_MODE } from "@/utils/constants";
-import { _, NProgress } from "@/utils/utils";
+import {_, NProgress} from "@/utils/utils";
 
 const WORK_FLOW_BUTTON = {
   OFF: "Check it out!",

@@ -111,7 +111,7 @@
 </template>
 
 <script>
-import {_} from '@/utils/utils';
+import {_,NProgress} from '@/utils/utils';
 import { PAGES } from "@/utils/constants";
 import PageLayout from '@/components/PageLayout.vue';
 import SkillBox from '@/components/skillsSet/SkillBox.vue';
@@ -327,6 +327,30 @@ export default {
   components: {
     PageLayout,
     SkillBox
+  },
+  mounted() {
+    // Show NProgress while images are loading
+    NProgress.start();
+
+    let imgs = document.images;
+    let len = imgs.length;
+    let counter = 0;
+
+    [].forEach.call(imgs, function(img) {
+      if(img.complete) {
+        incrementCounter();
+      }
+      else {
+        img.addEventListener('load', incrementCounter, false);
+      }
+    });
+
+    function incrementCounter() {
+      counter++;
+      if(counter === len) {
+        NProgress.done();
+      }
+    }
   },
   created() {
     this.skillsSetByList = this.prepareSkillsSetToListView(this.skillsSet);
