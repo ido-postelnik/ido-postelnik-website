@@ -76,7 +76,7 @@ export default {
       border-left: 1px solid  $beige;
       max-width: 0px;
       background-repeat: no-repeat;
-      background-position: center;
+      background-position: center !important;
       background-size: cover !important;
       background: rgb(247,247,247);
       background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);

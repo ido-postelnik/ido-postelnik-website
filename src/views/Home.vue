@@ -13,9 +13,37 @@
 
     <!-- Main container -->
     <div class="main-container flex layout-align-center-center">
-      <div class="bg-item top-left" :style="{top: 10 * heroContainerMargin + 'px'}"></div>
-      <div class="bg-item bottom-left" :style="{bottom: -5 * heroContainerMargin + 'px'}"></div>
-      <div class="bg-item right" :style="{bottom: -8 * heroContainerMargin + 'px'}"></div>
+      <div class="bg-item back-mountains" :style="{'margin-bottom': -10 * heroContainerMargin + 'px'}"></div>
+      <div class="bg-item ground"/>
+      <div class="bg-item clouds"/> 
+      <div class="bg-item left-rock"/>
+      <div class="bg-item right-rock"/>
+
+      <div class="bg-item hole-1">
+        <div class="hole-1-bubbles-container buuble-container-shape">
+          <bubbles/>
+        </div>
+      </div>
+
+      <div class="bg-item hole-2">
+        <div class="hole-2-bubbles-container buuble-container-shape">
+          <bubbles/>
+        </div>
+      </div>
+      <div class="bg-item bottom-main-rock"/>
+
+      <div class="bg-item bottom-center-rock-1">
+        <div class="bottom-center-rock-1-bubbles-container buuble-container-shape">
+          <bubbles/>
+        </div>
+      </div>
+
+      <div class="bg-item bottom-center-rock-2">
+        <div class="bottom-center-rock-2-bubbles-container buuble-container-shape">
+          <bubbles/>
+        </div>
+      </div>
+
       <div class="arrow-down clickable" @click="onArrowDownClick">
         <img src="../assets/icons/triangle.svg" alt="arrow-down" height="20"/>
       </div>
@@ -23,7 +51,7 @@
       <!-- Hero container -->
       <div class="hero-container">
         <div class="flex column layout-align-center-start text-center">
-          <div class="hero" :style="[{opacity: heroContainerOpacity}, activeWorkFlowMode !== WORK_FLOW_MODES.SKETCH.value && activeWorkFlowMode !== WORK_FLOW_MODES.WIREFRAME.value ? {'margin-top': heroContainerMargin + '%'} : {}]">
+          <div class="hero" :style="[activeWorkFlowMode !== WORK_FLOW_MODES.SKETCH.value && activeWorkFlowMode !== WORK_FLOW_MODES.WIREFRAME.value ? {'margin-top': heroContainerMargin + '%'} : {}]">
             <div class="avatar m-auto"></div>
             <div class="hero-title flex row layout-align-center-center m-t-5">
               <h1>Ido Postelnik</h1>
@@ -100,6 +128,7 @@ import WorkFlowMode from "@/components/home/WorkFlowMode.vue";
 import ContactFooter from "@/components/home/ContactFooter.vue";
 import CopyRight from "@/components/CopyRight.vue";
 import Loader from '@/components/shared/Loader.vue'
+import Bubbles from '@/components/home/Bubbles.vue'
 
 // Store
 import { mapState, mapMutations  } from 'vuex';
@@ -109,7 +138,6 @@ export default {
   data: () => {
     return {
       heroContainerMargin: null,
-      heroContainerOpacity: 1,
       // Work flow
       workFlowButton: WORK_FLOW_BUTTON,
       WORK_FLOW_MODES,
@@ -127,11 +155,12 @@ export default {
     PageCard,
     ContactFooter,
     CopyRight,
-    Loader
+    Loader,
+    Bubbles
   },
   mounted() {
-    NProgress.start();
-    window.addEventListener("load", this.onWindowLoad);
+    // NProgress.start();
+    // window.addEventListener("load", this.onWindowLoad);
     window.addEventListener("scroll", this.onScroll);
     this.heroContainerMargin = this.setHeroContainerMarginPercentage();
   },
@@ -145,9 +174,9 @@ export default {
     ...mapMutations([
       'updateWorkFlowMode'
     ]),
-    onWindowLoad() {
-      NProgress.done();
-    },
+    // onWindowLoad() {
+    //   NProgress.done();
+    // },
     onArrowDownClick() {
       let windowInnerHeight = window.innerHeight;
       window.scrollTo({
@@ -219,11 +248,7 @@ export default {
       }
 
 
-      this.heroContainerMargin = scrollPosition / 50;
-
-      // if(scrollPosition > 200) {
-      this.heroContainerOpacity = 200 / scrollPosition;
-      // }
+      this.heroContainerMargin = scrollPosition / 120;
     },
     setHeroContainerMarginPercentage() {
       let retVal = 0;
@@ -302,46 +327,178 @@ export default {
       background-size: contain;
     }
 
-    .top-left {
-      background-image: url(../assets/img/home/mainContainer/top-left.svg);
-      top: 0;
-      left: 0;
-      height: 70%;
-      width: 40%;
-
-      @include sm {
-        width: 30%;
-      }
-    }
-
-    .bottom-left {
-      background-image: url(../assets/img/home/mainContainer/bottom-left.svg);
+    .ground{
+      background-image: url(../assets/img/home/mainContainer/ground.svg);
       bottom: 0;
-      top: 50%;
+      height: 300px;
       left: 0;
-      width: 50%;
-      display: none;
-
-      @include lg {
-        display: block;
-      }
-    }
-
-    .right {
-      background-position: bottom right;
-      background-image: url(../assets/img/home/mainContainer/right.svg);
-      bottom: 0;
-      top: 0;
-      right: -36%;
-      width: 136%;
+      right: 0;
       background-size: cover;
+    }
 
-      @include lg {
-        background-size: contain;
-        right: 0;
-        width: 100%;
+    .back-mountains{
+      background-image: url(../assets/img/home/mainContainer/back-mountains.svg);
+      bottom: 260px;
+      height: 35%;
+      left: 0;
+      right: 0;
+      background-size: cover;
+    }
+
+    .right-rock{
+      background-image: url(../assets/img/home/mainContainer/right-rock.svg);
+      bottom: 0;
+      top: calc(#{$header-height} + 5px);
+      right: 0;
+      left: 0;
+      background-position-x: right;
+      background-position-y: bottom;
+    }
+
+    .buuble-container-shape{
+      clip-path: polygon(0 0, 100% 0, 76% 100%, 26% 100%);
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+    }
+
+    .hole-1{
+      background-image: url(../assets/img/home/mainContainer/hole-1.svg);
+      bottom: 24%;
+      right: 4%;
+      width: calc(20px + 4%);
+      height: 30%;
+      background-position-y: bottom;
+
+      .hole-1-bubbles-container{
+        position: absolute;
+        top: -20px;
+        left:0;
+        width: 80%;
+        height: 80px;
       }
     }
+
+    .hole-2{
+      background-image: url(../assets/img/home/mainContainer/hole-2.svg);
+      bottom: 5%;
+      right: 7%;
+      width: calc(20px + 4%);
+      height: 20%;
+
+      .hole-2-bubbles-container{
+        position: absolute;
+        top: 0px;
+        left: 20%;
+        width: 60%;
+        height: 80px;
+      }
+    }
+
+    .left-rock{
+      background-image: url(../assets/img/home/mainContainer/left-rock.svg);
+      bottom: 80px;
+      left: 0;
+      height: 75%;
+      width: 60%;
+      background-position-x: left;
+      background-position-y: bottom;
+    }
+
+    .bottom-main-rock{
+      background-image: url(../assets/img/home/mainContainer/bottom-main-rock.svg);
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background-position-x: center;
+      background-position-y: bottom;
+      background-size: contain;
+    }
+
+    .bottom-center-rock-1{
+      background-image: url(../assets/img/home/mainContainer/bottom-center-rock-1.svg);
+      bottom: 0;
+      right: 40%;
+      width: calc(180px + 5%);
+      height: 25%;
+      background-position-y: bottom;
+
+      .bottom-center-rock-1-bubbles-container{
+        position: absolute;
+        top: 0px;
+        left: 30%;
+        // background: white;
+        width: 40%;
+        height: 110px;
+      }
+    }
+
+    .bottom-center-rock-2{
+      background-image: url(../assets/img/home/mainContainer/bottom-center-rock-2.svg);
+      bottom: 0;
+      right: 52%;
+      width: calc(170px + 5%);
+      height: 20%;
+      background-position-y: bottom;
+
+      .bottom-center-rock-2-bubbles-container{
+        position: absolute;
+        top: 0px;
+        left: 30%;
+        width: 40%;
+        height: 110px;
+      }
+    }
+
+    .clouds{
+      background-image: url(../assets/img/home/mainContainer/clouds.svg);
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background-position-x: center;
+      background-size: cover;
+    }
+
+    // .top-left {
+    //   background-image: url(../assets/img/home/mainContainer/top-left.svg);
+    //   top: 0;
+    //   left: 0;
+    //   height: 70%;
+    //   width: 40%;
+
+    //   @include sm {
+    //     width: 30%;
+    //   }
+    // }
+
+    // .bottom-left {
+    //   background-image: url(../assets/img/home/mainContainer/bottom-left.svg);
+    //   bottom: 0;
+    //   top: 50%;
+    //   left: 0;
+    //   width: 50%;
+    //   display: none;
+
+    //   @include lg {
+    //     display: block;
+    //   }
+    // }
+
+    // .right {
+    //   background-position: bottom right;
+    //   background-image: url(../assets/img/home/mainContainer/right.svg);
+    //   bottom: 0;
+    //   top: 0;
+    //   right: -36%;
+    //   width: 136%;
+    //   background-size: cover;
+
+    //   @include lg {
+    //     background-size: contain;
+    //     right: 0;
+    //     width: 100%;
+    //   }
+    // }
 
     .arrow-down {
       position: absolute;
@@ -352,7 +509,7 @@ export default {
       text-align: center;
       line-height: 40px;
       // filter: $filter-dark-grey;
-      z-index: 3;
+      z-index: 4;
 
       &:hover {
         bottom: 25px;
@@ -517,7 +674,7 @@ export default {
 
     @include xl {
       padding: 35px 20px;
-      height: 350px;
+      height: 450px;
     }
   }
 

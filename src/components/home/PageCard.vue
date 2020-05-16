@@ -60,6 +60,7 @@ export default {
     overflow: hidden;
     min-height: 200px;
     margin-bottom: 20px;
+    transition: 0.1s all ease;
 
     @include md {
       margin-bottom: 0px;
@@ -108,6 +109,7 @@ export default {
 
     &:hover{
       cursor: pointer;
+      margin-top: -10px;
 
       .card-image{}
 

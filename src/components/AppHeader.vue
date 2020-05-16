@@ -1,29 +1,29 @@
 <template>
   <header class="flex row layout-align-center-space-between" :class="{
-    'solid-background': scrollPosition > 70 || isHomeRoute === false || activeWorkFlowMode !== workFlowModes.PRODUCTION.value,
+    'solid-background': scrollPosition > 0 || isHomeRoute === false || activeWorkFlowMode !== workFlowModes.PRODUCTION.value,
     'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
     'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value,
     'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
     
     <div class="left-side flex row layout-align-center-center">
-      <router-link to="/" class="logo cursor-default m-r-10" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</router-link>
+      <router-link to="/" class="logo cursor-default m-r-10" :class="{'clickable': isHomeRoute === false}">IP</router-link>
       <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable m-r-15" v-show="isHomeRoute === false" @click="onMenuIconClick">
     </div>
 
 
     <!-- <p class="logo cursor-default" @click="goToHome('home')" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</p> -->
-    <div class="right-side flex row layout-align-center-space-between contact">
-      <!-- <div class="flex" v-if="isHomeRoute === true">
+    <div class="right-side flex row layout-align-center-space-between">
+      <div class="flex" v-if="isHomeRoute === true">
         <router-link
           v-for="page in PAGES"
           :key="page.value"
-          :to="'/' + page.value"
+          :to="'/' + page.path"
           class="link clickable">
-          <p class="separator p-l-10">{{page.label}}</p>
+          <p class="separator">{{page.label}}</p>
         </router-link>
-      </div> -->
+      </div>
 
-      <a :href="EMAIL.value" target="_blank" class="m-x-10 separator flex row layout-align-center-center"> 
+      <a :href="EMAIL.value" target="_blank" class="separator flex row layout-align-center-center"> 
         <img src="@/assets/icons/email.svg" alt="email" class="icon clickable"/>
       </a>
       
@@ -102,7 +102,7 @@ export default {
   background-color: $white;
   box-shadow: 0px 1px 5px 0px rgba($beige, 0.75);
 
-  .contact{
+  .right-side{
       color: $dark-grey;
 
     .link{
@@ -111,6 +111,8 @@ export default {
 
     .separator::after{
       border-right: 1px solid $dark-grey;
+      padding-left: 15px;
+      margin-right: 15px;
     }
   }
   
@@ -120,6 +122,11 @@ export default {
 
   .logo{
     color: $dark-grey;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 22px;
+    margin-top: 0;
   }
 }
 
@@ -131,7 +138,7 @@ export default {
     right: 0;
     z-index: 10;
     padding: 0 20px;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease;
 
     .left-side{
       flex-direction: row-reverse;
@@ -141,8 +148,8 @@ export default {
     }
 
     .icon{
-      filter: $filter-white;
-      height: 23px;
+      filter: $filter-dark-grey;
+      height: 22px;
       width: 23px;
     }
 
@@ -156,26 +163,38 @@ export default {
 
     .logo{
       font-family: $font-title;
-      font-size: 1.3rem;
+      font-size: 30px;
       font-weight: 500;
-      color: $white;
-      width: 160px;
+      color: $dark-grey;
+      width: 45px;
+      height: 45px;
+      line-height: 45px;
+      text-align: center;
+      border: 1px solid $dark-grey;
+      border-radius: 5px;
+      background: $white;
+      margin-top: 10px;
+      transition: all 0.1s ease;
     }
 
-    .contact{
+    .right-side{
       color: $white;
 
       .link{
-        color: $white;
+        color: $dark-grey;
         font-weight: 300;
+        font-family: $font-title;
+        letter-spacing: 1px;
       }
 
       .separator::after{
         content: '';
         display: inline-block;
         height: 10px;
-        border-right: 1px solid $white;
-        padding-left: 10px;
+        border-right: 1px solid $dark-grey;
+        padding-left: 25px;
+        margin-right: 25px;
+        transition: all 0.1s ease;
       }
     }
 
@@ -212,7 +231,7 @@ export default {
           filter: $filter-white;
         }
 
-        .contact{
+        .right-side{
           color: $white;
 
           .separator::after{
