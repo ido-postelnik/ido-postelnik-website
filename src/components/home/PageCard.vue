@@ -129,6 +129,9 @@ export default {
 
     //Sketch mode
     &.sketch-mode{
+      &:hover{
+        margin-top: 0;
+      }
       .card-title{
         display: none;
       }
@@ -147,6 +150,10 @@ export default {
 
     //Wireframe mode
     &.wireframe-mode{
+      &:hover{
+        margin-top: 0;
+      }
+
       .card-title{
         color: $dark-grey;
         background-color: transparent;

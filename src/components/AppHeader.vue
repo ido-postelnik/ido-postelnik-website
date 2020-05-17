@@ -107,6 +107,10 @@ export default {
 
     .link{
       color: $dark-grey;
+
+      &:hover{
+        color: $green-l;
+      }
     }
 
     .separator::after{
@@ -118,6 +122,10 @@ export default {
   
   .icon{
     filter: $filter-dark-grey;
+
+    &:hover{
+      filter: $filter-light-green;
+    }
   }
 
   .logo{
@@ -151,6 +159,10 @@ export default {
       filter: $filter-dark-grey;
       height: 22px;
       width: 23px;
+
+      &:hover{
+        filter: $filter-light-green;
+      }
     }
 
     .menu-icon{
@@ -171,7 +183,7 @@ export default {
       line-height: 45px;
       text-align: center;
       border: 1px solid $dark-grey;
-      border-radius: 5px;
+      border-radius: 100px;
       background: $white;
       margin-top: 10px;
       transition: all 0.1s ease;
@@ -185,6 +197,11 @@ export default {
         font-weight: 300;
         font-family: $font-title;
         letter-spacing: 1px;
+        transition: color 0.15s ease;
+
+        &:hover{
+          color: $green-l;
+        }
       }
 
       .separator::after{
@@ -224,22 +241,32 @@ export default {
         border-left: 1px solid $light-grey-d;
 
         .logo{
-          color: $white;
+          color: $dark-grey;
         }
 
         .icon{
           filter: $filter-white;
+
+          &:hover{
+            filter: $filter-light-green;
+          }
         }
 
         .right-side{
-          color: $white;
+          
+          .link{
+            color: $white;
+
+            &:hover{
+              color: $green-l;
+            }
+          }
 
           .separator::after{
             content: '';
             border-right: 1px solid $white;
           }
         }
-
       }
     }
   }

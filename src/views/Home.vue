@@ -13,9 +13,9 @@
 
     <!-- Main container -->
     <div class="main-container flex layout-align-center-center">
-      <div class="bg-item back-mountains" :style="{'margin-bottom': -10 * heroContainerMargin + 'px'}"></div>
+      <div class="bg-item back-mountains" :style="{transform: `translateY(${heroContainerMargin * 5}px)`}"></div>
       <div class="bg-item ground"/>
-      <div class="bg-item clouds"/> 
+      <div class="bg-item clouds" :style="{transform: `translateY(${heroContainerMargin * -5}px)`}"/> 
       <div class="bg-item left-rock"/>
       <div class="bg-item right-rock"/>
 
@@ -30,6 +30,8 @@
           <bubbles/>
         </div>
       </div>
+
+      <div class="bg-item right-rock-shade"/>
       <div class="bg-item bottom-main-rock"/>
 
       <div class="bg-item bottom-center-rock-1">
@@ -313,7 +315,7 @@ export default {
     min-height: -webkit-fill-available;
     position: relative;
     background: rgb(253,251,251);
-    background: linear-gradient(288deg, rgba(253,251,251,1) 0%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, #eceff1 0%, white 100%);
     overflow: hidden;
 
     @include md {
@@ -330,19 +332,21 @@ export default {
     .ground{
       background-image: url(../assets/img/home/mainContainer/ground.svg);
       bottom: 0;
-      height: 300px;
+      height: 30%;
       left: 0;
       right: 0;
       background-size: cover;
+      z-index: 2;
     }
 
     .back-mountains{
       background-image: url(../assets/img/home/mainContainer/back-mountains.svg);
-      bottom: 260px;
-      height: 35%;
+      bottom: 26%;
+      height: 40%;
       left: 0;
       right: 0;
-      background-size: cover;
+      z-index: 1;
+      background-position-y: bottom;
     }
 
     .right-rock{
@@ -353,6 +357,18 @@ export default {
       left: 0;
       background-position-x: right;
       background-position-y: bottom;
+      z-index: 3;
+    }
+
+    .right-rock-shade{
+      background-image: url(../assets/img/home/mainContainer/right-rock-shade.svg);
+      bottom: 0;
+      top: calc(#{$header-height} + 5px);
+      right: 0;
+      left: 0;
+      background-position-x: right;
+      background-position-y: bottom;
+      z-index: 3;
     }
 
     .buuble-container-shape{
@@ -362,32 +378,35 @@ export default {
 
     .hole-1{
       background-image: url(../assets/img/home/mainContainer/hole-1.svg);
-      bottom: 24%;
-      right: 4%;
-      width: calc(20px + 4%);
-      height: 30%;
+      bottom: 0;
+      right: 0;
+      width: 10%;
+      height: 53%;
       background-position-y: bottom;
+      background-position-x: right;
+      z-index: 3;
 
       .hole-1-bubbles-container{
         position: absolute;
-        top: -20px;
-        left:0;
-        width: 80%;
-        height: 80px;
+        top: -30px;
+        left: 10%;
+        width: 60%;
+        height: 100px;
       }
     }
 
     .hole-2{
       background-image: url(../assets/img/home/mainContainer/hole-2.svg);
       bottom: 5%;
-      right: 7%;
-      width: calc(20px + 4%);
+      right: 6%;
+      width: 8%;
       height: 20%;
+      z-index: 4;
 
       .hole-2-bubbles-container{
         position: absolute;
         top: 0px;
-        left: 20%;
+        left: 14%;
         width: 60%;
         height: 80px;
       }
@@ -401,6 +420,7 @@ export default {
       width: 60%;
       background-position-x: left;
       background-position-y: bottom;
+      z-index: 2;
     }
 
     .bottom-main-rock{
@@ -412,6 +432,7 @@ export default {
       background-position-x: center;
       background-position-y: bottom;
       background-size: contain;
+      z-index: 2;
     }
 
     .bottom-center-rock-1{
@@ -419,15 +440,15 @@ export default {
       bottom: 0;
       right: 40%;
       width: calc(180px + 5%);
-      height: 25%;
+      height: 14%;
       background-position-y: bottom;
+      z-index: 3;
 
       .bottom-center-rock-1-bubbles-container{
         position: absolute;
-        top: 0px;
-        left: 30%;
-        // background: white;
-        width: 40%;
+        top: -60px;
+        left: 22%;
+        width: 35%;
         height: 110px;
       }
     }
@@ -437,14 +458,15 @@ export default {
       bottom: 0;
       right: 52%;
       width: calc(170px + 5%);
-      height: 20%;
+      height: 14%;
       background-position-y: bottom;
+      z-index: 3;
 
       .bottom-center-rock-2-bubbles-container{
         position: absolute;
-        top: 0px;
-        left: 30%;
-        width: 40%;
+        top: -40px;
+        left: 15%;
+        width: 55%;
         height: 110px;
       }
     }
@@ -456,7 +478,6 @@ export default {
       right: 0;
       height: 50%;
       background-position-x: center;
-      background-size: cover;
     }
 
     // .top-left {
@@ -528,7 +549,7 @@ export default {
       }
 
       .hero {
-        z-index: 2;
+        z-index: 5;
 
         .avatar {
           height: calc(140px + 1.8vw);
@@ -656,8 +677,9 @@ export default {
 
   .pages-cards{
     flex-wrap: wrap;
-    background: rgb(247,247,247);
-    background: linear-gradient(90deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
+    // background: rgb(247,247,247);
+    background-color: $white;
+    // background: linear-gradient(90deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
     padding: 10px 10px;
 
     @include md {
@@ -673,8 +695,8 @@ export default {
     }
 
     @include xl {
-      padding: 35px 20px;
-      height: 450px;
+      padding: 100px 20px;
+      height: 500px;
     }
   }
 
@@ -748,29 +770,92 @@ export default {
     .main-container{
       background: none;
 
-      .right {
-        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-right.svg);
-        background-position: bottom right;
-        bottom: 0 !important;
-        top: $header-height + 20px;
-        right: 40px;
-        width: 30%;
-        height: 90%;
-      }
-
-      .top-left {
-        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-left.svg);
-        background-position: bottom left;
+      .ground{
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-ground.svg);
         bottom: 0;
-        top: $header-height + 20px !important;
-        left: 40px;
-        width: 30%;
-        height: 90%;
+        height: 300px;
+        left: 0;
+        right: 0;
+        background-size: contain;
+        background-position-y: bottom;
       }
 
-      .bottom-left {
+      .back-mountains{
         display: none;
       }
+
+      .right-rock{
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-right-rock.svg);
+        bottom: 0;
+        top: calc(#{$header-height} + 5px);
+        right: 0;
+        left: 0;
+        background-position-x: right;
+        background-position-y: bottom;
+        z-index: 3;
+      }
+
+      .right-rock-shade{
+        display: none;
+      }
+
+      .hole-1{
+        display: none;
+      }
+
+      .hole-2{
+        display: none;
+      }
+
+      .left-rock{
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-left-rock.svg);
+        bottom: 80px;
+        left: 0;
+        height: 75%;
+        width: 60%;
+        background-position-x: left;
+        background-position-y: bottom;
+      }
+
+      .bottom-main-rock{
+        display: none;
+      }
+
+      .bottom-center-rock-1{
+        display: none;
+      }
+
+      .bottom-center-rock-2{
+        display: none;
+      }
+
+      .clouds{
+        display: none;
+      }
+
+      // .right {
+      //   background-image: url(../assets/img/home/workFlowModes/sketch/sketch-right.svg);
+      //   background-position: bottom right;
+      //   bottom: 0 !important;
+      //   top: $header-height + 20px;
+      //   right: 40px;
+      //   width: 30%;
+      //   height: 90%;
+      // }
+
+      // .top-left {
+      //   background-image: url(../assets/img/home/workFlowModes/sketch/sketch-left.svg);
+      //   background-position: bottom left;
+      //   bottom: 0;
+      //   top: $header-height + 20px !important;
+      //   left: 40px;
+      //   width: 30%;
+      //   height: 90%;
+      // }
+
+      // .bottom-left {
+      //   display: none;
+      // }
 
       .hero-container {
         margin-top: 150px !important;
@@ -870,29 +955,90 @@ export default {
     .main-container{
       background: $white;
 
-      .right {
-        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-right.svg);
-        background-position: bottom right;
-        bottom: 0 !important;
-        top: $header-height + 20px;
-        right: 40px;
-        width: 30%;
-        height: 90%;
-      }
-
-      .top-left {
-        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-left.svg);
-        background-position: bottom left;
+      .ground{
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-ground.svg);
         bottom: 0;
-        top: $header-height + 20px !important;
-        left: 40px;
-        width: 30%;
-        height: 90%;
+        height: 300px;
+        left: 0;
+        right: 0;
       }
 
-      .bottom-left {
+      .back-mountains{
         display: none;
       }
+
+      .right-rock{
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-right-rock.svg);
+        bottom: 0;
+        top: calc(#{$header-height} + 5px);
+        right: 0;
+        left: 0;
+        background-position-x: right;
+        background-position-y: bottom;
+        z-index: 3;
+      }
+
+      .right-rock-shade{
+        display: none;
+      }
+
+      .hole-1{
+        display: none;
+      }
+
+      .hole-2{
+        display: none;
+      }
+
+      .left-rock{
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-left-rock.svg);
+        bottom: 0;
+        left: 0;
+        height: 75%;
+        width: 60%;
+        background-position-x: left;
+        background-position-y: bottom;
+      }
+
+      .bottom-main-rock{
+        display: none;
+      }
+
+      .bottom-center-rock-1{
+        display: none;
+      }
+
+      .bottom-center-rock-2{
+        display: none;
+      }
+
+      .clouds{
+        display: none;
+      }
+
+      // .right {
+      //   background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-right.svg);
+      //   background-position: bottom right;
+      //   bottom: 0 !important;
+      //   top: $header-height + 20px;
+      //   right: 40px;
+      //   width: 30%;
+      //   height: 90%;
+      // }
+
+      // .top-left {
+      //   background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-left.svg);
+      //   background-position: bottom left;
+      //   bottom: 0;
+      //   top: $header-height + 20px !important;
+      //   left: 40px;
+      //   width: 30%;
+      //   height: 90%;
+      // }
+
+      // .bottom-left {
+      //   display: none;
+      // }
 
       .hero-container {
         margin-top: 50px !important;
