@@ -11,18 +11,17 @@ export default {
   },
   mounted() {
     // Init
-    var canvas = this.$refs.canvas;
+    let canvas = this.$refs.canvas;
     canvas.height = this.$refs.canvas.parentElement.clientHeight;
     canvas.width = this.$refs.canvas.parentElement.clientWidth;
 
-    var ctx = canvas.getContext('2d');
-    var count = canvas.height;
-    var bubbles = [];
-    var bubbleCount = 15;
-    var bubbleSpeed = 0.75;
-    var popLines = 6;
-    var popDistance = 20;
-    var mouseOffset = {
+    let ctx = canvas.getContext('2d');
+    let bubbles = [];
+    let bubbleCount = 15;
+    let bubbleSpeed = 0.75;
+    let popLines = 6;
+    let popDistance = 20;
+    let mouseOffset = {
       x: 0,
       y: 0
     }
@@ -34,7 +33,7 @@ export default {
 
       // Draw Bubbles
       ctx.beginPath();
-      for (var i = 0; i < bubbles.length; i++) {
+      for (let i = 0; i < bubbles.length; i++) {
         // first num = distance between waves
         // second num = wave height
         // third num = move the center of the wave away from the edge
@@ -51,10 +50,10 @@ export default {
       }
 
       // On Bubble Hover
-      for (var i = 0; i < bubbles.length; i++) {
+      for (let i = 0; i < bubbles.length; i++) {
         if(mouseOffset.x > bubbles[i].position.x - bubbles[i].radius && mouseOffset.x < bubbles[i].position.x + bubbles[i].radius) {
           if(mouseOffset.y > bubbles[i].position.y - bubbles[i].radius && mouseOffset.y < bubbles[i].position.y + bubbles[i].radius) {
-            for (var a = 0; a < bubbles[i].lines.length; a++) {
+            for (let a = 0; a < bubbles[i].lines.length; a++) {
               popDistance = bubbles[i].radius * 0.5;
               bubbles[i].lines[a].popping = true;
               bubbles[i].popping = true;
@@ -69,7 +68,7 @@ export default {
     window.requestAnimationFrame(animate);
 
     // Bubble Constructor
-    var createBubble = function() {
+    let createBubble = function() {
       this.position = {x: 0, y: 0};
       this.radius = 3 + Math.random() * 4;
       this.xOff = Math.random() * canvas.width - this.radius;
@@ -87,8 +86,8 @@ export default {
       this.rotationDirection = 'forward';
 
       // Populate Lines
-      for (var i = 0; i < popLines; i++) {
-        var tempLine = new createLine();
+      for (let i = 0; i < popLines; i++) {
+        let tempLine = new createLine();
             tempLine.bubble = this;
             tempLine.index = i;
 
@@ -141,7 +140,7 @@ export default {
         ctx.restore();
 
         // Draw the lines
-        for (var a = 0; a < this.lines.length; a++) {
+        for (let a = 0; a < this.lines.length; a++) {
           if(this.lines[a].popping) {
             if(this.lines[a].lineLength < popDistance && !this.lines[a].inversePop) {
               this.lines[a].popDistance += 0.06;
@@ -164,12 +163,11 @@ export default {
     }
 
     // Populate Bubbles
-    for (var i = 0; i < bubbleCount; i++) {
-      var tempBubble = new createBubble();
+    for (let i = 0; i < bubbleCount; i++) {
+      let tempBubble = new createBubble();
 
       bubbles.push(tempBubble);
     }
-
 
     // Line Constructor
     function createLine() {
@@ -232,8 +230,6 @@ export default {
     window.addEventListener('resize', function() {
       canvas.height = this.$refs.canvas.parentElement.clientHeight;
       canvas.width = this.$refs.canvas.parentElement.clientWidth;
-      // canvas.width = document.body.clientWidth;
-      // canvas.height = document.body.clientHeight;
     });
   },
   components: {

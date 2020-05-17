@@ -10,8 +10,6 @@
       <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable m-r-15" v-show="isHomeRoute === false" @click="onMenuIconClick">
     </div>
 
-
-    <!-- <p class="logo cursor-default" @click="goToHome('home')" :class="{'clickable': isHomeRoute === false}">Ido Postelnik</p> -->
     <div class="right-side flex row layout-align-center-space-between">
       <div class="flex" v-if="isHomeRoute === true">
         <router-link
@@ -198,9 +196,14 @@ export default {
         font-family: $font-title;
         letter-spacing: 1px;
         transition: color 0.15s ease;
+        display: none;
 
         &:hover{
           color: $green-l;
+        }
+
+        @include lg {
+          display: block;
         }
       }
 

@@ -13,7 +13,7 @@
 
     <!-- Main container -->
     <div class="main-container flex layout-align-center-center">
-      <div class="bg-item back-mountains" :style="{transform: `translateY(${heroContainerMargin * 5}px)`}"></div>
+      <div class="bg-item back-mountains" :style="{transform: `translateY(${heroContainerMargin * 5}px)`}"/>
       <div class="bg-item ground"/>
       <div class="bg-item clouds" :style="{transform: `translateY(${heroContainerMargin * -5}px)`}"/> 
       <div class="bg-item left-rock"/>
@@ -107,6 +107,32 @@
       </p>
     </div>
 
+    <div class="hide">
+      <img src="../assets/img/home/mainContainer/ground.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/back-mountains.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/bottom-center-rock-1.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/bottom-center-rock-2.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/hole-1.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/hole-2.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/right-rock.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/left-rock.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/right-rock-shade.svg" class="pre-load"/>
+      <img src="../assets/img/home/mainContainer/clouds.svg" class="pre-load"/>
+
+      <img src="../assets/img/home/workFlowModes/sketch/sketch-right-rock.svg"/>
+      <img src="../assets/img/home/workFlowModes/sketch/sketch-left-rock.svg"/>
+      <img src="../assets/img/home/workFlowModes/sketch/sketch-ground.svg"/>
+
+      <img src="../assets/img/home/workFlowModes/wireframe/wireframe-right-rock.svg"/>
+      <img src="../assets/img/home/workFlowModes/wireframe/wireframe-left-rock.svg"/>
+      <img src="../assets/img/home/workFlowModes/wireframe/wireframe-ground.svg"/>
+
+      <img src="../assets/img/pages/about-me.svg"/>
+      <img src="../assets/img/pages/work-experience.svg"/>
+      <img src="../assets/img/pages/skills-set.svg"/>
+      <img src="../assets/img/pages/cv.svg"/>
+    </div>
+
     <!-- Contact-footer -->
     <contact-footer></contact-footer>
 
@@ -161,10 +187,31 @@ export default {
     Bubbles
   },
   mounted() {
-    // NProgress.start();
-    // window.addEventListener("load", this.onWindowLoad);
     window.addEventListener("scroll", this.onScroll);
     this.heroContainerMargin = this.setHeroContainerMarginPercentage();
+
+    // Show NProgress while images are loading
+    NProgress.start();
+
+    let imgs = document.getElementsByClassName('pre-load');
+    let len = imgs.length;
+    let counter = 0;
+
+    [].forEach.call(imgs, function(img) {
+      if(img.complete) {
+        incrementCounter();
+      }
+      else {
+        img.addEventListener('load', incrementCounter, false);
+      }
+    });
+
+    function incrementCounter() {
+      counter++;
+      if(counter === len) {
+        NProgress.done();
+      }
+    }
   },
   beforeDestroy() {
     window.removeEventListener("scroll", this.onScroll);
@@ -176,9 +223,6 @@ export default {
     ...mapMutations([
       'updateWorkFlowMode'
     ]),
-    // onWindowLoad() {
-    //   NProgress.done();
-    // },
     onArrowDownClick() {
       let windowInnerHeight = window.innerHeight;
       window.scrollTo({
@@ -385,6 +429,7 @@ export default {
       background-position-y: bottom;
       background-position-x: right;
       z-index: 3;
+      display: none;
 
       .hole-1-bubbles-container{
         position: absolute;
@@ -392,6 +437,10 @@ export default {
         left: 10%;
         width: 60%;
         height: 100px;
+      }
+
+      @include lg {
+        display: block;
       }
     }
 
@@ -402,13 +451,18 @@ export default {
       width: 8%;
       height: 20%;
       z-index: 4;
+      display: none;
 
       .hole-2-bubbles-container{
         position: absolute;
         top: 0px;
         left: 14%;
-        width: 60%;
+        width: 56%;
         height: 80px;
+      }
+
+      @include lg {
+        display: block;
       }
     }
 
@@ -479,47 +533,6 @@ export default {
       height: 50%;
       background-position-x: center;
     }
-
-    // .top-left {
-    //   background-image: url(../assets/img/home/mainContainer/top-left.svg);
-    //   top: 0;
-    //   left: 0;
-    //   height: 70%;
-    //   width: 40%;
-
-    //   @include sm {
-    //     width: 30%;
-    //   }
-    // }
-
-    // .bottom-left {
-    //   background-image: url(../assets/img/home/mainContainer/bottom-left.svg);
-    //   bottom: 0;
-    //   top: 50%;
-    //   left: 0;
-    //   width: 50%;
-    //   display: none;
-
-    //   @include lg {
-    //     display: block;
-    //   }
-    // }
-
-    // .right {
-    //   background-position: bottom right;
-    //   background-image: url(../assets/img/home/mainContainer/right.svg);
-    //   bottom: 0;
-    //   top: 0;
-    //   right: -36%;
-    //   width: 136%;
-    //   background-size: cover;
-
-    //   @include lg {
-    //     background-size: contain;
-    //     right: 0;
-    //     width: 100%;
-    //   }
-    // }
 
     .arrow-down {
       position: absolute;
@@ -677,9 +690,7 @@ export default {
 
   .pages-cards{
     flex-wrap: wrap;
-    // background: rgb(247,247,247);
     background-color: $white;
-    // background: linear-gradient(90deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
     padding: 10px 10px;
 
     @include md {
@@ -833,30 +844,7 @@ export default {
         display: none;
       }
 
-      // .right {
-      //   background-image: url(../assets/img/home/workFlowModes/sketch/sketch-right.svg);
-      //   background-position: bottom right;
-      //   bottom: 0 !important;
-      //   top: $header-height + 20px;
-      //   right: 40px;
-      //   width: 30%;
-      //   height: 90%;
-      // }
-
-      // .top-left {
-      //   background-image: url(../assets/img/home/workFlowModes/sketch/sketch-left.svg);
-      //   background-position: bottom left;
-      //   bottom: 0;
-      //   top: $header-height + 20px !important;
-      //   left: 40px;
-      //   width: 30%;
-      //   height: 90%;
-      // }
-
-      // .bottom-left {
-      //   display: none;
-      // }
-
+ 
       .hero-container {
         margin-top: 150px !important;
 
@@ -1016,30 +1004,6 @@ export default {
         display: none;
       }
 
-      // .right {
-      //   background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-right.svg);
-      //   background-position: bottom right;
-      //   bottom: 0 !important;
-      //   top: $header-height + 20px;
-      //   right: 40px;
-      //   width: 30%;
-      //   height: 90%;
-      // }
-
-      // .top-left {
-      //   background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-left.svg);
-      //   background-position: bottom left;
-      //   bottom: 0;
-      //   top: $header-height + 20px !important;
-      //   left: 40px;
-      //   width: 30%;
-      //   height: 90%;
-      // }
-
-      // .bottom-left {
-      //   display: none;
-      // }
-
       .hero-container {
         margin-top: 50px !important;
 
@@ -1129,18 +1093,16 @@ export default {
       left: 0;
     }
 
-    .main-container{
-      .sky{
-        top: calc(#{$header-height} - 2px);
-      }
-    }
-
     .work-flow-box {
       &.on-scroll {
         left: calc(62.5% - 305px);
         transition: left 0.25s ease;
       }
     }
+  }
+
+  .hide{
+    display: none;
   }
 }
 </style>
