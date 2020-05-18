@@ -1113,6 +1113,8 @@ export default {
 
   .hide{
     visibility: hidden;
+    height: 0;
+    width: 0;
   }
 }
 </style>
