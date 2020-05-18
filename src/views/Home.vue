@@ -504,6 +504,11 @@ export default {
         left: 22%;
         width: 35%;
         height: 110px;
+        display: none;
+
+        @include lg {
+          display: block;
+        }
       }
     }
 
@@ -522,6 +527,11 @@ export default {
         left: 15%;
         width: 55%;
         height: 110px;
+        display: none;
+
+        @include lg {
+          display: block;
+        }
       }
     }
 
@@ -1102,7 +1112,7 @@ export default {
   }
 
   .hide{
-    display: none;
+    visibility: hidden;
   }
 }
 </style>
