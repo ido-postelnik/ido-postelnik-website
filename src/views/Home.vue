@@ -410,21 +410,21 @@ export default {
     }
 
     .hole-1{
-      background-image: url(../assets/img/home/mainContainer/hole-1.svg);
-      bottom: 0;
-      right: 0;
-      width: 10%;
-      height: 53%;
+      background-image: url(../assets/img/home/mainContainer/hole-1-old.svg);
+      bottom: calc(120px + 10%);
+      right: 4%;
+      width: calc(60px + 2%);
+      height: calc(260px + 3%);
       background-position-y: bottom;
       background-position-x: right;
-      z-index: 3;
+      z-index: 4;
       display: none;
 
       .hole-1-bubbles-container{
         position: absolute;
-        top: -30px;
-        left: 10%;
-        width: 60%;
+        top: -40px;
+        left: 5%;
+        width: 90%;
         height: 100px;
       }
 
