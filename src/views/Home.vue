@@ -13,9 +13,9 @@
 
     <!-- Main container -->
     <div class="main-container flex layout-align-center-center">
-      <div class="bg-item back-mountains" :style="{transform: `translateY(${heroContainerMargin * 5}px)`}"/>
+      <div class="bg-item back-mountains"/>
       <div class="bg-item ground"/>
-      <div class="bg-item clouds" :style="{transform: `translateY(${heroContainerMargin * -5}px)`}"/> 
+      <div class="bg-item clouds"/> 
       <div class="bg-item left-rock"/>
       <div class="bg-item right-rock"/>
 
@@ -53,7 +53,7 @@
       <!-- Hero container -->
       <div class="hero-container">
         <div class="flex column layout-align-center-start text-center">
-          <div class="hero" :style="[activeWorkFlowMode !== WORK_FLOW_MODES.SKETCH.value && activeWorkFlowMode !== WORK_FLOW_MODES.WIREFRAME.value ? {'margin-top': heroContainerMargin + '%'} : {}]">
+          <div class="hero">
             <div class="avatar m-auto"></div>
             <div class="hero-title flex row layout-align-center-center m-t-5">
               <h1>Ido Postelnik</h1>
@@ -107,6 +107,12 @@
       </p>
     </div>
 
+    <!-- Contact-footer -->
+    <contact-footer></contact-footer>
+
+    <!-- Copy right -->
+    <copy-right />
+
     <div class="hide">
       <img src="../assets/img/home/mainContainer/ground.svg" class="pre-load"/>
       <img src="../assets/img/home/mainContainer/back-mountains.svg" class="pre-load"/>
@@ -132,12 +138,6 @@
       <img src="../assets/img/pages/skills-set.svg"/>
       <img src="../assets/img/pages/cv.svg"/>
     </div>
-
-    <!-- Contact-footer -->
-    <contact-footer></contact-footer>
-
-    <!-- Copy right -->
-    <copy-right />
   </div>
 </template>
 
@@ -165,7 +165,6 @@ export default {
   name: "home",
   data: () => {
     return {
-      heroContainerMargin: null,
       // Work flow
       workFlowButton: WORK_FLOW_BUTTON,
       WORK_FLOW_MODES,
@@ -188,7 +187,6 @@ export default {
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
-    this.heroContainerMargin = this.setHeroContainerMarginPercentage();
 
     // Show NProgress while images are loading
     NProgress.start();
@@ -292,16 +290,7 @@ export default {
         this.userHasScrolled = true;
         this.shouldShowWorkFlowModesAtBottom = true;
       }
-
-
-      this.heroContainerMargin = scrollPosition / 120;
-    },
-    setHeroContainerMarginPercentage() {
-      let retVal = 0;
-      this.initialHeroContainerMarginPercentage = retVal;
-
-      return retVal;
-    } 
+    }
   },
   computed: {
     ...mapState([
