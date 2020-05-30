@@ -445,8 +445,8 @@ export default {
       .hole-2-bubbles-container{
         position: absolute;
         top: 0px;
-        left: 14%;
-        width: 56%;
+        left: 18%;
+        width: 40%;
         height: 80px;
       }
 

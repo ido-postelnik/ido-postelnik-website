@@ -38,7 +38,7 @@ export default {
     width: 14%;
     min-width: 80px;
     height: 70px; 
-    box-shadow: 3px 3px 8px 2px rgba(196,196,196,1);
+    box-shadow: 3px 3px 8px 2px rgba(196,196,196,0.3);
     white-space: nowrap;
     padding-top: 5px;
 

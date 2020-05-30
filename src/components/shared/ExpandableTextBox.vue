@@ -3,7 +3,7 @@
     <div class="flex row layout-align-center-space-between">
       <!-- Title -->
       <div class="title-section">
-        <h2>{{ title }}</h2>
+        <h2 @click="toggleBox()" class="clickable">{{ title }}</h2>
         <h3 v-if="workPlace != null" class=""><span class="at">@</span><a :href="workPlace.website" target="_blank">{{ workPlace.name }}</a></h3>
       </div>
 
@@ -18,7 +18,7 @@
     <transition name="fade">
       <div v-if="isExpanded === true">
         <h4 class="">{{subtitle}}</h4>
-        <div class="m-t-10 m-l-20">
+        <div class="m-t-10 m-l-5">
           <p v-for="row in content" :key="row" class="m-b-10">{{ row }}</p>
         </div>
         
@@ -73,11 +73,11 @@ export default {
 @import "@/styles/_mixins.scss";
 
   .text-box {
-    background-color: $white;
+    // background-color: $white;
     text-align: left;
     width: 80%;
     max-height:1500px; 
-    box-shadow: 3px 3px 8px 2px rgba(196, 196, 196, 0.5);
+    // box-shadow: 3px 3px 8px 2px rgba(196, 196, 196, 0.5);
     transition: max-height 0.3s ease;
     height:auto;
     white-space: nowrap;
@@ -115,15 +115,15 @@ export default {
       }
 
       h2{
-        font-size: calc(1.0rem + 0.1vw);
-        font-weight: 500;
+        font-size: calc(1.0rem + 0.6vw);
+        font-weight: 900;
         color: #3c3c3c;
       }
 
       h3{
         font-size: calc(1.0rem + 0.0vw);
-        line-height: calc(1.0rem + 0.0vw);
-        height: calc(1.0rem + 0.2vw);
+        // line-height: calc(1.0rem + 0.0vw);
+        // height: calc(1.0rem + 0.2vw);
         margin-top: 0px;
         margin-left: 0px;
 
@@ -175,7 +175,7 @@ export default {
     h4{
       color: #3c3c3c;
       white-space: initial;
-      font-weight: 400;
+      font-weight: 500;
     }
 
     p{
@@ -184,12 +184,19 @@ export default {
       line-height: 26px;
       color: #60696b;
       position: relative;
+      border-bottom: 1px solid $light-grey;
+      padding-bottom: 6px;
+      margin-right: 15px;
 
-      &::before{
-        content: '✔';
-        position: absolute;
-        left: -20px;
+      &:last-child{
+        border-bottom: 0px;
       }
+
+      // &::before{
+      //   content: '✔';
+      //   position: absolute;
+      //   left: -20px;
+      // }
     }
 
     .fade-enter-active, .fade-leave-active {

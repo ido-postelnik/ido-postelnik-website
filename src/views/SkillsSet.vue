@@ -5,9 +5,9 @@
       <div class="header-container m-auto">
         <h1 class="page-title m-b-20">{{ PAGES.SKILLS_SET.label }}</h1>
         <div class="flex row layout-align-center-center skills-set-view-options p-y-20">
-          <img src="../assets/icons/boxes-icon.svg" class="icon clickable m-r-5" :class="{'active': activeViewOption === viewOptions.BOXES}" alt="boxes" height="20" @click="onViewOptionChanged(viewOptions.BOXES)"/>
+          <img src="../assets/icons/boxes-icon.svg" class="icon clickable m-r-10" :class="{'active': activeViewOption === viewOptions.BOXES}" alt="boxes" height="20" @click="onViewOptionChanged(viewOptions.BOXES)"/>
           <p>|</p>
-          <img src="../assets/icons/list-icon.svg" class="icon clickable m-l-5" :class="{'active': activeViewOption === viewOptions.LIST}" alt="list" height="20" @click="onViewOptionChanged(viewOptions.LIST)"/>
+          <img src="../assets/icons/list-icon.svg" class="icon clickable m-l-10" :class="{'active': activeViewOption === viewOptions.LIST}" alt="list" height="20" @click="onViewOptionChanged(viewOptions.LIST)"/>
         </div>
       </div>
 
@@ -16,7 +16,7 @@
 
         <!-- Boxes view -->
         <div v-if="activeViewOption === viewOptions.BOXES" class="boxes-view">
-          <div v-for="subject in skillsSet" :key="subject.title" >
+          <div v-for="subject in skillsSet" :key="subject.title" class="m-b-20">
             <h2 class="m-b-10">{{ subject.title }}</h2>
             <div class="flex row layout-align-center-start boxes-view-content m-b-10">
               <skill-box 
@@ -522,8 +522,9 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
 
       .boxes-view{
         h2{
-          text-decoration: underline;
-          font-size: calc(1.0rem + 0.2vw);
+          // text-decoration: underline;
+          font-size: calc(1.0rem + 0.6vw);
+          font-weight: 900;
         }
         
         .boxes-view-content{

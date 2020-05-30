@@ -6,7 +6,7 @@
 
       <!-- content -->
       <div class="">
-        <expandable-text-box v-for="box in content" :key="box.title" class="m-b-30"
+        <expandable-text-box v-for="box in content" :key="box.title" class="m-b-15"
           :title="box.title" 
           :workPlace="box.workPlace"
           :timeFrame="box.timeFrame"
