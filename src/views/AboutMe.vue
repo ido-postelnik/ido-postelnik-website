@@ -45,7 +45,7 @@ export default {
             `Another key principle for me is communication. Maintaining a good relationship with my team by expressing difficulties and opinions, is essential for having a successful and strong team.`,
             `As a manager, being open to criticism and able to accept other points of view is what helps me grow and achieve better results.`
           ],
-          isExpanded: false
+          isExpanded: true
         },
         {
           title: `Engineer`,
@@ -54,7 +54,7 @@ export default {
             `Taking ownership over projects and tasks comes natural to me, and I approach them with full transparency.`, 
             `I am a team player - I advise and support my colleagues, as well as reach out to them for help. This cooperation moves the team towards its desired goals.`
           ],
-          isExpanded: false
+          isExpanded: true
         },
         {
           title: `Front-End and I`,
@@ -63,7 +63,7 @@ export default {
             `True for every R&D field, but, I believe, especially in Front-End, keeping up to date with new technologies is extremely important. I take online courses, read articles, listen to podcasts, participate in meetups and basically try to satisfy my curiosity in every way possible.`,
             `Working closely with Product and Back-End teams, requires me to have opinions on UX/UI approaches, as well as a solid knowledge on defining APIs, Databases and CI/CD procedures.`
           ],
-          isExpanded: false
+          isExpanded: true
         },
         {
           title: `Always on the lookout for`,
@@ -72,7 +72,7 @@ export default {
             `A place where I can be creative, have my opinion and impact the team and the product with my ideas and presence.`,
             `A place with awesome people that I can learn new things from, in order to become a better developer and a better person.`
           ],
-          isExpanded: false
+          isExpanded: true
         }
       ]
     }

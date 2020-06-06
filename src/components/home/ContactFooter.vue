@@ -87,7 +87,6 @@ export default {
     height: 300px;
     background: rgb(73,121,127);
     background: linear-gradient(180deg, #546e7a 0%, #455a64 100%);
-    border-bottom: 5px solid $dark-grey;
     color: $white;
     text-align: center;
     height: auto;

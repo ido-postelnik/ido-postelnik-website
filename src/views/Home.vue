@@ -1067,8 +1067,6 @@ export default {
     }
 
     .highlight-area {
-      background-color: #eaeaea;
-
       .highlight-image-container{
         .highlight-image{
           background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-highlight-image.svg);

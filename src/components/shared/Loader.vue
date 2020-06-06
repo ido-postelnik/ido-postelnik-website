@@ -45,7 +45,7 @@ export default {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    background: #fff;
+    background: $white;
     animation-timing-function: cubic-bezier(0, 1, 1, 0);
   }
 

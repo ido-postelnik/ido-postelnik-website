@@ -12,7 +12,7 @@ export default {
 
 <style scoped lang="scss">
   .copy-right{
-    background-color: #fdfdfd;
+    background-color: $white;
     height: 30px;
   }
 </style>

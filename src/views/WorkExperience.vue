@@ -35,9 +35,9 @@ export default {
           title: 'Front-End Team Leader',
           workPlace: {
             name: 'Spot',
-            website: 'https://spot.io/'
-            },
-          timeFrame: '2019 - Current',
+            href: 'https://spot.io/',
+            timeFrame: '2019 - Current'
+          },
           subtitle: `Spot (formerly Spotinst) is a SaaS for managing workloads and cloud infrastructure.`,
           content: [
             `Leading a team of developers that develop and build the products’ UI platform.`, 
@@ -50,30 +50,30 @@ export default {
           title: 'Front-End Developer',
           workPlace: {
             name: 'Spot',
-            website: 'https://spot.io/'
-            },
-          timeFrame: '2018 - 2019',
+            href: 'https://spot.io/',
+            timeFrame: '2018 - 2019'
+          },
           content: [
             `Managed the front-end and product aspects in my scrum team.`, 
             `Developed features for the UI console that presents dashboards, charts and on-boarding processes.`, 
             `Built the backend-UI for the server side.`,
           ],
-          isExpanded: false
+          isExpanded: true
         },
         {
           title: 'Front-End Developer & UX/UI Designer',
           workPlace: {
             name: 'PlayerMaker',
-            website: 'https://playermaker.com/'
-            },
-          timeFrame: '2016 - 2018',
+            href: 'https://playermaker.com/',
+            timeFrame: '2016 - 2018'
+          },
           subtitle: `PlayerMaker uses a smart motion sensor to capture football players movement and performance.`, 
           content: [
             `Built the product’s console from scratch. The console included tables, charts and special UI elements.`, 
             `Worked closely with the product team to prototype and define the product.`,
             `Built wireframes, graphical designs and interactive moquaps.`
           ],
-          isExpanded: false
+          isExpanded: true
         }
       ]
     }

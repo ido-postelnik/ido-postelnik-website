@@ -1,23 +1,30 @@
 <template>
-  <div class="text-box m-auto p-y-10" :class="{'collapsed': isExpanded === false}">
+  <div class="text-box m-auto p-y-10" :class="{'collapsed': isExpanded === false, 'work-experience-on': workPlace != null}">
     <div class="flex row layout-align-center-space-between">
       <!-- Title -->
       <div class="title-section">
         <h2 @click="toggleBox()" class="clickable">{{ title }}</h2>
-        <h3 v-if="workPlace != null" class=""><span class="at">@</span><a :href="workPlace.website" target="_blank">{{ workPlace.name }}</a></h3>
       </div>
 
       <!-- Expanded icon -->
       <div class="expandable-section">
-        <h3 class="">{{ timeFrame }}</h3>
         <img src="../../assets/icons/chevron-right.svg" class="chevron clickable" :class="{'chevron-down':isExpanded === false}" alt="chevron" height="12" @click="toggleBox()"/>
       </div>
     </div>
 
+    <h3 class="work-place-info" v-if="workPlace != null">
+      <span class="at m-r-10">
+        @
+        <a :href="workPlace.href" target="_blank">{{ workPlace.name }}</a>
+      </span> 
+  
+      <span class="time-frame">/ {{ workPlace.timeFrame }}</span>
+    </h3>
+
     <!-- Content -->
     <transition name="fade">
       <div v-if="isExpanded === true">
-        <h4 class="">{{subtitle}}</h4>
+        <h4 class="m-t-5">{{subtitle}}</h4>
         <div class="m-t-10 m-l-5">
           <p v-for="row in content" :key="row" class="m-b-10">{{ row }}</p>
         </div>
@@ -99,6 +106,10 @@ export default {
 
       @include md {
         max-height: 42px;
+
+        &.work-experience-on{
+          max-height: 85px;
+        }
       }
     }
 
@@ -107,7 +118,6 @@ export default {
       flex-direction: column;
       justify-content: flex-start;
       align-items: flex-start;
-      width: 50%;
 
       @include md {
         flex-direction: row;
@@ -117,48 +127,28 @@ export default {
       h2{
         font-size: calc(1.0rem + 0.6vw);
         font-weight: 900;
-        color: #3c3c3c;
-      }
-
-      h3{
-        font-size: calc(1.0rem + 0.0vw);
-        // line-height: calc(1.0rem + 0.0vw);
-        // height: calc(1.0rem + 0.2vw);
-        margin-top: 0px;
-        margin-left: 0px;
-
-        @include md {
-          margin-left: 5px;
-          margin-top: 2px;
-        }
-        
-        a{
-          color: #0d72bb;
-        }
-      }
-
-      .at{
-        font-size: 0.9rem;
+        color: $dark-grey;
+        white-space: normal;
       }
     }
+
+    .work-place-info{        
+        .at, a{
+          color: $blue-l;
+        } 
+      }
+
 
     .expandable-section{
       display: flex;
       flex-direction: column-reverse;
       justify-content: flex-start;
       align-items: flex-end;
+      width: 25px;
 
       @include md {
         flex-direction: row;
         align-items: center;
-      }
-
-      h3{
-        // height: calc(1.0rem + 0.2vw);
-
-        @include md {
-          margin-right: 10px;
-        }
       }
 
       .chevron{
@@ -173,7 +163,7 @@ export default {
     }
 
     h4{
-      color: #3c3c3c;
+      color: $dark-grey;
       white-space: initial;
       font-weight: 500;
     }
@@ -182,7 +172,7 @@ export default {
       font-size: calc(1.0rem + 0.05vw);
       white-space: initial;
       line-height: 26px;
-      color: #60696b;
+      color: $dark-grey-l;
       position: relative;
       border-bottom: 1px solid $light-grey;
       padding-bottom: 6px;
@@ -191,12 +181,6 @@ export default {
       &:last-child{
         border-bottom: 0px;
       }
-
-      // &::before{
-      //   content: '✔';
-      //   position: absolute;
-      //   left: -20px;
-      // }
     }
 
     .fade-enter-active, .fade-leave-active {

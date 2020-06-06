@@ -611,7 +611,7 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
 
           td{
             max-height: 35px;
-            color: #474d4e;
+            color: $dark-grey-l;
 
             .img-container{
               width: 40px;
