@@ -7,7 +7,7 @@ const HTTP = axios.create({
 
 export const contactMessage = {
   post: async function(name, email, message) {
-    let response = await HTTP.post('/contactMessage', {
+    let response = await HTTP.post('/sendEmail', {
       name,
       email,
       message
