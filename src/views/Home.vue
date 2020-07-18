@@ -309,7 +309,7 @@ export default {
         border-radius: 50%;
         background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
         background-size: cover;
-        border: $light-grey-d 1px solid;
+        border: $dark-grey 1px solid;
 
         @include md {
           height: $avatar-size-md;
@@ -330,6 +330,7 @@ export default {
         border-bottom: 1px solid $dark-grey-l;
         padding: 0px 10px;
         border-top-right-radius: 2px;
+        color: $dark-grey;
 
         @include md {
           font-size: $hero-title-md;

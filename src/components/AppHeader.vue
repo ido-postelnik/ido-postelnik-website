@@ -137,6 +137,10 @@ export default {
       &:hover{
         color: $green-l;
       }
+
+      &:active{
+        color: $white;
+      }
     }
   }
   
