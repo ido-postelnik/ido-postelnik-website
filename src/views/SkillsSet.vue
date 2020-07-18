@@ -522,9 +522,9 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
 
       .boxes-view{
         h2{
-          // text-decoration: underline;
-          font-size: calc(1.0rem + 0.6vw);
-          font-weight: 900;
+          font-size: calc(1.0rem + 0.3vw);
+          font-weight: 500;
+          color: $dark-grey-d;
         }
         
         .boxes-view-content{

@@ -1,14 +1,9 @@
 // Pages images
-.about-me{background-image: url(../assets/img/pages/about-me.svg);}
-.work-experience{background-image: url(../assets/img/pages/work-experience.svg);}
-.skills-set{background-image: url(../assets/img/pages/skills-set.svg);}
-.cv{background-image: url(../assets/img/pages/cv.svg);}
+.about-me{background-image: url(../assets/img/pages/about-me.png);}
+.work-experience{background-image: url(../assets/img/pages/work-experience.png);}
+.skills-set{background-image: url(../assets/img/pages/skills-set.png);}
+.cv{background-image: url(../assets/img/pages/cv.png);}
 
-// Pages images
-.about-me-home{background-image: url(../assets/img/pages/about-me-home.svg);}
-.work-experience-home{background-image: url(../assets/img/pages/work-experience-home.svg);}
-.skills-set-home{background-image: url(../assets/img/pages/skills-set-home.svg);}
-.cv-home{background-image: url(../assets/img/pages/cv-home.svg);}
 
 // Page style
 .page{
@@ -20,6 +15,7 @@
     padding: 10px 0;
     position: relative;
     text-align: center;
+    color: $dark-grey-d;
     
     &::after{
       content: "";
@@ -28,7 +24,7 @@
       left: 50%;
       width: 40px;
       margin-left: -20px;
-      border-bottom: $dark-grey solid 2px;
+      border-bottom: $dark-grey-d solid 2px;
     }
     
   }
@@ -41,32 +37,22 @@
   padding: 5px 40px;
   border: none;
   border-radius: 20px;
-  // background: $gold;
-  background: $gold;
-  background: linear-gradient(90deg, rgba(228,179,99,1) 0%, rgba(227,166,66,1) 100%);
-  // background: rgb(29,233,182);
-  // background: linear-gradient(135deg, rgba(29,233,182,1) 0%, rgba(0,214,194,1) 100%);
-  color: $white;
+  border: 1px solid $dark-grey;
+  background: $white;
+  color: $dark-grey;
   text-align: center;
   outline: none;
   font-size: 16px;
   cursor: pointer;
-  transition: all 0.2s;
 
   &:hover{
-    // background: rgb(29,233,182);
-    // background: linear-gradient(-135deg, rgba(29,233,182,1) 0%, rgba(0,214,194,1) 100%);
-    background: rgb(228,179,99);
-    background: linear-gradient(-90deg, rgba(228,179,99,1) 0%, rgba(227,166,66,1) 100%);
-    transition: all 0.2s;
+    background: $gold;
+    transition: all 0.1s ease;
   }
 
   &:active{
-    box-shadow: 2px 2px 5px 0px rgba($gold,0.25);
-    // background: linear-gradient(180deg, rgba(29,233,182,1) 0%, rgba(0,214,194,1) 100%);
-    background: rgb(228,179,99);
-    background: linear-gradient(180deg, rgba(228,179,99,1) 0%, rgba(227,166,66,1) 100%);
-
+    box-shadow: 2px 2px 5px 0px rgba($gold, 0.1);
+    background: $gold-d;
   }
 
   &:disabled{
@@ -75,6 +61,21 @@
 
   &.gold{
     background-color: $gold;
+  }
+
+  &.green{
+    background-color: $green-l;
+    color: $white;
+
+    &:hover{
+      background: $green;
+      transition: all 0.1s ease;
+    }
+
+    &:active{
+      box-shadow: 2px 2px 5px 0px rgba($gold, 0.1);
+      background: $gold-d;
+    }
   }
 
   &.blue{

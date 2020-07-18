@@ -4,7 +4,7 @@
       <p class="step-index">{{ index }}</p>
       <p class="step-label">{{ label }}</p>
     </div>
-    <img v-if="!isLast" src="../../assets/icons/chevron-right.svg" class="m-l-10" alt="chevron" height="20"/>
+    <img v-if="!isLast" src="../../assets/icons/chevron-right.svg" class="m-l-10" alt="chevron" height="14"/>
   </div>
 </template>
 
@@ -48,7 +48,7 @@ export default {
     text-align: center;
     min-width: 130px;
     padding-bottom: 10px;
-    color: $dark-grey;
+    color: $light-grey-d;
 
     .step{
        min-width: 105px;
@@ -56,7 +56,6 @@ export default {
       .step-index{
         font-size: calc(1rem + 0.4vw);
         font-weight: 600;
-        font-family: $font-title;
       }
 
       .step-label{
@@ -67,11 +66,12 @@ export default {
     }
 
     &:hover{
-      color: $dark-grey-d;
+      color: $dark-grey-l;
+      transition: color 0.1s ease;
     }
 
     &.active{
-      color: $green-l;
+      color: $dark-grey-d;
       position: relative;
       transition: color 0.1s ease;
 
@@ -82,7 +82,7 @@ export default {
         left: 50%;
         width: 40px;
         margin-left: -33px;
-        border-bottom: $green-l solid 2px;
+        border-bottom: $dark-grey-d solid 2px;
       }
     }
   }

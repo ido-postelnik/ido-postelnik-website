@@ -22,9 +22,12 @@ time, mark, audio, video {
 
 html, 
 body {
+		scroll-behavior: smooth;
 		height: 100%;
 		color: $dark-grey;
 		font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+		-webkit-font-smoothing: antialiased;
+  	-moz-osx-font-smoothing: grayscale;
 }
 
 a {

@@ -2,9 +2,7 @@
   <div id="app">
     <app-header class="header"/>
     <sidebar v-if="currentRouteName !== 'home'"/>
-    <!-- <transition name="fade"> -->
     <router-view/>
-    <!-- </transition> -->
   </div>
 </template>
 
@@ -29,16 +27,4 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
-  height: 100%;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.fade-enter-active  {
-  transition: opacity 0.1s;
-}
-.fade-enter{
-  opacity: 0;
-}
 </style>

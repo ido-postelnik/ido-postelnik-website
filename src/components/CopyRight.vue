@@ -14,5 +14,6 @@ export default {
   .copy-right{
     background-color: $white;
     height: 30px;
+    font-size: 0.9rem;
   }
 </style>

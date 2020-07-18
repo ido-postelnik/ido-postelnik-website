@@ -3,10 +3,10 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 
 // pages
-import AboutMe from './views/AboutMe.vue'
-import WorkExperience from './views/WorkExperience.vue'
-import SkillsSet from './views/SkillsSet.vue'
-import Cv from './views/Cv.vue'
+// import AboutMe from './views/AboutMe.vue'
+// import WorkExperience from './views/WorkExperience.vue'
+// import SkillsSet from './views/SkillsSet.vue'
+// import Cv from './views/Cv.vue'
 
 Vue.use(Router)
 
@@ -30,22 +30,22 @@ export default new Router({
     {
       path: '/about-me',
       name: 'aboutMe',
-      component: AboutMe
+      component: () => import("./views/AboutMe.vue")
     },
     {
       path: '/work-experience',
       name: 'workExperience',
-      component: WorkExperience
+      component: () => import("./views/WorkExperience.vue")
     },
     {
       path: '/skills-set',
       name: 'skillsSet',
-      component: SkillsSet
+      component: () => import("./views/SkillsSet.vue")
     },
     {
       path: '/cv',
       name: 'cv',
-      component: Cv
+      component: () => import("./views/Cv.vue")
     },
     {
       // catch all 404

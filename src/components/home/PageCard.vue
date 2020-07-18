@@ -34,7 +34,7 @@ export default {
     ]),
     classObject: function () {
       let retVal = _.get(this, 'data.class');
-      retVal = `${retVal}-home`;
+      retVal = `${retVal}`;
 
       return retVal;
     }
@@ -52,14 +52,13 @@ export default {
 
   .card{
     height: 100%;
-    width: 100%;
-    max-width: 400px;
+    width: 270px;
     margin-right: 5px;
     text-decoration: none;
     position: relative;
     overflow: hidden;
     min-height: 200px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     transition: 0.1s all ease;
 
     @include md {
@@ -71,15 +70,20 @@ export default {
     }
 
     .card-title{
-      height: 40px;
-      line-height: 40px;
+      height: 30px;
       font-family: $font-title;
-      font-size: calc(1.0rem + 0.5vw);
+      font-size: calc(1.0rem + 0.4vw);
+      margin-bottom: 5px;
       text-align: center;
-      color: $dark-grey;
+      color: $dark-grey-d;
       width: 100%;
       position: relative;
       text-align: center;
+
+      @include md {
+        height: 40px;
+        margin-bottom: 15px;
+      }
 
       &::after{
         content: "";
@@ -95,14 +99,13 @@ export default {
     .card-image{
       width: 80%;
       height: 100%;
-      min-height: 220px;
+      min-height: 200px;
       background-size: contain;
-      background-position: 50% 2px;
+      background-position: bottom;
       background-repeat: no-repeat;
       transition: width 0.1s ease;
 
       @include md {
-        background-position: 50% 20px;
         min-height: 175px;
       }
     }
@@ -141,10 +144,10 @@ export default {
         background-repeat: no-repeat;
         background-position: 50% 0px;
 
-        &.about-me-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-about-me.svg);}
-        &.work-experience-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-work-experience.svg);}
-        &.skills-set-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-skills-set.svg);}
-        &.cv-home{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-cv.svg);}
+        &.about-me{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-about-me.svg);}
+        &.work-experience{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-work-experience.svg);}
+        &.skills-set{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-skills-set.svg);}
+        &.cv{background-image: url(../../assets/img/home/workFlowModes/sketch/sketch-cv.svg);}
       }
     }
 

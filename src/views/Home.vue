@@ -12,83 +12,49 @@
     <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/47/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
     <!-- Main container -->
-    <div class="main-container flex layout-align-center-center">
-      <div class="bg-item back-mountains"/>
-      <div class="bg-item ground"/>
-      <div class="bg-item clouds"/> 
-      <div class="bg-item left-rock"/>
-      <div class="bg-item right-rock"/>
-
-      <div class="bg-item hole-1">
-        <div class="hole-1-bubbles-container buuble-container-shape">
-          <bubbles/>
-        </div>
-      </div>
-
-      <div class="bg-item hole-2">
-        <div class="hole-2-bubbles-container buuble-container-shape">
-          <bubbles/>
-        </div>
-      </div>
-
-      <div class="bg-item right-rock-shade"/>
-      <div class="bg-item bottom-main-rock"/>
-
-      <div class="bg-item bottom-center-rock-1">
-        <div class="bottom-center-rock-1-bubbles-container buuble-container-shape">
-          <bubbles/>
-        </div>
-      </div>
-
-      <div class="bg-item bottom-center-rock-2">
-        <div class="bottom-center-rock-2-bubbles-container buuble-container-shape">
-          <bubbles/>
-        </div>
-      </div>
-
-      <div class="arrow-down clickable" @click="onArrowDownClick">
-        <img src="../assets/icons/triangle.svg" alt="arrow-down" height="20"/>
-      </div>
-
+    <div class="main-container flex column layout-align-center-start">
       <!-- Hero container -->
-      <div class="hero-container">
-        <div class="flex column layout-align-center-start text-center">
-          <div class="hero">
-            <div class="avatar m-auto"></div>
-            <div class="hero-title flex row layout-align-center-center m-t-5">
-              <h1>Ido Postelnik</h1>
-            </div>
-            <div class="hero-subtitle flex row layout-align-center-center m-x-15">
-              <h2>UX/UI driven Front-End Engineer</h2>
-            </div>
-
-            <!-- Work flow button -->
-            <button class="btn work-flow-button m-t-5" :class="{active: shouldShowWorkFlowModesBox === true}" @click="toggleWorkFlowModesBox">
-              <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
-            </button>
-          </div>
+      <div class="hero-container flex column layout-align-center-start text-center ">
+        <div class="avatar m-auto" />
+        <div class="hero-title m-t-5"><h1>Ido Postelnik</h1></div>
+        <div class="hero-subtitle m-x-15"><h2 >UX/UI driven Front-End Engineer</h2></div>
+        <button class="btn work-flow-button m-t-5" :class="{active: shouldShowWorkFlowModesBox === true}" @click="toggleWorkFlowModesBox">
+          <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
+        </button>
 
           <!-- Work flow box -->
-          <div class="work-flow-box flex column layout-align-center-center m-t-20"
-            :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
-            <div class="steps flex layout-align-center-center">
-              <work-flow-mode
-                v-for="(mode, key, index) in WORK_FLOW_MODES"
-                :key="mode.label"
-                :index="index + 1"
-                :label="mode.label"
-                :value="mode.value"
-                :isLast="index === workFlowModesSize - 1"
-                @click.native="switchWorkFlowMode(key)"
-                class="m-r-10">
-              </work-flow-mode>
-            </div>
+        <div class="work-flow-box-container flex column layout-align-center-center m-t-15" :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
+          <div class="work-flow-box-header flex row layout-align-center-center">
+            <p>Walk through the steps to see the work progress</p>
             <img src="@/assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
           </div>
-
+          <div class="work-flow-box-content flex layout-align-center-center">
+            <work-flow-mode
+              v-for="(mode, key, index) in WORK_FLOW_MODES"
+              :key="mode.label"
+              :index="index + 1"
+              :label="mode.label"
+              :value="mode.value"
+              :isLast="index === workFlowModesSize - 1"
+              @click.native="switchWorkFlowMode(key)"
+              :class="{'m-r-10': index !== (workFlowModesSize - 1)}">
+            </work-flow-mode>
+          </div>
+          
         </div>
+
       </div>
     </div>
+
+    <svg viewBox="0 0 10 10" preserveAspectRatio="none" id="triangle" v-if="activeWorkFlowMode === WORK_FLOW_MODES.PRODUCTION.value || activeWorkFlowMode === WORK_FLOW_MODES.CODE.value">
+      <defs>
+        <linearGradient id="gradient">
+          <stop offset="5%" stop-color="#00D6C2" />
+          <stop offset="95%" stop-color="#1DE9B6" />
+        </linearGradient>
+      </defs>
+      <polygon fill="url(#gradient)" points="0 0 10 0 0 10" />
+    </svg>
 
     <!-- Pages cards -->
     <div class="pages-cards flex row layout-align-center-space-evenly">
@@ -97,7 +63,7 @@
 
     <!-- Highlight-area -->
     <div class="highlight-area text-center flex row layout-align-center-center">
-      <div class="highlight-image-container flex layout-align-center-end p-r-50">
+      <div class="highlight-image-container flex layout-align-center-end">
         <div class="highlight-image"></div>
       </div>
       <p class="highlight-sentence-container flex column layout-align-start-center p-l-50">
@@ -108,36 +74,10 @@
     </div>
 
     <!-- Contact-footer -->
-    <contact-footer></contact-footer>
+    <contact-footer id="contact"></contact-footer>
 
     <!-- Copy right -->
     <copy-right />
-
-    <div class="hide">
-      <img src="../assets/img/home/mainContainer/ground.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/back-mountains.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/bottom-center-rock-1.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/bottom-center-rock-2.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/hole-1.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/hole-2.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/right-rock.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/left-rock.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/right-rock-shade.svg" class="pre-load"/>
-      <img src="../assets/img/home/mainContainer/clouds.svg" class="pre-load"/>
-
-      <img src="../assets/img/home/workFlowModes/sketch/sketch-right-rock.svg"/>
-      <img src="../assets/img/home/workFlowModes/sketch/sketch-left-rock.svg"/>
-      <img src="../assets/img/home/workFlowModes/sketch/sketch-ground.svg"/>
-
-      <img src="../assets/img/home/workFlowModes/wireframe/wireframe-right-rock.svg"/>
-      <img src="../assets/img/home/workFlowModes/wireframe/wireframe-left-rock.svg"/>
-      <img src="../assets/img/home/workFlowModes/wireframe/wireframe-ground.svg"/>
-
-      <img src="../assets/img/pages/about-me.svg"/>
-      <img src="../assets/img/pages/work-experience.svg"/>
-      <img src="../assets/img/pages/skills-set.svg"/>
-      <img src="../assets/img/pages/cv.svg"/>
-    </div>
   </div>
 </template>
 
@@ -156,7 +96,6 @@ import WorkFlowMode from "@/components/home/WorkFlowMode.vue";
 import ContactFooter from "@/components/home/ContactFooter.vue";
 import CopyRight from "@/components/CopyRight.vue";
 import Loader from '@/components/shared/Loader.vue'
-import Bubbles from '@/components/home/Bubbles.vue'
 
 // Store
 import { mapState, mapMutations  } from 'vuex';
@@ -182,8 +121,7 @@ export default {
     PageCard,
     ContactFooter,
     CopyRight,
-    Loader,
-    Bubbles
+    Loader
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
@@ -191,7 +129,7 @@ export default {
     // Show NProgress while images are loading
     NProgress.start();
 
-    let imgs = document.getElementsByClassName('pre-load');
+    let imgs = document.getElementsByTagName("img");
     let len = imgs.length;
     let counter = 0;
 
@@ -206,6 +144,7 @@ export default {
 
     function incrementCounter() {
       counter++;
+
       if(counter === len) {
         NProgress.done();
       }
@@ -221,13 +160,6 @@ export default {
     ...mapMutations([
       'updateWorkFlowMode'
     ]),
-    onArrowDownClick() {
-      let windowInnerHeight = window.innerHeight;
-      window.scrollTo({
-        top: windowInnerHeight - 50,
-        behavior: "smooth"
-      });
-    },
     //#region WorkFlow modes
     toggleWorkFlowModesBox() {
       // Hide WorkFlowModesBox
@@ -344,322 +276,146 @@ export default {
   }
 
   .main-container {
-    min-height: 100vh;
-    min-height: -webkit-fill-available;
-    position: relative;
-    background: rgb(253,251,251);
-    background: linear-gradient(0deg, #eceff1 0%, white 100%);
-    overflow: hidden;
+    // Vars
+    $avatar-size: calc(150px + 1.8vw);
+    $avatar-size-md: calc(140px + 1.8vw);
+    $avatar-size-lg: calc(150px + 1.8vw);
+    $hero-title: calc(1.5rem + 2.8vw);
+    $hero-title-md: calc(1.5rem + 1.6vw);
+    $hero-subtitle: calc(1.0rem + 1.0vw);
+    $hero-subtitle-md: calc(1.2rem + 0.3vw);
+    $work-flow-button-height: 34px;
+    $main-container-height: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height});
+    $main-container-height-md: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height});
+    $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 300px + #{$header-height} + #{$header-height-addon});
+    //
 
-    @include md {
-      min-height: unset;
-      height: 100vh;
-    }
+    // padding-top: $header-height + $header-height-addon;
+    background: linear-gradient(90deg, #00D6C2 0%, #1DE9B6 100%);
+    padding: 160px 0 70px;
+    height: $main-container-height-lg;
+    max-height: 500px;
 
-    .bg-item{
-      position: absolute;
-      background-repeat: no-repeat;
-      background-size: contain;
-    }
-
-    .ground{
-      background-image: url(../assets/img/home/mainContainer/ground.svg);
-      bottom: 0;
-      height: 30%;
-      left: 0;
-      right: 0;
-      background-size: cover;
-      z-index: 2;
-    }
-
-    .back-mountains{
-      background-image: url(../assets/img/home/mainContainer/back-mountains.svg);
-      bottom: 26%;
-      height: 40%;
-      left: 0;
-      right: 0;
-      z-index: 1;
-      background-position-y: bottom;
-    }
-
-    .right-rock{
-      background-image: url(../assets/img/home/mainContainer/right-rock.svg);
-      bottom: 0;
-      top: calc(#{$header-height} + 5px);
-      right: 0;
-      left: 0;
-      background-position-x: right;
-      background-position-y: bottom;
-      z-index: 3;
-    }
-
-    .right-rock-shade{
-      background-image: url(../assets/img/home/mainContainer/right-rock-shade.svg);
-      bottom: 0;
-      top: calc(#{$header-height} + 5px);
-      right: 0;
-      left: 0;
-      background-position-x: right;
-      background-position-y: bottom;
-      z-index: 3;
-    }
-
-    .buuble-container-shape{
-      clip-path: polygon(0 0, 100% 0, 76% 100%, 26% 100%);
-      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
-    }
-
-    .hole-1{
-      background-image: url(../assets/img/home/mainContainer/hole-1-old.svg);
-      bottom: calc(120px + 10%);
-      right: 4%;
-      width: calc(60px + 2%);
-      height: calc(260px + 3%);
-      background-position-y: bottom;
-      background-position-x: right;
-      z-index: 4;
-      display: none;
-
-      .hole-1-bubbles-container{
-        position: absolute;
-        top: -40px;
-        left: 5%;
-        width: 90%;
-        height: 100px;
-      }
-
-      @include lg {
-        display: block;
-      }
-    }
-
-    .hole-2{
-      background-image: url(../assets/img/home/mainContainer/hole-2.svg);
-      bottom: 5%;
-      right: 6%;
-      width: 8%;
-      height: 20%;
-      z-index: 4;
-      display: none;
-
-      .hole-2-bubbles-container{
-        position: absolute;
-        top: 0px;
-        left: 18%;
-        width: 40%;
-        height: 80px;
-      }
-
-      @include lg {
-        display: block;
-      }
-    }
-
-    .left-rock{
-      background-image: url(../assets/img/home/mainContainer/left-rock.svg);
-      bottom: 80px;
-      left: 0;
-      height: 75%;
-      width: 60%;
-      background-position-x: left;
-      background-position-y: bottom;
-      z-index: 2;
-    }
-
-    .bottom-main-rock{
-      background-image: url(../assets/img/home/mainContainer/bottom-main-rock.svg);
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 100px;
-      background-position-x: center;
-      background-position-y: bottom;
-      background-size: contain;
-      z-index: 2;
-    }
-
-    .bottom-center-rock-1{
-      background-image: url(../assets/img/home/mainContainer/bottom-center-rock-1.svg);
-      bottom: 0;
-      right: 40%;
-      width: calc(180px + 5%);
-      height: 14%;
-      background-position-y: bottom;
-      z-index: 3;
-
-      .bottom-center-rock-1-bubbles-container{
-        position: absolute;
-        top: -60px;
-        left: 22%;
-        width: 35%;
-        height: 110px;
-        display: none;
-
-        @include lg {
-          display: block;
-        }
-      }
-    }
-
-    .bottom-center-rock-2{
-      background-image: url(../assets/img/home/mainContainer/bottom-center-rock-2.svg);
-      bottom: 0;
-      right: 52%;
-      width: calc(170px + 5%);
-      height: 14%;
-      background-position-y: bottom;
-      z-index: 3;
-
-      .bottom-center-rock-2-bubbles-container{
-        position: absolute;
-        top: -40px;
-        left: 15%;
-        width: 55%;
-        height: 110px;
-        display: none;
-
-        @include lg {
-          display: block;
-        }
-      }
-    }
-
-    .clouds{
-      background-image: url(../assets/img/home/mainContainer/clouds.svg);
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 50%;
-      background-position-x: center;
-    }
-
-    .arrow-down {
-      position: absolute;
-      bottom: 30px;
-      transition: bottom 0.2s;
-      width: 25px;
-      height: 30px;
-      text-align: center;
-      line-height: 40px;
-      // filter: $filter-dark-grey;
-      z-index: 4;
-
-      &:hover {
-        bottom: 25px;
-      }
+    @include lg {
+      max-height: none;
     }
 
     .hero-container {
-      display: block;
-      width: 100%;
-      height: 40%;
-      margin-bottom: 10%;
+      transition: 0.2s all;
 
-      @include md {
-        height: 55%;
-        margin-bottom: 0;
+      .avatar {
+        height: $avatar-size;
+        width: $avatar-size;
+        border-radius: 50%;
+        background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
+        background-size: cover;
+        border: $light-grey-d 1px solid;
+
+        @include md {
+          height: $avatar-size-md;
+          width: $avatar-size-md;
+        }
+
+        @include lg {
+          height: $avatar-size-lg;
+          width:  $avatar-size-lg;
+        }
       }
 
-      .hero {
-        z-index: 5;
+      .hero-title{
+        font-size: $hero-title;
+        font-weight: 100;
+        font-family: $font-title;
+        display: block;
+        border-bottom: 1px solid $dark-grey-l;
+        padding: 0px 10px;
+        border-top-right-radius: 2px;
 
-        .avatar {
-          height: calc(140px + 1.8vw);
-          width: calc(140px + 1.8vw);
-          border-radius: 50%;
-          background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
-          background-size: cover;
-          border: $light-grey-d 1px solid;
+        @include md {
+          font-size: $hero-title-md;
+          line-height: $hero-title-md;
+          background-color: transparent;
+          padding: 0;
+          border-top-right-radius: 0;
+        }
+      }
 
-          @include md {
-            height: calc(140px + 2vw);
-            width: calc(140px + 2vw);
-          }
+      .hero-subtitle{
+        font-size: $hero-subtitle;
+        font-weight: 300;
+        letter-spacing: 5.2px;
+        display: block;
+        padding: 5px 8px;
 
-          @include lg {
-            height: calc(140px + 3vw);
-            width:  calc(140px + 3vw);
-          }
+        @include md {
+          background-color: transparent;
+          font-size: $hero-subtitle-md;
+        }
+      }
+
+      .work-flow-button {
+        display: none;
+        transition: all 0.2s;
+        height: $work-flow-button-height;
+
+        @include lg {
+          display: inline-block;
         }
 
-        .hero-title{
-          h1 {
-            font-size: calc(1.5rem + 2.8vw);
-            font-weight: 100;
-            font-family: $font-title;
-            background-color: $white;
-            display: block;
-            border-bottom: 1px solid $dark-grey-l;
-            padding: 0px 10px;
-            border-top-right-radius: 2px;
-
-            @include md {
-              font-size: calc(1.5rem + 1.6vw);
-              line-height: calc(1.5rem + 2vw);
-              background-color: transparent;
-              padding: 0;
-              border-top-right-radius: 0;
-            }
-          }
-        }
-
-        .hero-subtitle{
-          h2 {
-            font-size: calc(1.0rem + 1.0vw);
-            font-weight: 300;
-            letter-spacing: 5.2px;
-            display: block;
-            background-color: $white;
-            border-bottom-right-radius: 2px;
-            padding: 5px 8px;
-
-            @include md {
-              background-color: transparent;
-              font-size: calc(1.0rem + 0.3vw);
-            }
-          }
-        }
-
-        .work-flow-button {
-          display: none;
-          transition: all 0.2s;
-
-          @include lg {
-            display: inline-block;
-          }
-
-          &.active {
-            background-color: $green;
-            color: $white;
-          }
+        &.active {
+          background-color: $gold;
         }
       }
     }
   }
 
-  .work-flow-box {
+  #triangle {
+    width: 100%;
+    height: 50px;
+  }
+
+  .work-flow-box-container {
     display: none;
     border: 1px solid #313638;
     border-radius: 20px;
     width: 610px;
-    height: 90px;
     z-index: 40;
-    background: white;
-    padding: 18px 15px;
+    background: $white;
     transition: left 0.25s ease; // in use when in "code-mode"
+
+    .work-flow-box-header {
+      position: relative;
+      padding: 8px 20px 4px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+
+      .close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        height: 11px;
+        filter: $filter-dark-grey;
+      }
+    }
+
+    .work-flow-box-content {
+      padding: 0px 15px 3px;
+    }
 
     &.active {
       position: relative;
       display: block;
       animation: fade-in 0.2s;
-    }
 
-    @keyframes fade-in {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+          margin-top: 5px;
+        }
+        to {
+          opacity: 1;
+          margin-top: 15px;
+        }
       }
     }
 
@@ -668,22 +424,15 @@ export default {
       top: calc(100vh - 135px);
       left: calc(50% - 305px);
       animation: move 0.6s ease-out;
-    }
 
-    @keyframes move {
-      from {
-        top: calc(100vh - 300px);
+      @keyframes move {
+        from {
+          top: calc(100vh - 400px);
+        }
+        to {
+          top: calc(100vh - 135px);
+        }
       }
-      to {
-        top: calc(100vh - 135px);
-      }
-    }
-
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      height: 12px;
     }
   }
 
@@ -705,54 +454,63 @@ export default {
     }
 
     @include xl {
-      padding: 100px 20px;
-      height: 500px;
+      padding: 100px 80px;
+      height: 450px;
     }
   }
 
   .highlight-area {
     height: 540px;
-    background: rgb(247,247,247);
-    background: linear-gradient(0deg, rgba(247,247,247,1) 0%, rgba(255,255,255,1) 100%);
+    background-color: $light-grey-l;
     flex-direction: column-reverse;
 
     @include md {
       flex-direction: row;
-      height: 500px;
+      height: 450px;
+      background: none;
     }
 
     @include lg {
-      flex-direction: row;
-      height: 600px;
+      height: 500px;
     }
 
     .highlight-image-container{
       flex: 3;
       height: 100%;
+      max-height: 300px;
       width: 100%;
+      padding-right: 0;
 
       @include md {
         margin-left: auto;
         flex: 1;
+        padding-right: 50px;
       }
 
       .highlight-image{
-        background-image: url(../assets/img/home/highlight-image.png);
-        height: 80%;
-        width: 90%;
+        background-image: url(../assets/img/home/insparation-image.png);
+        height: 65%;
+        max-height: 300px;
+        width: inherit;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
 
         @include md {
           background-position: right;
+          height: 80%;
+        }
+
+        @include md {
+          background-position: right;
+          height: 85%;
         }
       }
     }
 
     .highlight-sentence-container{
       flex: 1;
-      font-size: calc(1.0rem + 1.0vw);
+      font-size: calc(1.0rem + 1.8vw);
       font-weight: 300;
       letter-spacing: 2px;
       margin-top: 15px;
@@ -780,129 +538,51 @@ export default {
     .main-container{
       background: none;
 
-      .ground{
-        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-ground.svg);
-        bottom: 0;
-        height: 300px;
-        left: 0;
-        right: 0;
-        background-size: contain;
-        background-position-y: bottom;
-      }
-
-      .back-mountains{
-        display: none;
-      }
-
-      .right-rock{
-        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-right-rock.svg);
-        bottom: 0;
-        top: calc(#{$header-height} + 5px);
-        right: 0;
-        left: 0;
-        background-position-x: right;
-        background-position-y: bottom;
-        z-index: 3;
-      }
-
-      .right-rock-shade{
-        display: none;
-      }
-
-      .hole-1{
-        display: none;
-      }
-
-      .hole-2{
-        display: none;
-      }
-
-      .left-rock{
-        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-left-rock.svg);
-        bottom: 80px;
-        left: 0;
-        height: 75%;
-        width: 60%;
-        background-position-x: left;
-        background-position-y: bottom;
-      }
-
-      .bottom-main-rock{
-        display: none;
-      }
-
-      .bottom-center-rock-1{
-        display: none;
-      }
-
-      .bottom-center-rock-2{
-        display: none;
-      }
-
-      .clouds{
-        display: none;
-      }
-
- 
       .hero-container {
-        margin-top: 150px !important;
+        margin-top: 5% !important;
+        opacity: 1 !important;
 
-        .hero{
-          opacity: 1 !important;
+        .avatar{
+          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-avatar.svg);
+          background-size: contain;
+          background-repeat: no-repeat;
+          border: 0px;
+        }
 
-          .avatar{
-            background-image: url(../assets/img/home/workFlowModes/sketch/sketch-avatar.svg);
-            background-size: contain;
-            background-repeat: no-repeat;
-            border: 0px;
-          }
+        .hero-title{
+          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-title.svg);
+          height: 80px;
+          width: 30vw;
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          margin: 0;
+          border: none;
 
-          .hero-title{
-            background-image: url(../assets/img/home/workFlowModes/sketch/sketch-title.svg);
-            height: 80px;
-            width: 30vw;
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-
-            h1{
-              display: none;
-            }
+          h1{
+            display: none;
           }
           
-          .hero-subtitle{
-            h2{
-              display: none;
-            }
-          }
-
-          .work-flow-button{
-            background-color: transparent !important;
-            color: transparent !important;
-            border: none;
-            background-image: url(../assets/img/home/workFlowModes/sketch/sketch-button.svg);
-            background-size: contain;
-            background-repeat: no-repeat;
-            background-position: center;
-            height: 60px;
-            transition: none;
-
-              &:active{
-                box-shadow: none !important;
-              }
-          }
         }
-      }
-
-      .arrow-down{
-        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-arrow-down.svg);
         
-        img{
+        .hero-subtitle{
           display: none;
         }
 
-        &:hover {
-          bottom: 30px;
+        .work-flow-button{
+          background-color: transparent !important;
+          color: transparent !important;
+          border: none;
+          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-button.svg);
+          background-size: contain;
+          background-repeat: no-repeat;
+          background-position: center;
+          height: 60px;
+          transition: none;
+
+          &:active{
+            box-shadow: none !important;
+          }
         }
       }
     }
@@ -942,122 +622,45 @@ export default {
     .main-container{
       background: $white;
 
-      .ground{
-        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-ground.svg);
-        bottom: 0;
-        height: 300px;
-        left: 0;
-        right: 0;
-      }
-
-      .back-mountains{
-        display: none;
-      }
-
-      .right-rock{
-        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-right-rock.svg);
-        bottom: 0;
-        top: calc(#{$header-height} + 5px);
-        right: 0;
-        left: 0;
-        background-position-x: right;
-        background-position-y: bottom;
-        z-index: 3;
-      }
-
-      .right-rock-shade{
-        display: none;
-      }
-
-      .hole-1{
-        display: none;
-      }
-
-      .hole-2{
-        display: none;
-      }
-
-      .left-rock{
-        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-left-rock.svg);
-        bottom: 0;
-        left: 0;
-        height: 75%;
-        width: 60%;
-        background-position-x: left;
-        background-position-y: bottom;
-      }
-
-      .bottom-main-rock{
-        display: none;
-      }
-
-      .bottom-center-rock-1{
-        display: none;
-      }
-
-      .bottom-center-rock-2{
-        display: none;
-      }
-
-      .clouds{
-        display: none;
-      }
-
       .hero-container {
         margin-top: 50px !important;
+        opacity: 1 !important;
 
-        .hero{
-          opacity: 1 !important;
-
-          .avatar{
-            background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-avatar.svg);
-            border: 0px;
-            background-size: contain;
-            background-repeat: no-repeat;
-          }
-
-          .hero-title{
-            min-height: 20px;
-          
-            h1{
-              font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
-              font-weight: 500;
-              border: 0px;
-              padding-right: 0px;
-              margin-right: 10px;
-            }
-          }
-          
-          .hero-subtitle{
-            h2{
-              letter-spacing: 1px;
-            }
-          }
-
-          .work-flow-button{
-            background: $white !important;
-            border: 1px solid $dark-grey-l;
-            color: $dark-grey !important;
-            border-radius: 5px;
-            z-index: 6;
-
-            &:active{
-              box-shadow: none !important;
-            }
-          }
+        .avatar{
+          background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-avatar.svg);
+          border: 0px;
+          background-size: contain;
+          background-repeat: no-repeat;
         }
-      }
 
-      .arrow-down{
-        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-arrow-down.svg);
-        filter: $filter-light-grey;
+        .hero-title{
+          min-height: 20px;
         
-        img{
-          display: none;
+          h1{
+            font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+            font-weight: 500;
+            border: 0px;
+            padding-right: 0px;
+            margin-right: 10px;
+          }
+        }
+        
+        .hero-subtitle{
+          h2{
+            letter-spacing: 1px;
+          }
         }
 
-        &:hover {
-          bottom: 30px;
+        .work-flow-button{
+          background: $white !important;
+          border: 1px solid $dark-grey-l;
+          color: $dark-grey !important;
+          border-radius: 5px;
+          z-index: 6;
+
+          &:active{
+            box-shadow: none !important;
+          }
         }
       }
     }

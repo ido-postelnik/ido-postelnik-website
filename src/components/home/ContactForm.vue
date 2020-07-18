@@ -2,7 +2,7 @@
   <div class="contact-form flex column layout-align-start-center m-auto" :class="{
       'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value}">
-    <div class="flex row m-b-5">
+    <div class="flex row m-b-10 m-l-5">
       <img src="@/assets/icons/chat.svg" alt="chat" class="contact-icon m-r-5">
       <p class="contact-form-title">Contact</p>
     </div>
@@ -105,7 +105,8 @@ export default {
     .contact-form-input{
       width: 95%;
       border: 1px solid $light-grey;
-      padding: 5px;
+      border-radius: 3px;
+      padding: 6px;
     }
 
     .contact-form-textarea{

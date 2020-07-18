@@ -29,8 +29,7 @@ export default {
       'isSideBarVisibile'
     ]),
     pageImageStyle () {
-      // let retVal = 'backgroundImage: url(' + require('../assets/img/pages/' + this.page + '-home.svg') + ')';
-      let retVal = 'backgroundImage: url(' + require('../assets/img/pages/' + this.page + '.svg') + ')';
+      let retVal = 'backgroundImage: url(' + require('../assets/img/pages/' + this.page + '.png') + ')';
 
       return retVal;
     }

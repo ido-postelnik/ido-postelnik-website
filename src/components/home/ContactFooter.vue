@@ -1,10 +1,10 @@
 <template>
-  <footer class="flex row layout-align-center-space-around p-y-15" :class="{
+  <footer class="flex row layout-align-center-space-around" :class="{
       'sketch-mode': activeWorkFlowMode === workFlowModes.SKETCH.value,
       'wireframe-mode': activeWorkFlowMode === workFlowModes.WIREFRAME.value}">
     
     <!-- My details -->
-    <div class="footer-section flex column layout-align-center-center p-y-15">
+    <div class="footer-section flex column layout-align-center-center p-y-30">
       <div class="m-auto">
         <div class="flex row m-b-10">
           <div class="footer-icon-container m-r-10">
@@ -28,7 +28,7 @@
     </div>
 
     <!-- Social -->
-    <div class="footer-section social flex column layout-align-center-center p-y-15">
+    <div class="footer-section social flex column layout-align-center-center p-y-30">
       <p class="m-b-15 social-title">Find me on</p>
       <div class="flex row layout-align-center-center">
         <a href="https://www.linkedin.com/in/ido-postelnik/" target="_blank" class="footer-icon-container m-r-10">
@@ -47,7 +47,7 @@
     </div>
 
     <!-- Contact form -->
-    <div class="footer-section p-y-15">
+    <div class="footer-section p-y-30">
       <contact-form></contact-form>
     </div>
   </footer>
@@ -84,16 +84,16 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/_mixins.scss";
   footer{
-    height: 300px;
     background: rgb(73,121,127);
-    background: linear-gradient(180deg, #546e7a 0%, #455a64 100%);
+    background: linear-gradient(180deg, #546e7a 0%, $dark-grey 100%);
     color: $white;
     text-align: center;
-    height: auto;
     flex-wrap: wrap;
+    padding: 50px 0;
 
     @include md {
       flex-wrap: nowrap;
+      padding: 30px 0;
     }
 
     .footer-section{
@@ -106,7 +106,6 @@ export default {
         border-bottom: 1px solid #789396;
 
         @include md {
-
           width: 100%;
           border: 0;
         }

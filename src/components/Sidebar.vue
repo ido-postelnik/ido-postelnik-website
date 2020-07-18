@@ -37,7 +37,7 @@ export default {
   top: $header-height;
   bottom: 0;
   width: $sidebar-width-md;
-  background-color: #43595e;
+  background-color: $dark-grey;
   border-right: 1px solid $beige;
   z-index: 0;
 
@@ -65,7 +65,7 @@ export default {
     }
 
     &.router-link-exact-active {
-      background: $gold;
+      background: $gold-d;
       color: $white;
 
       .sidebar-icon{

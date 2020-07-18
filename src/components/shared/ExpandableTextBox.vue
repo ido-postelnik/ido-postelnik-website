@@ -125,9 +125,9 @@ export default {
       }
 
       h2{
-        font-size: calc(1.0rem + 0.6vw);
-        font-weight: 900;
-        color: $dark-grey;
+        font-size: calc(1.0rem + 0.3vw);
+        font-weight: 500;
+        color: $dark-grey-d;
         white-space: normal;
       }
     }
