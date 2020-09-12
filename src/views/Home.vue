@@ -18,11 +18,15 @@
         <div class="avatar m-auto" />
         <div class="hero-title m-t-5"><h1>Ido Postelnik</h1></div>
         <div class="hero-subtitle m-x-15"><h2 >UX/UI driven Front-End Engineer</h2></div>
-        <button class="btn work-flow-button m-t-5" :class="{active: shouldShowWorkFlowModesBox === true}" @click="toggleWorkFlowModesBox">
-          <span v-bind:key="shouldShowWorkFlowModesBox" >{{ shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF }}</span>
-        </button>
-
-          <!-- Work flow box -->
+        
+        <Button 
+          class="m-t-5" 
+          :text="shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF" 
+          :onButtonClick="toggleWorkFlowModesBox" 
+          :isActive="shouldShowWorkFlowModesBox === true"
+        />
+        
+        <!-- Work flow box -->
         <div class="work-flow-box-container flex column layout-align-center-center m-t-15" :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
           <div class="work-flow-box-header flex row layout-align-center-center">
             <p>Walk through the steps to see the work progress</p>
@@ -45,7 +49,7 @@
       </div>
     </div>
 
-    <div class="main-bg triangle"/>
+    <div class="main-bg triangle" v-if="activeWorkFlowMode === WORK_FLOW_MODES.PRODUCTION.value || activeWorkFlowMode === WORK_FLOW_MODES.CODE.value"/>
 
     <!-- Pages cards -->
     <div class="pages-cards flex row layout-align-center-space-evenly">
@@ -87,6 +91,7 @@ import WorkFlowMode from "@/components/home/WorkFlowMode.vue";
 import ContactFooter from "@/components/home/ContactFooter.vue";
 import CopyRight from "@/components/CopyRight.vue";
 import Loader from '@/components/shared/Loader.vue'
+import Button from '@/components/shared/Button.vue'
 
 // Store
 import { mapState, mapMutations  } from 'vuex';
@@ -112,7 +117,8 @@ export default {
     PageCard,
     ContactFooter,
     CopyRight,
-    Loader
+    Loader,
+    Button,
   },
   mounted() {
     window.addEventListener("scroll", this.onScroll);
@@ -298,7 +304,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
     &.triangle{
       clip-path: polygon(0 0, 0 100%, 100% 0);
-      height: 10vh;
+      height: 8vh;
       width: 100%;
       margin-top: -1px;
     }

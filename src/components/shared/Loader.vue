@@ -96,7 +96,4 @@ export default {
     transform: translate(24px, 0);
   }
 }
-
-
-
 </style>

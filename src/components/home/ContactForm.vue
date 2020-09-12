@@ -12,7 +12,7 @@
       <input type="email" name="email" v-model="email" placeholder="Email" required class="contact-form-input no-outline  m-b-10">
       <textarea name="message" v-model="message" placeholder="Message" required class="contact-form-input contact-form-textarea no-outline  m-b-5"></textarea>
       <div>
-        <button type="submit" class="btn">Send</button>
+        <Button :text="'Send'" type="submit"/>
         <loader :scale="0.7" v-if="isBusy === true"></loader>
       </div>
 
@@ -28,6 +28,7 @@
 import { mapState } from 'vuex';
 
 import Loader from '../shared/Loader.vue'
+import Button from '../shared/Button.vue'
 
 import { WORK_FLOW_MODES } from "@/utils/constants";
 import * as $repoManager from '../../services/repoManager';
@@ -45,7 +46,8 @@ export default {
     }
   },
   components: {
-    Loader
+    Loader,
+    Button,
   },
   created() {
   },

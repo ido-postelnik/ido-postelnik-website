@@ -138,7 +138,6 @@ export default {
         } 
       }
 
-
     .expandable-section{
       display: flex;
       flex-direction: column-reverse;
