@@ -47,12 +47,12 @@
 
   &:hover{
     background: $gold;
-    transition: all 0.1s ease;
+    transition: all 0.08s ease;
   }
 
   &:active{
     box-shadow: 2px 2px 5px 0px rgba($gold, 0.1);
-    background: $gold-d;
+    background: $gold;
   }
 
   &:disabled{

@@ -12,7 +12,7 @@
     <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/47/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
     <!-- Main container -->
-    <div class="main-container flex column layout-align-center-start">
+    <div class="main-container flex column layout-align-center-start main-bg">
       <!-- Hero container -->
       <div class="hero-container flex column layout-align-center-start text-center ">
         <div class="avatar m-auto" />
@@ -40,21 +40,12 @@
               :class="{'m-r-10': index !== (workFlowModesSize - 1)}">
             </work-flow-mode>
           </div>
-          
         </div>
 
       </div>
     </div>
 
-    <svg viewBox="0 0 10 10" preserveAspectRatio="none" id="triangle" v-if="activeWorkFlowMode === WORK_FLOW_MODES.PRODUCTION.value || activeWorkFlowMode === WORK_FLOW_MODES.CODE.value">
-      <defs>
-        <linearGradient id="gradient">
-          <stop offset="5%" stop-color="#00D6C2" />
-          <stop offset="95%" stop-color="#1DE9B6" />
-        </linearGradient>
-      </defs>
-      <polygon fill="url(#gradient)" points="0 0 10 0 0 10" />
-    </svg>
+    <div class="main-bg triangle"/>
 
     <!-- Pages cards -->
     <div class="pages-cards flex row layout-align-center-space-evenly">
@@ -235,6 +226,19 @@ export default {
 <style scoped lang="scss">
 @import "@/styles/_mixins.scss";
 
+// Vars
+$avatar-size: calc(150px + 1.8vw);
+$avatar-size-md: calc(140px + 1.8vw);
+$avatar-size-lg: calc(150px + 1.8vw);
+$hero-title: calc(1.5rem + 2.8vw);
+$hero-title-md: calc(1.5rem + 1.6vw);
+$hero-subtitle: calc(1.0rem + 1.0vw);
+$hero-subtitle-md: calc(1.2rem + 0.3vw);
+$work-flow-button-height: 34px;
+$main-container-height: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height});
+$main-container-height-md: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height});
+$main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 300px + #{$header-height} + #{$header-height-addon});
+
 .home {
   background: $white;
 
@@ -275,23 +279,32 @@ export default {
     }
   }
 
-  .main-container {
-    // Vars
-    $avatar-size: calc(150px + 1.8vw);
-    $avatar-size-md: calc(140px + 1.8vw);
-    $avatar-size-lg: calc(150px + 1.8vw);
-    $hero-title: calc(1.5rem + 2.8vw);
-    $hero-title-md: calc(1.5rem + 1.6vw);
-    $hero-subtitle: calc(1.0rem + 1.0vw);
-    $hero-subtitle-md: calc(1.2rem + 0.3vw);
-    $work-flow-button-height: 34px;
-    $main-container-height: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height});
-    $main-container-height-md: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height});
-    $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 300px + #{$header-height} + #{$header-height-addon});
-    //
-
-    // padding-top: $header-height + $header-height-addon;
+  .main-bg {
     background: linear-gradient(90deg, #00D6C2 0%, #1DE9B6 100%);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    &.triangle{
+      clip-path: polygon(0 0, 0 100%, 100% 0);
+      height: 10vh;
+      width: 100%;
+      margin-top: -1px;
+    }
+  }
+
+  .main-container {
     padding: 160px 0 70px;
     height: $main-container-height-lg;
     max-height: 500px;
@@ -330,7 +343,7 @@ export default {
         border-bottom: 1px solid $dark-grey-l;
         padding: 0px 10px;
         border-top-right-radius: 2px;
-        color: $dark-grey;
+        color: $dark-grey-d;
 
         @include md {
           font-size: $hero-title-md;
@@ -368,11 +381,6 @@ export default {
         }
       }
     }
-  }
-
-  #triangle {
-    width: 100%;
-    height: 50px;
   }
 
   .work-flow-box-container {
@@ -694,18 +702,12 @@ export default {
       left: 0;
     }
 
-    .work-flow-box {
+    .work-flow-box-container {
       &.on-scroll {
         left: calc(62.5% - 305px);
         transition: left 0.25s ease;
       }
     }
-  }
-
-  .hide{
-    visibility: hidden;
-    height: 0;
-    width: 0;
   }
 }
 </style>
