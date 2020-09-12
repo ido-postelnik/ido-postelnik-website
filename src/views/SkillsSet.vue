@@ -159,7 +159,11 @@ const SKILLS_SET = [
       {
         title: 'GraphQL',
         imagePath: require('@/assets/img/skills/frontend/graphql.png')
-      }
+      },
+      {
+        title: 'Jest',
+        imagePath: require('@/assets/img/skills/frontend/jest.png')
+      },
     ]
   },
   {

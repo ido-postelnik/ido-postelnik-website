@@ -20,7 +20,7 @@
         <div class="hero-subtitle m-x-15"><h2 >UX/UI driven Front-End Engineer</h2></div>
         
         <Button 
-          class="m-t-5" 
+          class="work-flow-button m-t-5" 
           :text="shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF" 
           :onButtonClick="toggleWorkFlowModesBox" 
           :isActive="shouldShowWorkFlowModesBox === true"

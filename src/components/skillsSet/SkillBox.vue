@@ -69,7 +69,7 @@ export default {
       margin-bottom: 5px;
 
       @include md {
-        font-size: calc(0.8rem + 0.3vw);
+        font-size: calc(0.7rem + 0.3vw);
         margin-bottom: 10px;
       }
     }
