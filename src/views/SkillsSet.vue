@@ -188,6 +188,10 @@ const SKILLS_SET = [
       {
         title: 'MySQL',
         imagePath: require('@/assets/img/skills/backend/mysql.png')
+      },
+      {
+        title: 'Firebase',
+        imagePath: require('@/assets/img/skills/backend/firebase.png')
       }
     ]
   },
