@@ -2,16 +2,21 @@
   <div class="page-not-found height-100 flex column layout-align-center-center">
     <img src="../assets/img/other/no-result-found.png" alt="no-result-found">
     <h1 class="m-t-10">Oh, snap! Page not found :/</h1>
-    <button class="btn m-t-10" @click="goToHome">Go to home page</button>
+    <Button class="btn m-t-10" :onButtonClick="goToHome" :text="'Go to home page'" />
     
   </div>
 </template>
 
 <script>
+import Button from '@/components/shared/Button.vue';
+
 export default {
   name: 'PageNotFound',
   data: function () {
     return {};
+  },
+  components: {
+    Button,
   },
   methods: {
     goToHome: function () {

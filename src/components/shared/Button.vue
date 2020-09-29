@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" @click="onButtonClick">
+  <button class="btn" :class="{'btn-animated': mode === 'animated'}" @click="onButtonClick">
     <span class="btn-static" >{{text}}</span>
     <div class="btn-dynamic" :class="{active: isActive === true}">
       <span class="btn-dynamic-inner">{{text}}</span>
@@ -24,9 +24,9 @@ export default {
       type: Boolean,
       default: null
     },
-    typee: {
+    mode: {
       type: String,
-      default: null
+      default: 'animated'
     }
   },
   data: function () {
@@ -42,7 +42,11 @@ export default {
 
 <style scoped lang="scss">
 // Button styles and animation stuff
-.btn {
+.btn{
+  font-size: 16px;
+}
+
+.btn-animated {
   padding: 5px 40px;
   position: relative;
   border-radius: 20px;
@@ -54,7 +58,6 @@ export default {
   cursor: pointer;
   outline: none;
   font-size: 16px;
-  
   
   .btn-dynamic {
     background-color: $white;

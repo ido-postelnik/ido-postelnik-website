@@ -24,8 +24,9 @@
           :text="shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF" 
           :onButtonClick="toggleWorkFlowModesBox" 
           :isActive="shouldShowWorkFlowModesBox === true"
+          :mode="activeWorkFlowMode === WORK_FLOW_MODES.SKETCH.value ? 'basic' : 'animated'"
         />
-        
+
         <!-- Work flow box -->
         <div class="work-flow-box-container flex column layout-align-center-center m-t-15" :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
           <div class="work-flow-box-header flex row layout-align-center-center">
@@ -49,7 +50,7 @@
       </div>
     </div>
 
-    <div class="main-bg triangle" v-if="activeWorkFlowMode === WORK_FLOW_MODES.PRODUCTION.value || activeWorkFlowMode === WORK_FLOW_MODES.CODE.value"/>
+    <!-- <div class="main-bg triangle" v-if="activeWorkFlowMode === WORK_FLOW_MODES.PRODUCTION.value || activeWorkFlowMode === WORK_FLOW_MODES.CODE.value"/> -->
 
     <!-- Pages cards -->
     <div class="pages-cards flex row layout-align-center-space-evenly">
@@ -90,8 +91,8 @@ import PageCard from "@/components/home/PageCard.vue";
 import WorkFlowMode from "@/components/home/WorkFlowMode.vue";
 import ContactFooter from "@/components/home/ContactFooter.vue";
 import CopyRight from "@/components/CopyRight.vue";
-import Loader from '@/components/shared/Loader.vue'
-import Button from '@/components/shared/Button.vue'
+import Loader from '@/components/shared/Loader.vue';
+import Button from '@/components/shared/Button.vue';
 
 // Store
 import { mapState, mapMutations  } from 'vuex';
@@ -593,7 +594,10 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
           background-repeat: no-repeat;
           background-position: center;
           height: 60px;
+          width: 150px;
           transition: none;
+          outline: none;
+          cursor: pointer;
 
           &:active{
             box-shadow: none !important;

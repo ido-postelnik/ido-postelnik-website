@@ -164,6 +164,10 @@ const SKILLS_SET = [
         title: 'Jest',
         imagePath: require('@/assets/img/skills/frontend/jest.png')
       },
+      {
+        title: 'Puppeteer',
+        imagePath: require('@/assets/img/skills/frontend/puppeteer.png')
+      },
     ]
   },
   {
