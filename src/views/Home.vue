@@ -11,46 +11,50 @@
     <!-- JSfiddle iframe -->
     <iframe class="jsfiddle-iframe" src="//jsfiddle.net/idop/h27dzkbu/47/embedded/js,html,css/dark/" allowfullscreen="allowfullscreen" allowpaymentrequest frameborder="0"></iframe>
 
+    <div 
+      class="top-bg" 
+      :style="setTopBgStyle()" 
+      v-if="activeWorkFlowMode !== WORK_FLOW_MODES.SKETCH.value"
+      :class="{'top-bg-wireframe': activeWorkFlowMode === WORK_FLOW_MODES.WIREFRAME.value === true}"
+    />
+
     <!-- Main container -->
-    <div class="main-container flex column layout-align-center-start main-bg">
-      <!-- Hero container -->
-      <div class="hero-container flex column layout-align-center-start text-center ">
-        <div class="avatar m-auto" />
-        <div class="hero-title m-t-5"><h1>Ido Postelnik</h1></div>
-        <div class="hero-subtitle m-x-15"><h2 >UX/UI driven Front-End Engineer</h2></div>
-        
-        <Button 
-          class="work-flow-button m-t-5" 
-          :text="shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF" 
-          :onButtonClick="toggleWorkFlowModesBox" 
-          :isActive="shouldShowWorkFlowModesBox === true"
-          :mode="activeWorkFlowMode === WORK_FLOW_MODES.SKETCH.value ? 'basic' : 'animated'"
-        />
+    <div 
+      class="main-container flex column layout-align-center-start text-center" 
+      :style="activeWorkFlowMode !== WORK_FLOW_MODES.SKETCH.value ? setMainContainerStyle : ''"
+    >
+      <div class="avatar m-auto" />
+      <div class="hero-title m-t-5"><h1>Ido Postelnik</h1></div>
+      <div class="hero-subtitle m-x-15"><h2 >UX/UI driven Front-End Engineer</h2></div>
+      
+      <Button 
+        class="work-flow-button m-t-5" 
+        :text="shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF" 
+        :onButtonClick="toggleWorkFlowModesBox" 
+        :isActive="shouldShowWorkFlowModesBox === true"
+        :mode="activeWorkFlowMode === WORK_FLOW_MODES.SKETCH.value ? 'basic' : 'animated'"
+      />
 
-        <!-- Work flow box -->
-        <div class="work-flow-box-container flex column layout-align-center-center m-t-15" :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
-          <div class="work-flow-box-header flex row layout-align-center-center">
-            <p>Walk through the steps to see the work progress</p>
-            <img src="@/assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
-          </div>
-          <div class="work-flow-box-content flex layout-align-center-center">
-            <work-flow-mode
-              v-for="(mode, key, index) in WORK_FLOW_MODES"
-              :key="mode.label"
-              :index="index + 1"
-              :label="mode.label"
-              :value="mode.value"
-              :isLast="index === workFlowModesSize - 1"
-              @click.native="switchWorkFlowMode(key)"
-              :class="{'m-r-10': index !== (workFlowModesSize - 1)}">
-            </work-flow-mode>
-          </div>
+      <!-- Work flow box -->
+      <div class="work-flow-box-container flex column layout-align-center-center m-t-15" :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
+        <div class="work-flow-box-header flex row layout-align-center-center">
+          <p>Walk through the steps to see my working progress</p>
+          <img src="@/assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
         </div>
-
+        <div class="work-flow-box-content flex layout-align-center-center">
+          <work-flow-mode
+            v-for="(mode, key, index) in WORK_FLOW_MODES"
+            :key="mode.label"
+            :index="index + 1"
+            :label="mode.label"
+            :value="mode.value"
+            :isLast="index === workFlowModesSize - 1"
+            @click.native="switchWorkFlowMode(key)"
+            :class="{'m-r-10': index !== (workFlowModesSize - 1)}">
+          </work-flow-mode>
+        </div>
       </div>
     </div>
-
-    <!-- <div class="main-bg triangle" v-if="activeWorkFlowMode === WORK_FLOW_MODES.PRODUCTION.value || activeWorkFlowMode === WORK_FLOW_MODES.CODE.value"/> -->
 
     <!-- Pages cards -->
     <div class="pages-cards flex row layout-align-center-space-evenly">
@@ -83,7 +87,7 @@ import {_, NProgress} from "@/utils/utils";
 
 const WORK_FLOW_BUTTON = {
   OFF: "Check it out!",
-  ON: "Back to normal"
+  ON: "Got it, Cool!"
 };
 
 // @ is an alias to /src
@@ -220,12 +224,44 @@ export default {
         this.userHasScrolled = true;
         this.shouldShowWorkFlowModesAtBottom = true;
       }
-    }
+    },
+    setTopBgStyle() {
+      let style = '';
+      const width_px = 1920;
+      const windowHeight = window.innerHeight;
+      const height_px = Math.round(windowHeight * 0.45); 
+      const amplitude = 40;
+      const offset = height_px - amplitude;
+      const frequency = 1.3;
+      const units = frequency * width_px / 100;
+
+      let clipPathString = 'clipPath: polygon(100% 0%, 0% 0% ';
+      let val = 0;
+      for (let i=0; i <= 100; i++){
+        val = offset + amplitude * Math.cos(i/units);
+        val = val.toFixed(3) / height_px * 100;
+        clipPathString = `${clipPathString}, ${i}% ${val}%`;
+      }
+      clipPathString = `${clipPathString})`;
+
+      style = `height: ${height_px}px; ${clipPathString}`;
+      return style;
+    },
+
   },
   computed: {
     ...mapState([
       'activeWorkFlowMode'
-    ])
+    ]),
+    setMainContainerStyle() {
+      let style = '';
+      const windowHeight = window.innerHeight;
+      const marginTop_px = Math.round(windowHeight * 0.28); 
+      
+      style = `marginTop: ${marginTop_px}px`;
+
+      return style;
+    }
   }
 };
 </script>
@@ -236,15 +272,13 @@ export default {
 // Vars
 $avatar-size: calc(150px + 1.8vw);
 $avatar-size-md: calc(140px + 1.8vw);
-$avatar-size-lg: calc(150px + 1.8vw);
+$avatar-size-lg: calc(170px + 1.8vw);
 $hero-title: calc(1.5rem + 2.8vw);
 $hero-title-md: calc(1.5rem + 1.6vw);
 $hero-subtitle: calc(1.0rem + 1.0vw);
 $hero-subtitle-md: calc(1.2rem + 0.3vw);
 $work-flow-button-height: 34px;
-$main-container-height: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height});
-$main-container-height-md: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height});
-$main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 300px + #{$header-height} + #{$header-height-addon});
+$main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 100px + #{$header-height} + #{$header-height-addon});
 
 .home {
   background: $white;
@@ -286,7 +320,11 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     }
   }
 
-  .main-bg {
+  .top-bg {
+    position: absolute;
+    top:0;
+    left: 0;
+    right: 0;
     background: linear-gradient(90deg, #00D6C2 0%, #1DE9B6 100%);
     background-size: 400% 400%;
     animation: gradient 15s ease infinite;
@@ -303,89 +341,84 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
       }
     }
 
-    &.triangle{
-      clip-path: polygon(0 0, 0 100%, 100% 0);
-      height: 8vh;
-      width: 100%;
-      margin-top: -1px;
+    &.top-bg-wireframe{
+      background: $light-grey-l;
     }
   }
 
   .main-container {
-    padding: 160px 0 70px;
     height: $main-container-height-lg;
     max-height: 500px;
+    transition: 0.2s all;
+    z-index: 2;
+    position: relative;
 
     @include lg {
       max-height: none;
     }
 
-    .hero-container {
-      transition: 0.2s all;
+    .avatar {
+      height: $avatar-size;
+      width: $avatar-size;
+      border-radius: 50%;
+      background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
+      background-size: cover;
+      border: $dark-grey 1px solid;
 
-      .avatar {
-        height: $avatar-size;
-        width: $avatar-size;
-        border-radius: 50%;
-        background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
-        background-size: cover;
-        border: $dark-grey 1px solid;
-
-        @include md {
-          height: $avatar-size-md;
-          width: $avatar-size-md;
-        }
-
-        @include lg {
-          height: $avatar-size-lg;
-          width:  $avatar-size-lg;
-        }
+      @include md {
+        height: $avatar-size-md;
+        width: $avatar-size-md;
       }
 
-      .hero-title{
-        font-size: $hero-title;
-        font-weight: 100;
-        font-family: $font-title;
-        display: block;
-        border-bottom: 1px solid $dark-grey-l;
-        padding: 0px 10px;
-        border-top-right-radius: 2px;
-        color: $dark-grey-d;
+      @include lg {
+        height: $avatar-size-lg;
+        width:  $avatar-size-lg;
+      }
+    }
 
-        @include md {
-          font-size: $hero-title-md;
-          line-height: $hero-title-md;
-          background-color: transparent;
-          padding: 0;
-          border-top-right-radius: 0;
-        }
+    .hero-title{
+      font-size: $hero-title;
+      font-weight: 100;
+      font-family: $font-title;
+      display: block;
+      border-bottom: 1px solid $dark-grey-l;
+      padding: 0px 10px;
+      border-top-right-radius: 2px;
+      color: $dark-grey-d;
+
+      @include md {
+        font-size: $hero-title-md;
+        line-height: $hero-title-md;
+        background-color: transparent;
+        padding: 0;
+        border-top-right-radius: 0;
+      }
+    }
+
+    .hero-subtitle{
+      font-size: $hero-subtitle;
+      font-weight: 300;
+      letter-spacing: 5.2px;
+      display: block;
+      padding: 5px 8px;
+
+      @include md {
+        background-color: transparent;
+        font-size: $hero-subtitle-md;
+      }
+    }
+
+    .work-flow-button {
+      display: none;
+      transition: all 0.2s;
+      height: $work-flow-button-height;
+
+      @include lg {
+        display: inline-block;
       }
 
-      .hero-subtitle{
-        font-size: $hero-subtitle;
-        font-weight: 300;
-        letter-spacing: 5.2px;
-        display: block;
-        padding: 5px 8px;
-
-        @include md {
-          background-color: transparent;
-          font-size: $hero-subtitle-md;
-        }
-      }
-
-      .work-flow-button {
-        display: none;
-        transition: all 0.2s;
-        height: $work-flow-button-height;
-
-        @include lg {
-          display: inline-block;
-        }
-
-        &.active {
-          background-color: $gold;
-        }
+      &.active {
+        background-color: $gold;
       }
     }
   }
@@ -398,6 +431,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     z-index: 40;
     background: $white;
     transition: left 0.25s ease; // in use when in "code-mode"
+    margin-top: -35px;
 
     .work-flow-box-header {
       position: relative;
@@ -419,18 +453,18 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     }
 
     &.active {
-      position: relative;
       display: block;
-      animation: fade-in 0.2s;
+      position: relative;
+      animation: work-flow-box-fade-in 0.2s;
 
-      @keyframes fade-in {
+      @keyframes work-flow-box-fade-in {
         from {
           opacity: 0;
-          margin-top: 5px;
+          margin-top: -15px;
         }
         to {
           opacity: 1;
-          margin-top: 15px;
+          margin-top: -35px;
         }
       }
     }
@@ -440,10 +474,11 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
       top: calc(100vh - 135px);
       left: calc(50% - 305px);
       animation: move 0.6s ease-out;
+      margin-top: 0px;
 
       @keyframes move {
         from {
-          top: calc(100vh - 400px);
+          top: calc(100vh - 380px);
         }
         to {
           top: calc(100vh - 135px);
@@ -454,7 +489,6 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
   .pages-cards{
     flex-wrap: wrap;
-    background-color: $white;
     padding: 10px 10px;
 
     @include md {
@@ -470,8 +504,8 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     }
 
     @include xl {
-      padding: 100px 80px;
-      height: 450px;
+      padding: 30px 80px 100px;
+      height: 380px;
     }
   }
 
@@ -505,8 +539,8 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
       .highlight-image{
         background-image: url(../assets/img/home/insparation-image.png);
-        height: 65%;
-        max-height: 300px;
+        height: 60%;
+        max-height: 280px;
         width: inherit;
         background-size: contain;
         background-repeat: no-repeat;
@@ -534,7 +568,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
       align-items: center;
 
       @include md {
-        font-size: calc(1.0rem + 0.6vw);
+        font-size: calc(1.0rem + 0.5vw);
         margin-top: 0;
         align-items: start;
         padding-left: 30px;
@@ -550,58 +584,54 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
   &.sketch-mode{
     background: none;
     background-image: url(../assets/img/home/workFlowModes/sketch/sketch-bg.svg);
+    padding-top: 25vh;
 
     .main-container{
       background: none;
+      opacity: 1 !important;
 
-      .hero-container {
-        margin-top: 5% !important;
-        opacity: 1 !important;
+      .avatar{
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-avatar.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        border: 0px;
+      }
 
-        .avatar{
-          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-avatar.svg);
-          background-size: contain;
-          background-repeat: no-repeat;
-          border: 0px;
-        }
+      .hero-title{
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-title.svg);
+        height: 80px;
+        width: 30vw;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        margin: 0;
+        border: none;
 
-        .hero-title{
-          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-title.svg);
-          height: 80px;
-          width: 30vw;
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          margin: 0;
-          border: none;
-
-          h1{
-            display: none;
-          }
-          
-        }
-        
-        .hero-subtitle{
+        h1{
           display: none;
         }
+      }
+      
+      .hero-subtitle{
+        display: none;
+      }
 
-        .work-flow-button{
-          background-color: transparent !important;
-          color: transparent !important;
-          border: none;
-          background-image: url(../assets/img/home/workFlowModes/sketch/sketch-button.svg);
-          background-size: contain;
-          background-repeat: no-repeat;
-          background-position: center;
-          height: 60px;
-          width: 150px;
-          transition: none;
-          outline: none;
-          cursor: pointer;
+      .work-flow-button{
+        background-color: transparent !important;
+        color: transparent !important;
+        border: none;
+        background-image: url(../assets/img/home/workFlowModes/sketch/sketch-button.svg);
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        height: 60px;
+        width: 150px;
+        transition: none;
+        outline: none;
+        cursor: pointer;
 
-          &:active{
-            box-shadow: none !important;
-          }
+        &:active{
+          box-shadow: none !important;
         }
       }
     }
@@ -636,50 +666,44 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
   // Wireframe mode
   &.wireframe-mode{
-    background-color: $light-grey-l;
 
     .main-container{
-      background: $white;
+      opacity: 1 !important;
 
-      .hero-container {
-        margin-top: 50px !important;
-        opacity: 1 !important;
+      .avatar{
+        background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-avatar.svg);
+        border: 0px;
+        background-size: contain;
+        background-repeat: no-repeat;
+      }
 
-        .avatar{
-          background-image: url(../assets/img/home/workFlowModes/wireframe/wireframe-avatar.svg);
+      .hero-title{
+        min-height: 20px;
+      
+        h1{
+          font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
+          font-weight: 500;
           border: 0px;
-          background-size: contain;
-          background-repeat: no-repeat;
+          padding-right: 0px;
+          margin-right: 10px;
         }
-
-        .hero-title{
-          min-height: 20px;
-        
-          h1{
-            font-family: 'Roboto', 'Avenir', Helvetica, Arial, sans-serif;
-            font-weight: 500;
-            border: 0px;
-            padding-right: 0px;
-            margin-right: 10px;
-          }
+      }
+      
+      .hero-subtitle{
+        h2{
+          letter-spacing: 1px;
         }
-        
-        .hero-subtitle{
-          h2{
-            letter-spacing: 1px;
-          }
-        }
+      }
 
-        .work-flow-button{
-          background: $white !important;
-          border: 1px solid $dark-grey-l;
-          color: $dark-grey !important;
-          border-radius: 5px;
-          z-index: 6;
+      .work-flow-button{
+        background: $white !important;
+        border: 1px solid $dark-grey-l;
+        color: $dark-grey !important;
+        border-radius: 5px;
+        z-index: 6;
 
-          &:active{
-            box-shadow: none !important;
-          }
+        &:active{
+          box-shadow: none !important;
         }
       }
     }
