@@ -1,14 +1,20 @@
 <template>
-  <div class="text-box m-auto p-y-10" :class="{'collapsed': isExpanded === false, 'work-experience-on': workPlace != null}">
-    <div class="flex row layout-align-center-space-between">
+  <div class="text-box m-auto p-y-10" :class="{'collapsed': isExpandedInner === false, 'work-experience-on': workPlace != null}">
+    <div class="flex row layout-align-center-space-between clickable" @click="toggleBox()">
       <!-- Title -->
       <div class="title-section">
-        <h2 @click="toggleBox()" class="clickable">{{ title }}</h2>
+        <h2>{{ title }}</h2>
       </div>
 
       <!-- Expanded icon -->
       <div class="expandable-section">
-        <img src="../../assets/icons/chevron-right.svg" class="chevron clickable" :class="{'chevron-down':isExpanded === false}" alt="chevron" height="12" @click="toggleBox()"/>
+        <img 
+          src="../../assets/icons/chevron-right.svg" 
+          class="chevron"
+          :class="{'chevron-down':isExpandedInner === false}" 
+          alt="chevron" 
+          height="12" 
+        />
       </div>
     </div>
 
@@ -23,7 +29,7 @@
 
     <!-- Content -->
     <transition name="fade">
-      <div v-if="isExpanded === true">
+      <div v-if="isExpandedInner === true">
         <h4 class="m-t-5">{{subtitle}}</h4>
         <div class="m-t-10 m-l-5">
           <p v-for="row in content" :key="row" class="m-b-10">{{ row }}</p>
@@ -65,12 +71,12 @@ export default {
   },
   data: function () {
     return {
-      // isExpanded: true
+      isExpandedInner: this.isExpanded
     }
   },
   methods:{
     toggleBox() {
-      this.isExpanded = !this.isExpanded;
+      this.isExpandedInner = !this.isExpandedInner;
     }
   }
 }
@@ -156,7 +162,6 @@ export default {
 
         &.chevron-down{
           transform: rotate(90deg);
-          
         }
       }
     }
@@ -188,6 +193,5 @@ export default {
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
       opacity: 0;
     }
-
   }
 </style>

@@ -62,7 +62,7 @@
     </div>
 
     <!-- Highlight-area -->
-    <div class="highlight-area text-center flex row layout-align-center-center">
+    <div class="highlight-area text-center flex row layout-align-center-center" :style="setHighLightAreaStyle()" >
       <div class="highlight-image-container flex layout-align-center-end">
         <div class="highlight-image"></div>
       </div>
@@ -239,15 +239,38 @@ export default {
       let val = 0;
       for (let i=0; i <= 100; i++){
         val = offset + amplitude * Math.cos(i/units);
-        val = val.toFixed(3) / height_px * 100;
+        val = (val / height_px * 100).toFixed(2);
+
         clipPathString = `${clipPathString}, ${i}% ${val}%`;
       }
       clipPathString = `${clipPathString})`;
-
       style = `height: ${height_px}px; ${clipPathString}`;
+
       return style;
     },
+    setHighLightAreaStyle() {
+      let style = '';
+      const width_px = 1920;
+      const windowHeight = window.innerHeight;
+      const windowWidth = window.innerWidth;
+      const height_px = Math.round(windowHeight * 0.6); 
+      const amplitude = windowWidth > 500 ? 40 : 20;
+      const offset = height_px - amplitude;
+      const frequency = windowWidth > 500 ? -1.3 : -1;
+      const units = frequency * width_px / 100;
 
+      let clipPathString = 'clipPath: polygon(100% 0%';
+      let val = 0;
+      for (let i=0; i <= 100; i++){
+        val = offset + amplitude * Math.sin(i/units);
+        val = (val / height_px * 100).toFixed(2);
+        clipPathString = `${clipPathString}, ${100 - i}% ${100 - val}%`;
+      }
+      clipPathString = `${clipPathString}, 0% 100%, 100% 100%)`;
+      style = `height: ${height_px + 50}px; paddingTop: 50px; ${clipPathString}`;
+
+      return style;
+    }
   },
   computed: {
     ...mapState([
@@ -270,7 +293,7 @@ export default {
 @import "@/styles/_mixins.scss";
 
 // Vars
-$avatar-size: calc(150px + 1.8vw);
+$avatar-size: calc(185px + 1.8vw);
 $avatar-size-md: calc(140px + 1.8vw);
 $avatar-size-lg: calc(170px + 1.8vw);
 $hero-title: calc(1.5rem + 2.8vw);
@@ -278,6 +301,7 @@ $hero-title-md: calc(1.5rem + 1.6vw);
 $hero-subtitle: calc(1.0rem + 1.0vw);
 $hero-subtitle-md: calc(1.2rem + 0.3vw);
 $work-flow-button-height: 34px;
+$main-container-height-sm: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 30px + #{$header-height} + #{$header-height-addon});
 $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 100px + #{$header-height} + #{$header-height-addon});
 
 .home {
@@ -347,7 +371,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
   }
 
   .main-container {
-    height: $main-container-height-lg;
+    height: $main-container-height-sm;
     max-height: 500px;
     transition: 0.2s all;
     z-index: 2;
@@ -355,6 +379,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
     @include lg {
       max-height: none;
+      height: $main-container-height-lg;
     }
 
     .avatar {
@@ -517,7 +542,6 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     @include md {
       flex-direction: row;
       height: 450px;
-      background: none;
     }
 
     @include lg {

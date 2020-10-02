@@ -27,8 +27,7 @@
 </template>
 
 <script>
-// Store
-import { mapState, mapMutations } from 'vuex';
+import { mapState, mapMutations } from 'vuex'; // Store
 import {_} from '@/utils/utils';
 import { PAGES, WORK_FLOW_MODES, EMAIL, PHONE_NUMBER } from '../utils/constants';
 

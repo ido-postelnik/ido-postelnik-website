@@ -1,6 +1,12 @@
 <template>
   <div class="sidebar">
-    <router-link v-for="page in PAGES" :key="page.value" :to="'/' + page.path" class="sidebar-item p-x-5 p-y-5 clickable flex column layout-align-center-center">
+    <router-link 
+      v-for="page in PAGES" 
+      :key="page.value" 
+      :to="'/' + page.path" 
+      class="sidebar-item p-x-5 p-y-5 clickable flex column layout-align-center-center"
+      v-on:click.native="onLinkClick"
+    >
       <img :src="require('@/assets/icons/' + classObject(page) + '.svg')" :alt="classObject(page)" class="sidebar-icon"/>
       <p class="p-b-5">{{page.label}}</p>
     </router-link>
@@ -9,6 +15,7 @@
 
 <script>
 import {_} from '@/utils/utils';
+import { mapState, mapMutations } from 'vuex';
 import { PAGES } from "../utils/constants";
 
 export default {
@@ -19,11 +26,20 @@ export default {
     };
   },
   methods: {
+    ...mapMutations([
+      'toggleSidebar'
+    ]),
     classObject: function(page) {
       let retVal = _.get(page, "class");
 
       return retVal;
-    }
+    },
+    onLinkClick() {
+      setTimeout(() => {
+        this.toggleSidebar();
+      }, 50);
+      
+    },
   }
 };
 </script>

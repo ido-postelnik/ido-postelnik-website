@@ -50,9 +50,9 @@ export default {
   padding: 5px 40px;
   position: relative;
   border-radius: 20px;
-  border: 1px solid $dark-grey;
+  border: 0px solid $dark-grey;
   color: $white;
-  background-color: $gold;
+  background-color: #1DE9B6 ;
   position: relative;
   overflow: hidden;
   cursor: pointer;
@@ -60,10 +60,27 @@ export default {
   font-size: 16px;
   
   .btn-dynamic {
-    background-color: $white;
-    color: $dark-grey-d;
+    background-color: $green-l;
+    background: linear-gradient(90deg, #00D6C2 0%, #1DE9B6 100%);
+    background-size: 400% 400%;
+    animation: gradient 15s ease infinite;
+    color: $white;
     overflow: hidden;
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
   }
+
+
 
   .btn-dynamic, .btn-dynamic-inner {    
     display: flex;

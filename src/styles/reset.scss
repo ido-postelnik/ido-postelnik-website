@@ -51,7 +51,7 @@ input, textarea{
 
 h1, h2, h3, h4, h5, h6, p, span, input, button, div, a, img{
 	&::selection { 
-		background: $green-l; 
+		background: $gold; 
 		color: $white;
 	}
 }
