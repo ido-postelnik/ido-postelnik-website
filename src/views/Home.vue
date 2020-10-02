@@ -287,6 +287,7 @@ export default {
     }
   }
 };
+
 </script>
 
 <style scoped lang="scss">
@@ -343,6 +344,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
       left: calc(50% - 40px);
     }
   }
+
 
   .top-bg {
     position: absolute;
