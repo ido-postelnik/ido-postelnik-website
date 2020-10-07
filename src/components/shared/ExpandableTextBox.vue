@@ -86,11 +86,9 @@ export default {
 @import "@/styles/_mixins.scss";
 
   .text-box {
-    // background-color: $white;
     text-align: left;
-    width: 80%;
+    width: 90%;
     max-height:1500px; 
-    // box-shadow: 3px 3px 8px 2px rgba(196, 196, 196, 0.5);
     transition: max-height 0.3s ease;
     height:auto;
     white-space: nowrap;
@@ -98,6 +96,7 @@ export default {
     padding-right: 15px;
 
     @include md {
+      width: 80%;
       padding-left: 25px;
       padding-right: 25px;
     }

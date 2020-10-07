@@ -43,19 +43,24 @@ export default {
     height: calc(100vh - #{$header-height});
     position: absolute;
     top: $header-height;
-    left: $sidebar-width-md;
+    left: 40px;
     right: 0;
     background: $light-grey-l;
     background: linear-gradient(0deg, $light-grey-l 0%, $white 100%);
+    opacity: 0.3;
     overflow: hidden;
     transition: left 0.2s ease;
+    z-index: -1;
 
     @include md {
       left: $sidebar-width;
+      opacity: 1;
     }
 
     &.no-sidebar{
       left: 0;
+      z-index: 1;
+      opacity: 1;
 
       @include lg {
         left: $sidebar-width;

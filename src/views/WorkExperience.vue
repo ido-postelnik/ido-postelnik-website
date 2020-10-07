@@ -58,7 +58,7 @@ export default {
             `Developed features for the UI console that presents dashboards, charts and on-boarding processes.`, 
             `Built the backend-UI for the server side.`,
           ],
-          isExpanded: true
+          isExpanded: false
         },
         {
           title: 'Front-End Developer & UX/UI Designer',
@@ -73,7 +73,7 @@ export default {
             `Worked closely with the product team to prototype and define the product.`,
             `Built wireframes, graphical designs and interactive moquaps.`
           ],
-          isExpanded: true
+          isExpanded: false
         }
       ]
     }

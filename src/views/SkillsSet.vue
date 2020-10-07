@@ -21,7 +21,7 @@
             <div class="flex row layout-align-center-start boxes-view-content m-b-10">
               <skill-box 
                 v-for="skill in subject.skills" :key="skill.title" 
-                class="m-b-20 skill-box m-r-15"
+                class="m-b-20 skill-box"
                 :title="skill.title" 
                 :imagePath="skill.imagePath">
               </skill-box>
@@ -541,6 +541,7 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
         
         .boxes-view-content{
           flex-wrap: wrap;
+          gap: 12px;
         }
       }
 
