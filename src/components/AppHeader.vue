@@ -7,7 +7,7 @@
     'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
     
     <div class="left-side flex row layout-align-center-center">
-      <router-link to="/" @click.native="scrollToTop" class="logo cursor-default clickable m-r-10">IP</router-link>
+      <router-link to="/" @click.native="onLogoClick" class="logo cursor-default clickable m-r-10">IP</router-link>
       <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable m-r-15" v-show="isHomeRoute === false" @click="onMenuIconClick">
     </div>
 
@@ -54,8 +54,11 @@ export default {
     ...mapMutations([
       'toggleSidebar'
     ]),
-    scrollToTop() {
-      window.scrollTo(0,0);
+    onLogoClick() {
+      if (this.isHomeRoute) {
+        window.scrollTo(0,0);
+      }
+      this.toggleSidebar('close');
     },
     onMenuIconClick() {
       this.toggleSidebar();

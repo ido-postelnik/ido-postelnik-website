@@ -13,8 +13,22 @@ export default new Vuex.Store({
   getters: {
   },
   mutations: {
-    toggleSidebar(state) {
-      state.isSideBarVisibile = !state.isSideBarVisibile;
+    toggleSidebar(state, action) {
+      if (action != null) {
+        switch (action){
+          case 'open': {
+            state.isSideBarVisibile = true;
+          }
+          case 'close': {
+            state.isSideBarVisibile = false;
+          }
+          default: {
+            state.isSideBarVisibile = false;
+          }
+        }
+      } else {
+        state.isSideBarVisibile = !state.isSideBarVisibile;
+      }
     },
     updateWorkFlowMode(state, newMode) {
       state.activeWorkFlowMode = newMode;
