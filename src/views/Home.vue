@@ -387,6 +387,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
       height: $avatar-size;
       width: $avatar-size;
       border-radius: 50%;
+      background-color: white;
       background-image: url(../assets/img/home/ido-postelnik-profile-image-zoom.jpg);
       background-size: cover;
       border: $dark-grey 1px solid;
