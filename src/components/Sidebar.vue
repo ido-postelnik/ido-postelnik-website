@@ -35,10 +35,13 @@ export default {
       return retVal;
     },
     onLinkClick() {
-      setTimeout(() => {
-        this.toggleSidebar();
-      }, 50);
-      
+      const windowWidth = window.innerWidth;
+
+      if(windowWidth < 768) {
+        setTimeout(() => {
+          this.toggleSidebar();
+        }, 50);
+      }
     },
   }
 };
