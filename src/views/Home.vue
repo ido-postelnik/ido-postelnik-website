@@ -32,7 +32,7 @@
         :text="shouldShowWorkFlowModesBox === true && activeWorkFlowMode !== WORK_FLOW_MODES.PRODUCTION.value ? workFlowButton.ON : workFlowButton.OFF" 
         :onButtonClick="toggleWorkFlowModesBox" 
         :isActive="shouldShowWorkFlowModesBox === true"
-        :mode="activeWorkFlowMode === WORK_FLOW_MODES.SKETCH.value ? 'basic' : 'animated'"
+        :mode="(activeWorkFlowMode === WORK_FLOW_MODES.SKETCH.value || activeWorkFlowMode === WORK_FLOW_MODES.WIREFRAME.value) ? 'basic' : 'animated'"
       />
 
       <!-- Work flow box -->
@@ -303,7 +303,7 @@ $hero-subtitle: calc(1.0rem + 1.0vw);
 $hero-subtitle-md: calc(1.2rem + 0.3vw);
 $work-flow-button-height: 34px;
 $main-container-height-sm: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 30px + #{$header-height} + #{$header-height-addon});
-$main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 100px + #{$header-height} + #{$header-height-addon});
+$main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 50px + #{$header-height} + #{$header-height-addon});
 
 .home {
   background: $white;
@@ -344,7 +344,6 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
       left: calc(50% - 40px);
     }
   }
-
 
   .top-bg {
     position: absolute;

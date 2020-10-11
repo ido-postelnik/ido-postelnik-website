@@ -12,7 +12,11 @@
       <input type="email" name="email" v-model="email" placeholder="Email" required class="contact-form-input no-outline  m-b-10">
       <textarea name="message" v-model="message" placeholder="Message" required class="contact-form-input contact-form-textarea no-outline  m-b-5"></textarea>
       <div>
-        <Button :text="'Send'" type="submit"/>
+        <Button 
+          :text="'Send'" 
+          :mode="(activeWorkFlowMode === workFlowModes.SKETCH.value || activeWorkFlowMode === workFlowModes.WIREFRAME.value) ? 'basic' : 'animated'"
+          type="submit" 
+        />
         <loader :scale="0.7" v-if="isBusy === true"></loader>
       </div>
 

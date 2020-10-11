@@ -1,7 +1,7 @@
 <template>
   <button class="btn" :class="{'btn-animated': mode === 'animated'}" @click="onButtonClick">
-    <span class="btn-static" >{{text}}</span>
-    <div class="btn-dynamic" :class="{active: isActive === true}">
+    <span  class="btn-static" >{{text}}</span>
+    <div v-if="mode === 'animated'" class="btn-dynamic" :class="{active: isActive === true}">
       <span class="btn-dynamic-inner">{{text}}</span>
     </div>
   </button>
@@ -44,6 +44,10 @@ export default {
 // Button styles and animation stuff
 .btn{
   font-size: 16px;
+  min-width: 150px;
+  min-height: 32px;
+  cursor: pointer;
+  outline: none;
 }
 
 .btn-animated {
@@ -79,8 +83,6 @@ export default {
       }
     }
   }
-
-
 
   .btn-dynamic, .btn-dynamic-inner {    
     display: flex;
