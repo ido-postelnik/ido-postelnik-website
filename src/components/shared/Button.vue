@@ -48,6 +48,7 @@ export default {
   min-height: 32px;
   cursor: pointer;
   outline: none;
+  z-index: 1;
 }
 
 .btn-animated {
@@ -57,7 +58,6 @@ export default {
   border: 0px solid $dark-grey;
   color: $white;
   background-color: #1DE9B6 ;
-  position: relative;
   overflow: hidden;
   cursor: pointer;
   outline: none;

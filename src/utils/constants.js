@@ -37,19 +37,23 @@ export const PAGES = {
 export const WORK_FLOW_MODES = {
   SKETCH: {
     label: 'Sketch',
-    value: 'SKETCH'
+    value: 'SKETCH',
+    shortLabel: 'Sketch'
   },
   WIREFRAME: {
     label: 'Wireframe',
-    value: 'WIREFRAME'
+    value: 'WIREFRAME',
+    shortLabel: 'Wireframe'
   },
   CODE: {
     label: 'Development',
-    value: 'CODE'
+    value: 'CODE',
+    shortLabel: 'Develop.'
   },
   PRODUCTION: {
     label: 'Production',
-    value: 'PRODUCTION'
+    value: 'PRODUCTION',
+    shortLabel: 'Prod.'
   }
 };
 

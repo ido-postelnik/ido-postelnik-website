@@ -47,6 +47,7 @@
             :key="mode.label"
             :index="index + 1"
             :label="mode.label"
+            :shortLabel="mode.shortLabel"
             :value="mode.value"
             :isLast="index === workFlowModesSize - 1"
             @click.native="switchWorkFlowMode(key)"
@@ -302,7 +303,7 @@ $hero-title-md: calc(1.5rem + 1.6vw);
 $hero-subtitle: calc(1.0rem + 1.0vw);
 $hero-subtitle-md: calc(1.2rem + 0.3vw);
 $work-flow-button-height: 34px;
-$main-container-height-sm: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 30px + #{$header-height} + #{$header-height-addon});
+$main-container-height-sm: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 105px + #{$header-height} + #{$header-height-addon});
 $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-button-height} + 50px + #{$header-height} + #{$header-height-addon});
 
 .home {
@@ -436,7 +437,6 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     }
 
     .work-flow-button {
-      display: none;
       transition: all 0.2s;
       height: $work-flow-button-height;
 
@@ -453,30 +453,54 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
   .work-flow-box-container {
     display: none;
     border: 1px solid #313638;
-    border-radius: 20px;
-    width: 610px;
+    border-radius: 10px;
+    width: 90%;
     z-index: 40;
     background: $white;
     transition: left 0.25s ease; // in use when in "code-mode"
     margin-top: -35px;
 
+    @include md {
+      width: 610px;
+      border-radius: 20px;
+    }
+
     .work-flow-box-header {
       position: relative;
-      padding: 8px 20px 4px;
+      padding: 8px 50px 8px;
       border-top-left-radius: 20px;
       border-top-right-radius: 20px;
 
+      @include md {
+        padding: 8px 20px 4px;
+      }
+      
+      p{
+        font-size: 0.9rem;
+        line-height: 1.1;
+
+        @include md {
+          font-size: 1rem;
+        }
+      }
+
       .close {
         position: absolute;
-        top: 12px;
-        right: 12px;
-        height: 11px;
+        top: 10px;
+        right: 10px;
+        height: 10px;
         filter: $filter-dark-grey;
+
+        @include lg {
+          height: 11px;
+          right: 12px;
+        }
       }
     }
 
     .work-flow-box-content {
       padding: 0px 15px 3px;
+      flex-wrap: wrap;
     }
 
     &.active {
@@ -498,18 +522,33 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
     &.on-scroll {
       position: fixed;
-      top: calc(100vh - 135px);
-      left: calc(50% - 305px);
+      top: calc(100vh - 110px);
       animation: move 0.6s ease-out;
       margin-top: 0px;
 
       @keyframes move {
         from {
-          top: calc(100vh - 380px);
+          top: calc(100vh - 280px);
         }
         to {
-          top: calc(100vh - 135px);
+          top: calc(100vh - 110px);
         }
+      }
+
+      @include lg {
+        @keyframes move {
+          from {
+            top: calc(100vh - 380px);
+          }
+          to {
+            top: calc(100vh - 135px);
+          }
+        }
+      }
+
+      @include lg {
+        top: calc(100vh - 135px);
+        left: calc(50% - 305px);
       }
     }
   }
@@ -517,11 +556,13 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
   .pages-cards{
     flex-wrap: wrap;
     padding: 10px 10px;
+    margin-top: -20px;
 
     @include md {
       flex-wrap: nowrap;
       padding: 20px 15px;
       height: 250px;
+      margin-top: 0px;
     }
 
     @include lg {
@@ -538,7 +579,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
   .highlight-area {
     height: 540px;
-    background-color: $light-grey-l;
+    background-color: #fbfbfb;
     flex-direction: column-reverse;
 
     @include md {
@@ -611,6 +652,13 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     background: none;
     background-image: url(../assets/img/home/workFlowModes/sketch/sketch-bg.svg);
     padding-top: 25vh;
+    background-size: 300%;
+    background-position: center;
+
+    @include lg {
+      background-size: auto;
+      background-position: center;
+    }
 
     .main-container{
       background: none;
@@ -621,17 +669,23 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
         background-size: contain;
         background-repeat: no-repeat;
         border: 0px;
+        background-color: transparent;
       }
 
       .hero-title{
         background-image: url(../assets/img/home/workFlowModes/sketch/sketch-title.svg);
         height: 80px;
-        width: 30vw;
+        width: 70vw;
         background-size: contain;
         background-repeat: no-repeat;
         background-position: center;
         margin: 0;
         border: none;
+
+        @include lg {
+          height: 80px;
+          width: 30vw;
+        }
 
         h1{
           display: none;
@@ -668,9 +722,10 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
     .highlight-area {
       background: transparent;
+      padding-top: 0 !important;
+      height: 500px !important;
 
       .highlight-image-container{
-
         .highlight-image{
           background-image: url(../assets/img/home/workFlowModes/sketch/sketch-highlight-image.svg);
         }
@@ -682,6 +737,11 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
         background-repeat: no-repeat;
         background-size: contain;
         background-position: left;
+        width: 90%;
+
+        @include lg {
+          width: auto;
+        }
 
         span{
           display: none;
@@ -755,17 +815,37 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
   // Code mode
   &.code-mode{
-    margin-left: 25%;
+    margin-left: 0%;
     transition: all 0.2s ease;
+    position: absolute;
+    top: 220px;
+    
+    @include lg {
+      margin-left: 25%;
+      position: static;
+      top: 0px;
+    }
 
     .jsfiddle-iframe{
       left: 0;
+      width: 100%;
+      height: 400px;
+
+      @include lg {
+        left: 0;
+        width: 25%;
+        height: 100%;
+      }
     }
 
     .work-flow-box-container {
       &.on-scroll {
-        left: calc(62.5% - 305px);
+        // left: 0;
         transition: left 0.25s ease;
+
+        @include lg {
+          left: calc(62.5% - 305px);
+        }
       }
     }
   }
