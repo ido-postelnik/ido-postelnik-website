@@ -7,7 +7,9 @@
     'code-mode': activeWorkFlowMode === workFlowModes.CODE.value}">
     
     <div class="left-side flex row layout-align-center-center">
-      <router-link to="/" @click.native="onLogoClick" class="logo cursor-default clickable m-r-10">IP</router-link>
+      <router-link to="/" @click.native="onLogoClick" class="logo cursor-default clickable m-r-10">
+        <img src="@/assets/img/logo/logo.svg" alt="logo" />
+      </router-link>
       <img src="@/assets/icons/menu.svg" alt="menu" class="icon menu-icon clickable m-r-15" v-show="isHomeRoute === false" @click="onMenuIconClick">
     </div>
 
@@ -201,17 +203,17 @@ export default {
     }
 
     .logo{
-      font-family: $font-title;
-      font-size: 30px;
-      font-weight: 500;
-      color: $dark-grey;
+      // font-family: $font-title;
+      // font-size: 30px;
+      // font-weight: 500;
+      // color: $dark-grey;
       width: 45px;
       height: 45px;
       line-height: 45px;
       text-align: center;
-      border: 1px solid $dark-grey;
+      // border: 1px solid $dark-grey;
       border-radius: 100px;
-      background: $white;
+      // background: $white;
       transition: all 0.1s ease;
     }
 
