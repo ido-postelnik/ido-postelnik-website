@@ -36,18 +36,11 @@ export default {
     background-color: $white;
     text-align: center;
     width: 30%;
-    min-width: 80px;
+    min-width: 75px;
     height: 70px; 
     box-shadow: 3px 3px 8px 2px rgba(196,196,196,0.3);
     white-space: nowrap;
     padding-top: 5px;
-
-    // @include sm {
-    //   width: 14%;
-    //   min-width: 90px;
-    //   height: 80px; 
-    //   margin-bottom: 10px;
-    // }
 
     @include md {
       width: 14%;

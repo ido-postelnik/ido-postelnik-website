@@ -561,7 +561,7 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
           }
 
           .table-container-height{
-            height: 400px;
+            height: 420px;
             overflow: auto;
             text-align: left;
             position: relative;
@@ -598,7 +598,9 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
             height: 25px;
 
             th{
-              border-bottom: 1px solid $dark-grey ;
+              border-bottom: 1px solid $dark-grey;
+              width: 50%;
+              min-width: 145px;
             }
 
             .sort{
@@ -658,8 +660,8 @@ function calcPagesNumber(filteredSkillsSize, itemsPerPage) {
                   text-align: center;
                   font-size: 14px;
                   line-height: 21px;
-                  margin-left: 3px;
-                  margin-right: 3px;
+                  margin-left: 4px;
+                  margin-right: 4px;
 
                 &-active{
                   color: $green-l;
