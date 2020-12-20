@@ -121,7 +121,7 @@ export default {
 }
 
 @mixin solid-background {
-  box-shadow: 0px 1px 5px 0px rgba($beige, 0.75);
+  box-shadow: 0px 1px 3px 0px rgba($beige, 0.75);
   height: $header-height;
 
   &.inner-page-background{

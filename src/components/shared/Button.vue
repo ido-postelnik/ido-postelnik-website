@@ -53,7 +53,7 @@ export default {
   transition: 0.2s ease;
 
   &:hover{
-    background-color: darken(#387de5, 10%);
+    background-color: darken(#387de5, 8%);
   }
 }
 

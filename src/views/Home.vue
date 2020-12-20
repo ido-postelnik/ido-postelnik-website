@@ -68,7 +68,7 @@
         <div class="highlight-image"></div>
       </div>
       <p class="highlight-sentence-container flex column layout-align-start-center p-l-50">
-        <span class="m-b-5">I make clean and beautiful User Interfaces.</span> 
+        <span class="m-b-5">Making clean and beautiful User Interfaces is my true passion.</span> 
         <span class="m-b-5">I believe in end-to-end development.</span>
         <span class="m-b-5">From idea to production. From Back-End to Front-End.</span>
         <span>Simple. As. That.</span>    
@@ -632,13 +632,26 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
       align-items: center;
       padding: 0 10px 0 10px;
 
+      span::after{
+        content: '';
+        display: block;
+        width: 65px;
+        height: 1px;
+        background-color: #adadad;
+        margin: 5px auto 1px;
+      }
+
       @include md {
         font-size: calc(1.1rem + 0.3vw);
-        letter-spacing: 2px;
+        letter-spacing: 1px;
         margin-top: 0;
         align-items: start;
         padding: 0 10px 30px 10px;
         flex: 5;
+
+        span::after{
+          display: none;
+        }
       }
 
       @include lg {
