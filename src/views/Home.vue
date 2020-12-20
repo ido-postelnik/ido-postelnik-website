@@ -38,7 +38,7 @@
       <!-- Work flow box -->
       <div class="work-flow-box-container flex column layout-align-center-center m-t-15" :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
         <div class="work-flow-box-header flex row layout-align-center-center">
-          <p>Walk through the steps to see my working progress</p>
+          <p>Walkthrough the steps to have a glance at my working process</p>
           <img src="@/assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
         </div>
         <div class="work-flow-box-content flex layout-align-center-center">
@@ -68,8 +68,9 @@
         <div class="highlight-image"></div>
       </div>
       <p class="highlight-sentence-container flex column layout-align-start-center p-l-50">
-        <span class="m-b-5">I believe in End-to-end development.</span> 
-        <span class="m-b-5">From idea to production.</span>
+        <span class="m-b-5">I make clean and beautiful User Interfaces.</span> 
+        <span class="m-b-5">I believe in end-to-end development.</span>
+        <span class="m-b-5">From idea to production. From Back-End to Front-End.</span>
         <span>Simple. As. That.</span>    
       </p>
     </div>
@@ -594,19 +595,20 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     .highlight-image-container{
       flex: 3;
       height: 100%;
-      max-height: 300px;
+      max-height: 350px;
       width: 100%;
       padding-right: 0;
 
       @include md {
         margin-left: auto;
-        flex: 1;
+        flex: 4;
         padding-right: 50px;
+        max-height: 300px;
       }
 
       .highlight-image{
         background-image: url(../assets/img/home/insparation-image.png);
-        height: 60%;
+        height: 70%;
         max-height: 280px;
         width: inherit;
         background-size: contain;
@@ -617,11 +619,6 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
           background-position: right;
           height: 80%;
         }
-
-        @include md {
-          background-position: right;
-          height: 85%;
-        }
       }
     }
 
@@ -629,20 +626,23 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
       flex: 1;
       font-size: calc(1.0rem + 1.8vw);
       font-weight: 300;
-      letter-spacing: 2px;
-      margin-top: 15px;
+      letter-spacing: 0px;
+      margin-top: 25px;
       padding-left: 0;
       align-items: center;
+      padding: 0 10px 0 10px;
 
       @include md {
-        font-size: calc(1.0rem + 0.5vw);
+        font-size: calc(1.1rem + 0.3vw);
+        letter-spacing: 2px;
         margin-top: 0;
         align-items: start;
-        padding-left: 30px;
+        padding: 0 10px 30px 10px;
+        flex: 5;
       }
 
       @include lg {
-        padding-left: 50px;
+        padding: 0 10px 20px 10px;
       }
     }
   }
