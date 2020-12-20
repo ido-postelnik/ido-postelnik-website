@@ -624,21 +624,26 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
     .highlight-sentence-container{
       flex: 1;
-      font-size: calc(1.0rem + 1.4vw);
+      font-size: calc(1.0rem + 1.1vw);
       font-weight: 300;
       letter-spacing: 0px;
       margin-top: 25px;
       padding-left: 0;
       align-items: center;
-      padding: 0 10px 0 10px;
+      padding: 0 15px 0 15px;
 
       span::after{
         content: '';
         display: block;
         width: 65px;
         height: 1px;
-        background-color: #adadad;
+        background-color: #e0e0e0;
         margin: 8px auto 1px;
+      }
+
+      span:last-child::after{
+        display: none;
+        height: 0px;
       }
 
       @include md {
