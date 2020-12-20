@@ -624,7 +624,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
     .highlight-sentence-container{
       flex: 1;
-      font-size: calc(1.0rem + 1.8vw);
+      font-size: calc(1.0rem + 1.4vw);
       font-weight: 300;
       letter-spacing: 0px;
       margin-top: 25px;
@@ -638,7 +638,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
         width: 65px;
         height: 1px;
         background-color: #adadad;
-        margin: 5px auto 1px;
+        margin: 8px auto 1px;
       }
 
       @include md {
