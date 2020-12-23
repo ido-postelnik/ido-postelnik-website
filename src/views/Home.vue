@@ -352,9 +352,12 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     top:0;
     left: 0;
     right: 0;
-    background: linear-gradient(90deg, #00D6C2 0%, #1DE9B6 100%);
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
+    // background: linear-gradient(90deg, #00D6C2 0%, #1DE9B6 100%);
+    // background-size: 400% 400%;
+    background-image: url('../assets/img/home/cover_bg.svg');
+    background-size: cover;
+    background-position: center;
+    // animation: gradient 15s ease infinite;
 
     @keyframes gradient {
       0% {
