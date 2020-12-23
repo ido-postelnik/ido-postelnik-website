@@ -38,7 +38,7 @@
       <!-- Work flow box -->
       <div class="work-flow-box-container flex column layout-align-center-center m-t-15" :class="{active: shouldShowWorkFlowModesBox === true, 'on-scroll': shouldShowWorkFlowModesAtBottom === true}">
         <div class="work-flow-box-header flex row layout-align-center-center">
-          <p>Walkthrough the steps to have a glance at my working process</p>
+          <p>Walk through the steps to get a glance at my work process</p>
           <img src="@/assets/icons/close.svg" alt="close" class="close clickable" @click="toggleWorkFlowModesBox"/>
         </div>
         <div class="work-flow-box-content flex layout-align-center-center">
@@ -88,7 +88,7 @@ import { PAGES, WORK_FLOW_MODES, DEFAULT_ACTIVE_WORK_FLOW_MODE } from "@/utils/c
 import {_, NProgress} from "@/utils/utils";
 
 const WORK_FLOW_BUTTON = {
-  OFF: "Check it out!",
+  OFF: "Pick My Brain",
   ON: "Got it, Cool!"
 };
 
