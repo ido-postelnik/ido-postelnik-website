@@ -84,7 +84,7 @@ export default {
     }
 
     &.router-link-exact-active {
-      background: $gold-d;
+      background: #387de5;
       color: $white;
 
       .sidebar-icon{
