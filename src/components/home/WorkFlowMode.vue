@@ -70,7 +70,7 @@ export default {
     height: 100%;
     text-align: center;
     padding-bottom: 10px;
-    color: $light-grey-d;
+    color: #7b8488;
 
     @include lg {
       min-width: 130px;
@@ -104,6 +104,7 @@ export default {
 
     .step-arrow{
       height: 12px;
+      filter: $filter-light-grey;
 
       @include lg {
         height: 14px;
@@ -111,12 +112,12 @@ export default {
     }
 
     &:hover{
-      color: $dark-grey-l;
+      color: $blue;
       transition: color 0.1s ease;
     }
 
     &.active{
-      color: $dark-grey-d;
+      color: $blue-l;
       position: relative;
       transition: color 0.1s ease;
 
@@ -128,7 +129,7 @@ export default {
           left: 50%;
           width: 40px;
           margin-left: -33px;
-          border-bottom: $dark-grey-d solid 2px;
+          border-bottom: $blue-l solid 2px;
         }
       }
     }

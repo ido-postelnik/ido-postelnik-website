@@ -526,7 +526,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
     &.on-scroll {
       position: fixed;
-      top: calc(100vh - 110px);
+      top: calc(100vh - 150px);
       animation: move 0.6s ease-out;
       margin-top: 0px;
 
@@ -535,7 +535,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
           top: calc(100vh - 280px);
         }
         to {
-          top: calc(100vh - 110px);
+          top: calc(100vh - 150px);
         }
       }
 
