@@ -25,7 +25,7 @@
     >
       <div class="avatar m-auto" />
       <div class="hero-title m-t-5"><h1>Ido Postelnik</h1></div>
-      <div class="hero-subtitle m-x-15"><h2 >UX/UI driven Front-End Engineer</h2></div>
+      <div class="hero-subtitle m-x-15"><h2>Product-Minded Front-End Engineer</h2></div>
       
       <Button 
         class="work-flow-button m-t-5" 
@@ -372,7 +372,7 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     }
 
     &.top-bg-wireframe{
-      background: $light-grey-l;
+      background: $light-grey;
     }
   }
 
@@ -430,9 +430,9 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
     .hero-subtitle{
       font-size: $hero-subtitle;
       font-weight: 300;
-      letter-spacing: 5.2px;
+      letter-spacing: 3.8px;
       display: block;
-      padding: 5px 8px;
+      padding: 10px 8px 5px;
 
       @include md {
         background-color: transparent;
