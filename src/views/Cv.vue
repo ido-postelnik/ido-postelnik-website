@@ -23,7 +23,7 @@ export default {
   data: function () {
     return {
       PAGES,
-      cvFileLocation: 'https://ido-postelnik-cv.s3.us-east-2.amazonaws.com/IdoPostelnik-CV.pdf'
+      cvFileLocation: 'https://ido-postelnik-cv.s3.us-east-2.amazonaws.com/IdoPostelnik-Resume.pdf'
     }
   },
   components: {

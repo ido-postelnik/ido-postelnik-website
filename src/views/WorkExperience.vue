@@ -32,19 +32,35 @@ export default {
       PAGES,
       content: [
         {
-          title: 'Front-End Team Leader',
+          title: 'Senior Front End Developer',
+          workPlace: {
+            name: 'Wix',
+            href: 'https://wix.com/',
+            timeFrame: '2020 - Present'
+          },
+          subtitle: `Wix is providing a world class web building platform to create personalized and professional websites.`,
+          content: [
+            `Developing new features used by millions of Wix users.`,
+            `Managing and building projects from scratch to production.`,
+            `Collaborating internationally with product managers, UX designers and BI analysts.`,
+            `Improved feature development process by transitioning to agile workflow.`
+          ],
+          isExpanded: true
+        },
+        {
+          title: 'Front-End Team Lead',
           workPlace: {
             name: 'Spot',
             href: 'https://spot.io/',
-            timeFrame: '2019 - Current'
+            timeFrame: '2019 - 2020'
           },
-          subtitle: `Spot (formerly Spotinst) is a SaaS for managing workloads and cloud infrastructure.`,
+          subtitle: `Spot by NetApp (formerly Spotinst) is a SaaS for managing workloads and cloud infrastructure.`,
           content: [
-            `Leading a team of developers that develop and build the products’ UI platform.`, 
-            `Leading and managing new features and projects.`,
-            `Collaborating with the product team to define and design new products and features.`
+            `Led a team of developers that develop and build the products’ UI platform.`, 
+            `Led and managed new features and projects.`,
+            `Collaborated with the product team to define and design new products and features.`
           ],
-          isExpanded: true
+          isExpanded: false
         },
         {
           title: 'Front-End Developer',
