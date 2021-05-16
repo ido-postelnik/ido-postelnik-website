@@ -10,7 +10,7 @@
           <div class="footer-icon-container m-r-10">
             <img src="@/assets/icons/location.svg" alt="location" class="footer-icon">
           </div>
-          <p>TLV, Israel</p>
+          <p>New York, NY</p>
         </div>
         <a :href="EMAIL.value" target="_blank" class="flex row m-b-10">
           <div class="footer-icon-container m-r-10">

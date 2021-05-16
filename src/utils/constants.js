@@ -3,8 +3,8 @@ export const EMAIL = {
   value: 'mailto:postelnik@gmail.com'
 }; 
 export const PHONE_NUMBER = {
-  label: '+972-54-8080474',
-  value: 'tel:972548080474'
+  label: '+1 (347) 268-2225',
+  value: 'tel:13472682225'
 };
   
 export const PAGES = {

@@ -1,6 +1,6 @@
 <template>
   <div class="flex row layout-align-center-center copy-right">
-    <p>Made by Ido Postelnik © 2020</p>
+    <p>Made by Ido Postelnik © 2021</p>
   </div>
 </template>
 

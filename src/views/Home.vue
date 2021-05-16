@@ -71,7 +71,7 @@
         <span class="m-b-5">Making clean and beautiful User Interfaces is my true passion.</span> 
         <span class="m-b-5">I believe in end-to-end development.</span>
         <span class="m-b-5">From idea to production. From Back-End to Front-End.</span>
-        <span>Simple. As. That.</span>    
+        <span>Simple as that.</span>    
       </p>
     </div>
 
