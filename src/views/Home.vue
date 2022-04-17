@@ -429,8 +429,8 @@ $main-container-height-lg: calc(#{$avatar-size} + #{$hero-title} + #{$work-flow-
 
     .hero-subtitle{
       font-size: $hero-subtitle;
-      font-weight: 300;
-      letter-spacing: 3.8px;
+      font-weight: 400;
+      letter-spacing: 3.5px;
       display: block;
       padding: 10px 8px 5px;
 

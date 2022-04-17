@@ -160,7 +160,7 @@ export default {
       .card-title{
         color: $dark-grey;
         background-color: transparent;
-        font-weight: 300;
+        font-weight: 400;
       }
 
       &:hover{

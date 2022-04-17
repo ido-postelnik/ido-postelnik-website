@@ -58,7 +58,7 @@ export default {
 
     h2{
       font-size: calc(0.8rem + 0.2vw);
-      font-weight: 300;
+      font-weight: 400;
       margin-bottom: 5px;
 
       @include md {

@@ -222,7 +222,7 @@ export default {
 
       .link{
         color: $white;
-        font-weight: 300;
+        font-weight: 400;
         letter-spacing: 2px;
         transition: color 0.15s ease;
 
